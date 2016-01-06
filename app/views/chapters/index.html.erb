@@ -1,37 +1,57 @@
+<style type="text/css">
+  
+table {
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+</style>
+
 <h1>Chapters Index</h1>
 
 <h3><%= link_to "我要開啟一段新的故事", new_chapter_path %></h3>
 
-
 <table class="table">
 
-<h2>所有故事結構表</h2>
-
-  <tr>
-    <th>PART1</th>
-    <th>PART2</th>
-    <th>PART3</th>
-  </tr>
-
-    <% @chapters.at_depth(0).each do |d| %>  
-      <tr>
-        <td>    
+  <h2>所有故事結構表</h2>
+  <thead>
+    <tr>
+      <th>PART1</th>
+      <th>PART2</th>
+      <th>PART3</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @chapters.at_depth(0).each do |d| %> 
+      <tr class= "<%= d.topic %>" >
+        <td class="part1">    
           <p><%= link_to d.topic, chapter_path(d) %></p>
         </td>
+        <% if d.children.present? %>
           <% d.children.each do |ch| %>
-        <td>
-          <p><%= link_to ch.topic, chapter_path(ch) %></p>
-        </td>
-
-        <td>
-          <% ch.children.each do |gc| %>
-            <p><%= link_to gc.topic, chapter_path(gc) %></p>
+            <td class="part2">
+              <p><%= link_to ch.topic, chapter_path(ch) %></p>
+            </td>
+            <% if ch.children.present? %>
+              <td class="part3">
+                <% ch.children.each do |gc| %>
+                  <p><%= link_to gc.topic, chapter_path(gc) %></p>
+                <% end %>
+              </td>
+            <% else %>
+              <td class="part3"></td>
+            <% end %>
           <% end %>
-        </td>
-          <% end %>    
+        <% else %>
+          <td class="part2"></td>
+          <td class="part2"></td>
+        <% end %>    
       </tr>  
-    <% end %>  
-    
+    <% end %>
+  </tbody>
 </table>
 
 <hr>
@@ -51,7 +71,7 @@
   <% @finish.each do |f| %>
     <tr> 
       <td><%= link_to f.topic, chapter_path(f)%></td>
-      <th>作者</th>
+      <td><%= f.user.try(:display_name) %></td>
       <td><%= f.setting %></td>
       <td><%= f.content %></td>
       <td><%= f.view %></td>
@@ -77,7 +97,7 @@
   <% @chapters.each do |c| %>
     <tr>
       <td><%= link_to c.topic, chapter_path(c)%></td>
-      <th>作者</th>
+      <td><%= c.user.try(:display_name) %></td>
       <td><%= c.setting %></td>
       <td><%= c.content %></td>
       <td><%= c.view %></td>

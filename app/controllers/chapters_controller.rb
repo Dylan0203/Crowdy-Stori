@@ -1,5 +1,7 @@
 class ChaptersController < ApplicationController
 
+  #before_action :authenticate_user!, :except => [:index, :show]
+
   before_action :set_article, :only => [ :show ]
 
   def index
@@ -28,8 +30,10 @@ class ChaptersController < ApplicationController
     if params[:id]
       @chapter = Chapter.find(params[:id])
       @chapter = @chapter.children.new(chapter_params)
+      @chapter.user = current_user
     else
       @chapter = Chapter.new(chapter_params)
+      @chapter.user = current_user
     end
     
     if @chapter.save

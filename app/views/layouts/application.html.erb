@@ -10,8 +10,23 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <%= link_to "IndexPage  TimeNow:#{Time.current.to_s(:short)}", root_path %>
-
+          
+          <ul class="nav nav-pills">
+            <li><%= link_to "IndexPage  TimeNow:#{Time.current.to_s(:short)}", root_path %></li>
+            
+          <% if current_user %>
+              <li><%= link_to('登出', destroy_user_session_path, :method => :delete) %></li>
+              <li><%= link_to('修改密碼', edit_registration_path(:user)) %></li>
+          <% else %>
+              <li><%= link_to('註冊', new_registration_path(:user)) %></li>
+              <li><%= link_to('登入', new_session_path(:user)) %></li>
+              <li><%#= link_to "登入 Facebook", user_omniauth_authorize_path(:facebook) %></li>
+          <% end %>
+              <% if current_user %>
+              <li><%= link_to "Hi! #{current_user.display_name}" %></li>
+              <li><%#= link_to "Profile", profile_path( current_user ) %></li>
+              <% end %>
+          </ul>
 
 
           <% if flash[:notice].present? %>
