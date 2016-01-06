@@ -1,0 +1,41 @@
+<h1><%= @chapter.topic %></h1>
+
+<% if @chapter.parent %>
+<p>上一層：<%= link_to @chapter.parent.topic, chapter_path(@chapter.parent) %></p>
+<% end %>
+
+<hr>
+
+  <% if @chapter.parent %>
+    <% @chapter.ancestor_ids.each do |p| %>
+    
+      <p>這是第<%= Chapter.find(p).depth+1 %>層故事：</p>
+        <% if Chapter.find(p).depth == 0 %>
+          <p>故事設定：<%= Chapter.find(p).setting %></p> 
+        <% end %>
+      <p>故事標題：<%= Chapter.find(p).topic %></p>
+      <p>故事內容：<%= Chapter.find(p).content %></p>
+<hr>
+    <% end %>
+  <% end %>
+
+  <% if @chapter.depth == 0 %>
+    <p>這邊是故事設定：</p>
+    <%= @chapter.setting %>
+  <% end %>
+
+  <p>這邊是故事內容：</p>
+    <%= @chapter.content %>
+
+
+  <% if @chapter.depth < 2 && @chapter.finish == false %>
+    <p><%= link_to "我要接續這段故事", new_chapter_path(:id => @chapter.id) %></p>
+  <% end %>
+
+<hr>
+
+<% if @chapter.has_children? %>
+  <% @chapter.children.each do |c| %>
+    <p>下一層：<%= link_to c.topic, chapter_path(c) %></p>
+  <% end %>
+<% end %>

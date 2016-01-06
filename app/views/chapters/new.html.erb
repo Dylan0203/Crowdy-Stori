@@ -1,0 +1,47 @@
+
+
+
+<% if @chapter.depth == 0 %>
+  <h1>！！！新創的故事！！！</h1>
+<% else %>
+  <h1>接續故事: <%= @chapter.parent.topic %></h1>
+<% end %>
+
+
+<%if params[:id] %>
+  <% url = chapters_path(:id => params[:id] )%>
+<% else %>
+  <% url = chapters_path %>
+<% end %>
+
+<%= form_for @chapter, :url => url do |f| %>
+
+  <div class="form_group">
+    <%= f.label :topic, "標題或故事大綱" %>
+    <%= f.text_field :topic, :class => "form-control" %>
+  </div>
+
+  <% if @chapter.depth == 0 %>
+    <div class="form_group">
+      <%= f.label :setting, "故事設定" %>
+      <%= f.text_field :setting, :class => "form-control" %>
+    </div>
+  <% end %>
+
+  <div class="form_group">
+    <%= f.label :content, "故事內容" %>
+    <%= f.text_area :content, :class => "form-control" %>
+  </div>
+
+  <div class="form_group">
+    <% if @chapter.depth == 2 %>
+      <%= f.select :finish, [ ['結束故事', true] ] %>
+    <% else %>
+      <%= f.select :finish, [['還可以接續', false], ['結束故事', true]] %>
+    <% end %>
+  </div>
+  
+  <div class="form_group">
+    <%= f.submit "送出接續的故事" %>
+  </div>
+<% end %>

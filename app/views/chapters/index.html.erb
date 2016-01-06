@@ -1,0 +1,89 @@
+<h1>Chapters Index</h1>
+
+<h3><%= link_to "我要開啟一段新的故事", new_chapter_path %></h3>
+
+
+<table class="table">
+
+<h2>所有故事結構表</h2>
+
+  <tr>
+    <th>PART1</th>
+    <th>PART2</th>
+    <th>PART3</th>
+  </tr>
+
+    <% @chapters.at_depth(0).each do |d| %>  
+      <tr>
+        <td>    
+          <p><%= link_to d.topic, chapter_path(d) %></p>
+        </td>
+          <% d.children.each do |ch| %>
+        <td>
+          <p><%= link_to ch.topic, chapter_path(ch) %></p>
+        </td>
+
+        <td>
+          <% ch.children.each do |gc| %>
+            <p><%= link_to gc.topic, chapter_path(gc) %></p>
+          <% end %>
+        </td>
+          <% end %>    
+      </tr>  
+    <% end %>  
+    
+</table>
+
+<hr>
+
+
+<table class="table">
+<h2>所有已完成故事</h2>
+<tr>
+  <th>標題</th>
+  <th>作者</th>
+  <th>場景</th>
+  <th>故事</th>
+  <th>點閱</th>
+  <th>層級</th>
+  <th>完成</th>
+</tr>
+  <% @finish.each do |f| %>
+    <tr> 
+      <td><%= link_to f.topic, chapter_path(f)%></td>
+      <th>作者</th>
+      <td><%= f.setting %></td>
+      <td><%= f.content %></td>
+      <td><%= f.view %></td>
+      <td><%= f.ancestry_depth+1 %></td>
+      <td><%= f.finish %></td>
+    </tr>
+  <% end %>
+</table>
+
+<hr>
+
+<table class="table">
+<h2>所有的故事片段</h2>
+<tr>
+  <th>標題</th>
+  <th>作者</th>
+  <th>場景</th>
+  <th>故事</th>
+  <th>點閱</th>
+  <th>層級</th>
+  <th>完成</th>
+</tr>
+  <% @chapters.each do |c| %>
+    <tr>
+      <td><%= link_to c.topic, chapter_path(c)%></td>
+      <th>作者</th>
+      <td><%= c.setting %></td>
+      <td><%= c.content %></td>
+      <td><%= c.view %></td>
+      <td><%= c.ancestry_depth+1 %></td>
+      <td><%= c.finish %></td>
+    </tr>
+  <% end %>
+</table>
+
