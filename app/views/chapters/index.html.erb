@@ -49,6 +49,8 @@
       <td><%= link_to f.topic, chapter_path(f)%></td>
       <% if f.user %>
       <td><%= link_to f.user.try(:display_name), user_profile_path( f.user.id ) %></td>
+      <% else %>
+      <td></td>
       <% end %>
       <td><%= f.setting %></td>
       <td><%#= f.content %></td>

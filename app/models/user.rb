@@ -74,7 +74,6 @@ class User < ActiveRecord::Base
   end
 
   def display_name
-    #first_name || 
-    short_email || email
+    self.profile.try(:username) || short_email || email
   end
 end

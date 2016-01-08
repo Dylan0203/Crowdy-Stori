@@ -9,6 +9,7 @@ table, th, td {
 .level1{
   background: blue;
   border-radius: 10px;
+  box-shadow: 10px 10px 5px #888888;
 }
 
 .level2{
@@ -17,6 +18,7 @@ table, th, td {
   left: 150px;
   background: yellow;
   border-radius: 10px;
+  box-shadow: 10px 10px 5px #888888;
 }
 
 .level3{
@@ -25,6 +27,7 @@ table, th, td {
   left: 150px;
   background: red;
   border-radius: 10px;
+  box-shadow: 10px 10px 5px #888888;
 }
 
 .storyline, .storyline a{
@@ -41,5 +44,5 @@ table, th, td {
 }
 
 .fb-img{
-  max-width:50px;
+  max-width:50px !important;
 }

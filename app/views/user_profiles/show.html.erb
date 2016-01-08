@@ -9,7 +9,7 @@
 <p>聲音簡介：<%= @user.profile.try(:voice) %>功能開發中</p>
 
 <% if @user == current_user %>
-<%= link_to "編輯個人資料", edit_user_profile_path(current_user) %> 
+<%= link_to "編輯個人資料", edit_user_profile_path(current_user), :class => "btn btn-primary" %> 
 <% end %>
 
 <p>參與過的文章：</p>

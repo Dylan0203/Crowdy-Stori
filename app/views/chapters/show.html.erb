@@ -1,5 +1,7 @@
 <h1><%= @chapter.topic %></h1>
-
+<% if @chapter.user %>
+<h2>作者：<%= link_to @chapter.user.display_name, user_profile_path(@chapter.user) %></h2>
+<% end %>
 <% if @chapter.parent %>
 <p>上一層：<%= link_to @chapter.parent.topic, chapter_path(@chapter.parent) %></p>
 <% end %>
@@ -29,7 +31,7 @@
 
 
   <% if @chapter.depth < 2 && @chapter.finish == false %>
-    <p><%= link_to "我要接續這段故事", new_chapter_path(:id => @chapter.id) %></p>
+    <p><%= link_to "我要接續這段故事", new_chapter_path(:id => @chapter.id) , :class => "btn btn-primary"%></p>
   <% end %>
 
 <hr>
