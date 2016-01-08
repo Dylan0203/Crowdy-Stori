@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160106142857) do
+ActiveRecord::Schema.define(version: 20160107093155) do
 
   create_table "chapters", force: :cascade do |t|
     t.string   "topic"
@@ -29,6 +29,22 @@ ActiveRecord::Schema.define(version: 20160106142857) do
 
   add_index "chapters", ["ancestry"], name: "index_chapters_on_ancestry"
   add_index "chapters", ["user_id"], name: "index_chapters_on_user_id"
+
+  create_table "profiles", force: :cascade do |t|
+    t.string   "username"
+    t.string   "picture"
+    t.string   "voice"
+    t.string   "gender"
+    t.date     "birthday"
+    t.text     "about_me"
+    t.string   "bloodtype"
+    t.string   "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "profiles", ["user_id"], name: "index_profiles_on_user_id"
+  add_index "profiles", ["username"], name: "index_profiles_on_username", unique: true
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

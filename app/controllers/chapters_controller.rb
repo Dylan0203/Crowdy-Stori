@@ -10,8 +10,13 @@ class ChaptersController < ApplicationController
   end
 
   def show
-    @chapter.view = @chapter.view.to_i + 1
-    @chapter.save
+
+    unless cookies["view-chapter-#{@chapter.id}"]
+       cookies["view-chapter-#{@chapter.id}"] = "viewed"
+       @chapter.view = @chapter.view.to_i + 1
+       @chapter.save!
+     end
+
   end
 
   def new
