@@ -7,7 +7,7 @@ table, th, td {
 }
 
 .level1{
-  background: blue;
+  background: #5BC0EB;
   border-radius: 10px;
   box-shadow: 10px 10px 5px #888888;
 }
@@ -16,7 +16,7 @@ table, th, td {
   position: relative;
   top:-15px;
   left: 150px;
-  background: yellow;
+  background: #FDE74C;
   border-radius: 10px;
   box-shadow: 10px 10px 5px #888888;
 }
@@ -25,7 +25,7 @@ table, th, td {
   position: relative;
   top:-15px;
   left: 150px;
-  background: red;
+  background: #9BC53D;
   border-radius: 10px;
   box-shadow: 10px 10px 5px #888888;
 }
@@ -45,4 +45,7 @@ table, th, td {
 
 .fb-img{
   max-width:50px !important;
+}
+.container{
+  background:#EEEFEA;
 }
