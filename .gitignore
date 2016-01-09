@@ -17,3 +17,5 @@
 /tmp
 
 /config/facebook.yml
+/config/database.yml
+/config/secrets.yml
