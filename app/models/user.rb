@@ -15,9 +15,9 @@ class User < ActiveRecord::Base
     if self.profile
       return self.profile    
     else
-      # p = Profile.new
-      # p.user = self
-      # p.save
+       p = Profile.new
+       p.user = self
+       p.save
       return self.create_profile
     end
   end
@@ -55,6 +55,7 @@ class User < ActiveRecord::Base
 
      # Case 3: Create new password
      user = User.new
+     user.get_profile
      user.fb_uid = auth.uid
      user.fb_token = auth.credentials.token
      user.email = auth.info.email
