@@ -16,7 +16,8 @@
           <p>故事設定：<%= Chapter.find(p).setting %></p> 
         <% end %>
       <p>故事標題：<%= Chapter.find(p).topic %></p>
-      <p>故事內容：<%= simple_format.(Chapter.find(p).content) %></p>
+
+      <p>故事內容：<%= simple_format Chapter.find(p).content %></p>
 <hr>
     <% end %>
   <% end %>
@@ -27,7 +28,7 @@
   <% end %>
 
   <p>這邊是故事內容：</p>
-    <%= simple_format(@chapter.content) %>
+    <%= simple_format @chapter.content %>
 
 
   <% if @chapter.depth < 2 && @chapter.finish == false %>

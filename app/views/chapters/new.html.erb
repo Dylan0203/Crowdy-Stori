@@ -18,7 +18,7 @@
 
   <div class="form_group">
     <%= f.label :topic, "標題或故事大綱" %>
-    <%= f.text_field :topic, :class => "form-control" %>
+    <%= f.text_field :topic, :required => true, :class => "form-control" %>
   </div>
 
   <% if @chapter.depth == 0 %>
@@ -30,7 +30,7 @@
 
   <div class="form_group">
     <%= f.label :content, "故事內容" %>
-    <%= f.text_area :content, :class => "form-control" %>
+    <%= f.text_area :content, :required => true, :class => "form-control" %>
   </div>
 
   <div class="form_group">
