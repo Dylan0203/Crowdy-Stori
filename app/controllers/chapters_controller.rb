@@ -7,6 +7,16 @@ class ChaptersController < ApplicationController
   def index
     @chapters =  Chapter.all
     @finish = Chapter.where( :finish => true )
+
+    respond_to do |format|
+      format.html
+      format.json {
+        arr = @chapters.map { |t|
+          { :id => t.id, :topic => t.topic }
+        }
+        render :json => { :data => arr }
+      }
+    end
   end
 
   def show
