@@ -1,7 +1,7 @@
 <h1><%= @user.display_name %>'s Profile</h1>
 
 <p>照片：<%= image_tag @user.profile.try(:picture) %></p>
-<p>使用者名稱： <%= @user.profile.try(:username) %></p>
+<p>使用者名稱、FB： <%= link_to @user.try(:display_name), "https://www.facebook.com/#{@user.try(:fb_uid)}" %></p>
 <p>性別： <%= @user.profile.try(:gender) %></p>
 <p>生日： <%= @user.profile.try(:birthday) %></p>
 <p>血型： <%= @user.profile.try(:bloodtype) %></p>

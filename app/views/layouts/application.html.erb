@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= @page_title || '故事里' %></title>
+    <title><%= @page_title || 'Stori - 故事里' %></title>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
@@ -12,7 +12,10 @@
         <div class="col-md-12">
           
           <ul class="nav nav-pills">
-            <li><%= link_to "IndexPage  TimeNow:#{Time.current.to_s(:short)}", root_path %></li>
+            <li><%= link_to root_path do %>
+            <%= image_tag "crowdy120.png", :width => 100 %></li>
+            <% end %>
+            </li>
             
           <% if current_user %>
               <li><%= link_to('登出', destroy_user_session_path, :method => :delete) %></li>
@@ -29,6 +32,7 @@
               <%end%>
               </li>
               <% end %>
+              <li><%= "現在時刻 : #{Time.current.to_s(:short)}" %></li>
           </ul>
 
 
