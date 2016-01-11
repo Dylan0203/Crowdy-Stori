@@ -1,5 +1,8 @@
 json.id chapter.id
-json.ancestry chapter.ancestry
+json.ancestry chapter.ancestry.try(:split, '/')
+
+
+
 json.topic chapter.topic
 json.setting chapter.setting
 json.content chapter.content
