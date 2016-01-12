@@ -1,6 +1,6 @@
-class ApiV1::ChaptersController < ApplicationController
+class ApiV1::ChaptersController < ApiController
 
-  skip_before_action :verify_authenticity_token
+  #before_action :authenticate_user!, :only => [:create]
 
   # GET /api/v1/chapters/:id
   def show

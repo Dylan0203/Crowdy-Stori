@@ -11,6 +11,12 @@ class User < ActiveRecord::Base
   has_many :chapters
   has_one :profile, :dependent => :destroy
 
+  before_create :generate_authentication_token
+
+  def generate_authentication_token
+    self.authentication_token = Devise.friendly_token
+  end
+
   def get_profile
     if self.profile
       return self.profile    
