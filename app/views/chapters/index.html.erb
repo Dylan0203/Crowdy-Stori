@@ -6,6 +6,9 @@
 <div class="element">
 <ol class="level1">
   <% @chapters.at_depth(0).each do |d| %>
+ 
+    <h4><%= d.category.name if d.category %></h4>
+    
     <li>
       <%= link_to d.topic, chapter_path(d) %>
     </li>
@@ -38,7 +41,7 @@
   <th>標題</th>
   <th>作者</th>
   <th>場景</th>
-  <th>故事</th>
+  <th>類別</th>
   <th>點閱</th>
   <th>層級</th>
   <th>完成</th>
@@ -52,7 +55,7 @@
       <td></td>
       <% end %>
       <td><%= f.setting %></td>
-      <td><%#= f.content %></td>
+      <td><%= f.category.name if f.category %></td>
       <td><%= f.view %></td>
       <td><%= f.ancestry_depth+1 %></td>
       <td><%= f.finish %></td>
@@ -68,7 +71,7 @@
   <th>標題</th>
   <th>作者</th>
   <th>場景</th>
-  <th>故事</th>
+  <th>類別</th>
   <th>點閱</th>
   <th>層級</th>
   <th>完成</th>
@@ -78,7 +81,7 @@
       <td><%= link_to c.topic, chapter_path(c)%></td>
       <td><%= c.user.try(:display_name) %></td>
       <td><%= c.setting %></td>
-      <td><%#= c.content %></td>
+      <td><%= c.category.name if c.category %></td>
       <td><%= c.view %></td>
       <td><%= c.ancestry_depth+1 %></td>
       <td><%= c.finish %></td>

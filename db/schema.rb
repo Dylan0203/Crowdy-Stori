@@ -11,7 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160112072154) do
+ActiveRecord::Schema.define(version: 20160112130559) do
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "chapters", force: :cascade do |t|
     t.string   "topic"
@@ -25,9 +31,11 @@ ActiveRecord::Schema.define(version: 20160112072154) do
     t.integer  "comments_count", default: 0
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+    t.integer  "category_id"
   end
 
   add_index "chapters", ["ancestry"], name: "index_chapters_on_ancestry"
+  add_index "chapters", ["category_id"], name: "index_chapters_on_category_id"
   add_index "chapters", ["user_id"], name: "index_chapters_on_user_id"
 
   create_table "profiles", force: :cascade do |t|

@@ -1,20 +1,31 @@
 json.id chapter.id
+
 json.ancestry chapter.ancestry.try(:split, '/')
 
+json.categoryId chapter.category_id
 
+if chapter.category
+  json.category chapter.category.name
+end
 
 json.topic chapter.topic
+
 json.setting chapter.setting
+
 json.content chapter.content
+
 json.finish chapter.finish
+
 json.user_id chapter.user_id
-  if chapter.user
-    json.user do
-      json.id chapter.user.id
-      json.display_name chapter.user.display_name
-      json.email chapter.user.email
-    end
+
+if chapter.user
+  json.user do
+    json.id chapter.user.id
+    json.display_name chapter.user.display_name
+    json.email chapter.user.email
   end
+end
+
 json.view chapter.view
 
 json.created_at chapter.created_at

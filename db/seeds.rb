@@ -8,3 +8,7 @@
 
 
 user = User.create!( :email => "dylanmail0203@gmail.com", :password => "12345678", :role => "admin")
+
+Category.create!( :name => "經典故事")
+Category.create!( :name => "結局改編")
+Category.create!( :name => "時事創作")

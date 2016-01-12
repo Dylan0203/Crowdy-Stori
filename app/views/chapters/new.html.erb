@@ -1,6 +1,3 @@
-
-
-
 <% if @chapter.depth == 0 %>
   <h1>！！！新創的故事！！！</h1>
 <% else %>
@@ -15,6 +12,13 @@
 <% end %>
 
 <%= form_for @chapter, :url => url do |f| %>
+
+  <% if @chapter.depth == 0 %>
+    <div class="form-group">
+      <%= f.label :category_id, "故事分類："%>
+      <%= f.select :category_id, Category.all.map{ |c| [c.name, c.id] } %>
+    </div>
+  <% end %>
 
   <div class="form_group">
     <%= f.label :topic, "標題或故事大綱" %>
