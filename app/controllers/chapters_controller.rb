@@ -8,6 +8,29 @@ class ChaptersController < ApplicationController
     @chapters =  Chapter.all
     @finish = Chapter.where( :finish => true )
 
+
+    if params[:keyword] || params[:category]
+      
+      if params[:category][:id].blank?
+        @chapters = Chapter.where([ "topic like ?", "%#{params[:keyword]}%"])
+      else
+        @category = Category.find(params[:category][:id])
+        @chapters = @category.chapters
+        @chapters = @chapters.where([ "topic like ?", "%#{params[:keyword]}%"])
+      end
+    else
+      @chapters = Chapter.all
+    end
+
+    #if %w[topic comments_count last_comment_time view].include?(params[:order])
+    if %w[topic view].include?(params[:order])
+      sort_by = (params[:order])
+    else
+      sort_by = 'id'
+    end
+
+    @chapters = @chapters.order(sort_by + " DESC")#.page(params[:page]).per(5)
+
     respond_to do |format|
       format.html
       format.json {
@@ -17,6 +40,7 @@ class ChaptersController < ApplicationController
         render :json => { :data => arr }
       }
     end
+
   end
 
   def show

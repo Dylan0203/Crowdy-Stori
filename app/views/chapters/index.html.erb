@@ -1,6 +1,23 @@
 <h1></h1>
 <%= link_to "我要開啟一段新的故事", new_chapter_path , :class => "btn btn-primary" %>
 
+<table class="table">
+  <tr>
+    <td>
+      <%= form_tag chapters_path, :method => :get do %>
+        <%= collection_select( :category, :id, Category.all, :id, :name,{:include_blank => '選擇故事類別or不分類'}) %>
+        <%= text_field_tag "keyword" %>
+        <%= submit_tag "Search" %>
+      <% end %>
+    </td>
+    <td><%= link_to 'Sort by viewed', chapters_path( chapters_filter( :order => "view") ) %></td>
+      <%#= link_to 'Sort by comments', chapters_path( chapters_filter( :order => "comments_count") ) %>
+      <%#= link_to 'Sort by last comments', chapters_path( chapters_filter( :order => "last_comment_time") ) %>
+    <td><%= link_to 'Sort by Name', chapters_path( chapters_filter( :order => "topic") ) %></td>
+    <td><%= link_to 'Sort by Default', chapters_path %></td>
+  </tr>
+</table>
+
 <h3>所有故事結構表</h3>
 <div class="storyline">
 <div class="element">
@@ -88,4 +105,3 @@
     </tr>
   <% end %>
 </table>
-
