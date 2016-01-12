@@ -7,11 +7,9 @@ class UserProfilesController < ApplicationController
    @user = User.find(params[:user_id])
    @profile = @user.profile
 
-#   if @profile
-#     @profile = @user.profile
-#   else
-#     @user.profile = Profile.create
-#   end
+   unless @profile
+     @user.profile = Profile.create
+   end
  
   end
 

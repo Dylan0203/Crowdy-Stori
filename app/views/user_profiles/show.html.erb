@@ -12,9 +12,9 @@
 <p>自我介紹：<%= @user.profile.try(:about_me) %></p>
 <p>聲音簡介：<%= @user.profile.try(:voice) %>功能開發中</p>
 
-<% if @user == current_user %>
-<%= link_to "編輯個人資料", edit_user_profile_path(current_user), :class => "btn btn-primary" %> 
-<% end %>
+
+<%= link_to "編輯個人資料", edit_user_profile_path(current_user), :class => "btn btn-primary" if @user == current_user %> 
+
 
 <p>參與過的文章：</p>
 <ul>
