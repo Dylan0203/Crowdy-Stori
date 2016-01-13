@@ -1,8 +1,12 @@
 json.id chapter.id
 
-json.ancestry chapter.ancestry.try(:split, '/')
+unless chapter.ancestry
+  json.ancestry chapter.ancestry == ""
+else
+  json.ancestry chapter.ancestry.try(:split, '/')
+end
 
-json.categoryId chapter.category_id
+json.categoryId chapter.category_id.to_s
 
 if chapter.category
   json.category chapter.category.name
@@ -10,13 +14,13 @@ end
 
 json.topic chapter.topic
 
-json.setting chapter.setting
+json.setting chapter.setting.to_s
 
 json.content chapter.content
 
-json.finish chapter.finish
+json.finish chapter.finish.to_s
 
-json.user_id chapter.user_id
+json.user_id chapter.user_id.to_s
 
 if chapter.user
   json.user do
