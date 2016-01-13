@@ -1,34 +1,43 @@
 
 <%= form_for @profile, :url => user_profile_path(@profile) do |f| %>
 
-<div class="form_group">
-  <%= f.label :username, "UserName" %>
-  <%= f.text_field :username, :class => "form-control" %>
-</div>
+  <div class="form_group">
+    <%= f.label :username, "UserName" %>
+    <%= f.text_field :username, :class => "form-control" %>
+  </div>
 
-<div class="form_group">
-  <%= f.radio_button :gender, '男' %> 
-  <%= label :gender, '男' %>
-  <%= f.radio_button :gender, '女' %>
-  <%= label :gender, '女' %>
-  <%= f.radio_button :gender, '秘密', :checked => true %>
-  <%= label :gender, '秘密' %>
-</div>
+  <div class="form_group">
+    <%= f.radio_button :gender, '男生' %> 
+    <%= label :gender, '男生' %>
+  
+    <%= f.radio_button :gender, '女生' %>
+    <%= label :gender, '女生' %>
+  
+    <%= f.radio_button :gender, '秘密', :checked => true %>
+    <%= label :gender, '秘密' %>
+  </div>
 
-<div class="form_group">
-  <%= f.label :birthday, "birthday" %>
-  <%= f.date_select :birthday, :start_year=>1950,:end_year=>2015, :class => "form-control" %>
-</div>
+  <div class="form_group">
+    <%= f.label :birthday, "birthday" %>
+    <%= f.date_select :birthday, :start_year=>1950,:end_year=>2015, :class => "form-control" %>  
+  </div>
 
-<div class="form_group">
-  <%= f.label :bloodtype, "bloodtype" %>
-  <%= f.select :bloodtype, [['A', 'A'], ['B', 'B'], ['AB', 'AB'], ['O', 'O']], :class => "form-control" %>
-</div>
+  <div class="form_group">
+    <%= f.label :bloodtype, "bloodtype" %>
+    <%= f.select :bloodtype, [['A', 'A'], ['B', 'B'], ['AB', 'AB'], ['O', 'O']], :class => "form-control" %>
+  </div>
 
-<div class="form_group">
-  <%= f.label :about_me, "about_me" %>
-  <%= f.text_area :about_me, :class => "form-control" %>
-</div>
+  <div class="form_group">
+    <%= f.label :about_me, "about_me" %>
+    <%= f.text_area :about_me, :class => "form-control" %>
+  </div>
 
     <%= f.submit "Update",:class => "btn btn-primary" %>
 <% end %>
+
+<script>
+  $("#profile_birthday_1i").select2({ width: "auto" });
+  $("#profile_birthday_2i").select2({ width: "auto" });
+  $("#profile_birthday_3i").select2({ width: "auto" });
+  $("#profile_bloodtype").select2({ width: "auto" });
+</script>
