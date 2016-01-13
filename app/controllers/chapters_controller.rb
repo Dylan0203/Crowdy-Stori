@@ -10,7 +10,7 @@ class ChaptersController < ApplicationController
 
 
     if params[:keyword] || params[:category]
-      
+
       if params[:category][:id].blank?
         @chapters = Chapter.where([ "topic like ?", "%#{params[:keyword]}%"])
       else
@@ -46,18 +46,20 @@ class ChaptersController < ApplicationController
   def show
 
     unless cookies["view-chapter-#{@chapter.id}"]
-       cookies["view-chapter-#{@chapter.id}"] = "viewed"
-       @chapter.view = @chapter.view.to_i + 1
-       @chapter.save!
-     end
+     cookies["view-chapter-#{@chapter.id}"] = "viewed"
+     @chapter.view = @chapter.view.to_i + 1
+     @chapter.save!
+    end
+
 
   end
 
   def new
 
-    if params[:id]
-      @chapter = Chapter.find(params[:id])
-      @chapter = @chapter.children.new
+    if params[:parent_id]
+      #@chapter = Chapter.find(params[:id])
+      parent = Chapter.find(params[:parent_id])
+      @chapter = parent.children.new
     else
       @chapter = Chapter.new
     end
@@ -65,7 +67,7 @@ class ChaptersController < ApplicationController
   end
 
   def create
-    
+
     if params[:id]
       @chapter = Chapter.find(params[:id])
       @chapter = @chapter.children.new(chapter_params)
@@ -74,14 +76,14 @@ class ChaptersController < ApplicationController
       @chapter = Chapter.new(chapter_params)
       @chapter.user = current_user
     end
-    
+
     if @chapter.save
       flash[:notice] = "成功新增故事"
       redirect_to chapter_path(@chapter)
-    
+      
     else
       render :action => :new
-    
+      
     end
 
   end
@@ -93,7 +95,6 @@ class ChaptersController < ApplicationController
   end
 
   def chapter_params
-    params.require(:chapter).permit(:topic, :setting, :content, :finish, :category_id )
+    params.require(:chapter).permit(:topic, :setting, :content, :finish, :category_id)
   end
-
 end
