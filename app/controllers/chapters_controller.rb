@@ -76,8 +76,8 @@ class ChaptersController < ApplicationController
     end
     
     if @chapter.save
-      flash[:notice] = "新增成功"
-      redirect_to chapters_path
+      flash[:notice] = "成功新增故事"
+      redirect_to chapter_path(@chapter)
     
     else
       render :action => :new
