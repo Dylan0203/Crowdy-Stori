@@ -1,7 +1,7 @@
 json.id chapter.id
 
 unless chapter.ancestry
-  json.ancestry chapter.ancestry == ""
+  json.ancestry chapter.ancestry = ""
 else
   json.ancestry chapter.ancestry.try(:split, '/')
 end
