@@ -32,7 +32,7 @@
 
 
   <% if @chapter.depth < 2 && @chapter.finish == false %>
-    <p><%= link_to "我要接續這段故事", new_chapter_path(:id => @chapter.id) , :class => "btn btn-primary"%></p>
+    <p><%= link_to "我要接續這段故事", new_chapter_path(:parent_id => @chapter.id) , :class => "btn btn-primary"%></p>
   <% end %>
 
 <hr>

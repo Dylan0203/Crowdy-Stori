@@ -5,8 +5,8 @@
 <% end %>
 
 
-<%if params[:id] %>
-  <% url = chapters_path(:id => params[:id] )%>
+<%if params[:parent_id] %>
+  <% url = chapters_path(:id => params[:parent_id] )%>
 <% else %>
   <% url = chapters_path %>
 <% end %>
@@ -22,19 +22,19 @@
 
   <div class="form_group">
     <%= f.label :topic, "標題或故事大綱" %>
-    <%= f.text_field :topic, :required => true, :class => "form-control" %>
+    <%= f.text_field :topic, :required => true, :class => "form-control", :placeholder => '命名也是很有趣der' %>
   </div>
 
   <% if @chapter.depth == 0 %>
     <div class="form_group">
       <%= f.label :setting, "故事設定" %>
-      <%= f.text_field :setting, :class => "form-control" %>
+      <%= f.text_field :setting, :class => "form-control", :placeholder => 'ex. 夜晚、台北、國家劇院' %>
     </div>
   <% end %>
 
   <div class="form_group">
     <%= f.label :content, "故事內容" %>
-    <%= f.text_area :content, :required => true, :class => "form-control" %>
+    <%= f.text_area :content, :required => true, :class => "form-control", :placeholder => '請盡情發揮，沒有人會阻止你' %>
   </div>
 
   <div class="form_group">
@@ -47,11 +47,66 @@
   </div>
   <hr>
   <div class="form_group">
-    <%= f.submit "送出接續的故事", :class => "btn btn-primary" %>
+    <%#= f.submit "送出故事", :data => {:confirm => "你確定喔送出不能改喔！！"}, :class => 'btn btn-primary' %>
   </div>
+<%# end %>
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  預覽故事
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">預覽故事-送出即無法更改喔</h4>
+      </div>
+      <div class="modal-body">
+        <% @chapter.ancestor_ids.each do |p| %> 
+          <% p = Chapter.find(p) %>
+          <p><%= "前情提要：（故事第#{Chapter.find(p).depth+1}層）" %></p>
+          <p><%= "故事標題： #{p.topic}" %></p>
+          <% if p.depth==0 %> 
+          <p><%= "故事設定： #{p.try(:setting)}" %></p>
+          <% end %>
+          <p><%= "故事內容： #{p.content}" %></p>
+          <hr>
+        <% end %>
+          <p>準備送出的新故事片段：</p>  
+        
+          <div id="preview">...</div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary"><%= f.submit "送出故事", :data => {:confirm => "你確定喔送出不能改喔！！"}, :class => 'btn btn-primary' %></button>
+      </div>
+    </div>
+  </div>
+</div>
 <% end %>
 
 <script>
+
+$("[data-target='#myModal']").click(function(){
+  var topic = $("#chapter_topic")
+      t = topic.val()
+      setting = $("#chapter_setting")
+      s = setting.val()
+      content = $("#chapter_content")
+      c = content.val();
+
+  $("#preview").html(
+   "<p>標題：" + t + "</p>" +
+   "<p>故事設定：" + s + "</p>" +
+   "<p>內容：" + c + "</p>"
+  );
+})
+
   $("#chapter_category_id").select2({ width: "auto" });
   $("#chapter_finish").select2({ width: "auto" });
+
 </script>

@@ -1,7 +1,7 @@
 <h1></h1>
 <%= link_to "我要開啟一段新的故事", new_chapter_path , :class => "btn btn-primary" %>
 
-<table class="table">
+<table class="table search">
   <tr>
     <td>
       <%= form_tag chapters_path, :method => :get do %>
@@ -52,7 +52,7 @@
 </div>
 </div>
 
-<table class="table">
+<table class="table finish-story">
 <h2>所有已完成故事</h2>
 <tr>
   <th>標題</th>
@@ -82,7 +82,7 @@
 
 <hr>
 
-<table class="table">
+<table class="table all-story">
 <h2>所有的故事片段</h2>
 <tr>
   <th>標題</th>
