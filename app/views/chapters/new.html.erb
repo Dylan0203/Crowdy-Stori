@@ -22,7 +22,7 @@
 
   <div class="form_group">
     <%= f.label :topic, "標題或故事大綱" %>
-    <%= f.text_field :topic, :required => true, :class => "form-control", :placeholder => '命名也是很有趣der' %>
+    <%= f.text_field :topic, :required => true, :class => "form-control", :placeholder => '命名也是很有趣der' , :autofocus => true%>
   </div>
 
   <% if @chapter.depth == 0 %>
