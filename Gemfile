@@ -43,6 +43,10 @@ gem "rails-i18n"
 
 gem "letter_opener", :group => :development
 
+gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
+
+gem "mini_magick"
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

@@ -1,3 +1,13 @@
+GIT
+  remote: git://github.com/carrierwaveuploader/carrierwave.git
+  revision: cc2ab785a9d475a777f67f5fb12751c8c6171e03
+  specs:
+    carrierwave (0.10.0)
+      activemodel (>= 4.0.0)
+      activesupport (>= 4.0.0)
+      json (>= 1.7)
+      mime-types (>= 1.16)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -109,6 +119,7 @@ GEM
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
     mime-types (2.99)
+    mini_magick (4.3.6)
     mini_portile2 (2.0.0)
     minitest (5.8.3)
     multi_json (1.11.2)
@@ -229,11 +240,13 @@ DEPENDENCIES
   byebug
   capistrano-passenger
   capistrano-rails
+  carrierwave!
   coffee-rails (~> 4.1.0)
   devise
   jbuilder (~> 2.0)
   jquery-rails
   letter_opener
+  mini_magick
   mysql2
   omniauth-facebook
   rails (= 4.2.5)

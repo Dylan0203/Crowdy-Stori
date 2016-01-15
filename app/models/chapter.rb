@@ -4,4 +4,8 @@ class Chapter < ActiveRecord::Base
   has_ancestry :cache_depth => true
   belongs_to :user
   belongs_to :category
+
+  mount_uploader :avatar, AvatarUploader
+  mount_uploaders :avatars, AvatarUploader
+  serialize :avatars
 end

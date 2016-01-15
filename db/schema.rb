@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160112130559) do
+ActiveRecord::Schema.define(version: 20160115090725) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -32,6 +32,8 @@ ActiveRecord::Schema.define(version: 20160112130559) do
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.integer  "category_id"
+    t.string   "avatar"
+    t.text     "avatars"
   end
 
   add_index "chapters", ["ancestry"], name: "index_chapters_on_ancestry"

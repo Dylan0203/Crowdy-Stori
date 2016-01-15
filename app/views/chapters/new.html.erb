@@ -38,6 +38,16 @@
   </div>
 
   <div class="form_group">
+    <%= f.label :avatar, "上傳圖片" %>
+    <%= f.file_field :avatar %>
+  </div>
+
+  <div class="form_group">
+    <%= f.label :avatars, "上傳圖片" %>
+    <%= f.file_field :avatars, multiple: true %>
+  </div>
+
+  <div class="form_group">
     <% if @chapter.depth == 2 %>
       <%= f.select :finish, [ ['結束故事', true] ] %>
     <% else %>
