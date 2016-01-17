@@ -1,5 +1,26 @@
 <h1></h1>
-<%= link_to "我要開啟一段新的故事", new_chapter_path , :class => "btn btn-primary" %>
+
+<h3>故事頭</h3>
+
+<div class="grid" >
+<div class="grid-item grid-item--width2" style="height: 501px; width: 340px">
+  <div class="fb-page" data-href="https://www.facebook.com/crowdy.space/" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+    <div class="fb-xfbml-parse-ignore">
+        <blockquote cite="https://www.facebook.com/crowdy.space/"><a href="https://www.facebook.com/crowdy.space/">Crowdy-群眾共同創作平台</a></blockquote>
+    </div>
+  </div>
+</div>
+  <div class="grid-item"><%= image_tag "http://placehold.it/350x100" %>123</div>
+  <div class="grid-item grid-item--width2"><%= image_tag "http://placehold.it/350x100" %>456</div>
+  <div class="grid-item"><%= image_tag "http://placehold.it/350x100" %>789</div>
+  <div class="grid-item"><%= image_tag "http://placehold.it/350x100" %>123</div>
+  <div class="grid-item grid-item--width2"><%= image_tag "http://placehold.it/350x100" %>456</div>
+  <div class="grid-item"><%= image_tag "http://placehold.it/350x100" %>789</div>
+  <div class="grid-item"><%= image_tag "http://placehold.it/350x100" %>123</div>
+  <div class="grid-item grid-item--width2"><%= image_tag "http://placehold.it/350x100" %>456</div>
+  <div class="grid-item"><%= image_tag "http://placehold.it/350x100" %>789</div>
+  <div class="grid-item"><%= link_to "我要開啟一段新的故事", new_chapter_path , :class => "btn btn-primary" %></div>
+</div>
 
 <table class="table search">
   <tr>
@@ -17,6 +38,10 @@
     <td><%= link_to 'Sort by Default', chapters_path %></td>
   </tr>
 </table>
+
+
+
+<hr>
 
 <h3>所有故事結構表</h3>
 <div class="storyline">
@@ -107,5 +132,23 @@
 </table>
 
 <script>
-  $("#category_id").select2({ width: "auto" });
+  
+  $('.grid').masonry({
+  // options
+  itemSelector: '.grid-item',
+  columnWidth: 200
+});
+
+$(function() {
+    var $container = $('.grid');
+    $container.imagesLoaded(function() {
+        $container.masonry({
+            itemSelector: '.grid-item',
+            columnWidth: 200
+        });
+    });
+});
+
+$("#category_id").select2({ width: "auto" });
+
 </script>

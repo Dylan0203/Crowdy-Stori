@@ -38,13 +38,10 @@
   </div>
 
   <div class="form_group">
-    <%= f.label :avatar, "上傳圖片" %>
+    <%= f.label :avatar, "上傳圖片or圖片連結" %>
     <%= f.file_field :avatar %>
-  </div>
-
-  <div class="form_group">
-    <%= f.label :avatars, "上傳圖片" %>
-    <%= f.file_field :avatars, multiple: true %>
+    <%= f.text_field :remote_avatar_url %>
+    <%= f.hidden_field :avatar_cache %>
   </div>
 
   <div class="form_group">

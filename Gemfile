@@ -43,7 +43,7 @@ gem "rails-i18n"
 
 gem "letter_opener", :group => :development
 
-gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
+gem 'carrierwave'#, github: 'carrierwaveuploader/carrierwave'
 
 gem "mini_magick"
 

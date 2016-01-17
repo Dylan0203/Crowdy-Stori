@@ -3,76 +3,102 @@ table {
     box-shadow: 10px 10px 5px #888888;
 }
 
-.search{
-    background: lightgray ;
+.search {
+    background: lightgray;
     border-collapse: collapse;
     box-shadow: 10px 10px 5px #888888;
 }
 
-table, th, td {
+table,
+th,
+td {
     border: 1px dashed gray;
 }
 
-.level1{
-  background: -webkit-linear-gradient(left,transparent,#5BC0EB);
-  background: -o-linear-gradient(left,transparent,#5BC0EB);
-  background: -mose-linear-gradient(left,transparent,#5BC0EB);
-  background: linear-gradient(left,transparent,#5BC0EB);
-  border-radius: 10px;
-  box-shadow: 10px 10px 5px #888888;
+.level1 {
+    background: -webkit-linear-gradient(left, transparent, #5BC0EB);
+    background: -o-linear-gradient(left, transparent, #5BC0EB);
+    background: -mose-linear-gradient(left, transparent, #5BC0EB);
+    background: linear-gradient(left, transparent, #5BC0EB);
+    border-radius: 10px;
+    box-shadow: 10px 10px 5px #888888;
 }
 
-.level2{
-  position: relative;
-  top:-25px;
-  left: 200px;
-  background: -webkit-linear-gradient(left top,transparent,#FDE74C);
-  background: -o-linear-gradient(left top,transparent,#FDE74C);
-  background: -mose-linear-gradient(left top,transparent,#FDE74C);
-  background: linear-gradient(left top,transparent,#FDE74C);
-  border-radius: 10px;
-  box-shadow: 10px 10px 5px #888888;
+.level2 {
+    position: relative;
+    top: -25px;
+    left: 200px;
+    background: -webkit-linear-gradient(left top, transparent, #FDE74C);
+    background: -o-linear-gradient(left top, transparent, #FDE74C);
+    background: -mose-linear-gradient(left top, transparent, #FDE74C);
+    background: linear-gradient(left top, transparent, #FDE74C);
+    border-radius: 10px;
+    box-shadow: 10px 10px 5px #888888;
 }
 
-.level3{
-  position: relative;
-  top:-25px;
-  left: 150px;
-  background: -webkit-linear-gradient(left top,transparent,#9BC53D);
-  background: -o-linear-gradient(left top,transparent,#9BC53D);
-  background: -mose-linear-gradient(left top,transparent,#9BC53D);
-  background: linear-gradient(left top,transparent,#9BC53D);
-  border-radius: 10px;
-  box-shadow: 10px 10px 5px #888888;
+.level3 {
+    position: relative;
+    top: -25px;
+    left: 150px;
+    background: -webkit-linear-gradient(left top, transparent, #9BC53D);
+    background: -o-linear-gradient(left top, transparent, #9BC53D);
+    background: -mose-linear-gradient(left top, transparent, #9BC53D);
+    background: linear-gradient(left top, transparent, #9BC53D);
+    border-radius: 10px;
+    box-shadow: 10px 10px 5px #888888;
 }
 
-.storyline, .storyline a{
-  overflow: hidden;
-  color:white;
-  font-size: 1.2em;
-  text-decoration: none;
-  text-shadow: 1.2px 1.2px 1.2px black;
-  display: block;
-  border-bottom:1px solid gray;
-}
-.element{
-  float:left;
+.storyline,
+.storyline a {
+    overflow: hidden;
+    color: white;
+    font-size: 1.2em;
+    text-decoration: none;
+    text-shadow: 1.2px 1.2px 1.2px black;
+    display: block;
+    border-bottom: 1px solid gray;
 }
 
-.fb-img{
-  max-width:50px !important;
+.element {
+    float: left;
 }
-.container{
-  background:#DBDBDB;
-  /*background-image: image-url("crowdy7501134.png");
+
+.fb-img {
+    max-width: 50px !important;
+}
+
+.container {
+    background: #DBDBDB;
+    /*background-image: image-url("crowdy7501134.png");
   background-position: center;
   background-attachment: fixed;
   background-repeat: no-repeat; 
   background-size: 70%;*/
 }
-.storyline h4{
-  position:relative;
-  right:40px;
-  font-size: .9em;
-  color:lightgray;
+
+.storyline h4 {
+    position: relative;
+    right: 40px;
+    font-size: .9em;
+    color: lightgray;
+}
+
+.grid {
+    clear: both;
+    overflow:hidden;
+}
+
+.grid-item {
+    border: 1px solid black;
+    width: 200px;
+}
+
+.grid-item--width2 {
+    width: 400px;
+    float:right;
+}
+
+.grid-item img {
+    display: block;
+    max-width: 100%;
 }
