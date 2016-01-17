@@ -14,8 +14,11 @@
 # Ignore all logfiles and tempfiles.
 /log/*
 !/log/.keep
+
 /tmp
+/public/uploads
 
 /config/facebook.yml
 /config/database.yml
 /config/secrets.yml
+
