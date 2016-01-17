@@ -2,6 +2,11 @@
 <% if @chapter.user %>
 <h2>作者：<%= link_to @chapter.user.display_name, user_profile_path(@chapter.user) %></h2>
 <% end %>
+
+
+<div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-width="500px" data-layout="standard" data-action="like" data-show-faces="true" data-share="true" colorscheme = "dark"></div>
+
+
 <% if @chapter.parent %>
 <p>上一層：<%= link_to @chapter.parent.topic, chapter_path(@chapter.parent) %></p>
 <% end %>
@@ -27,13 +32,14 @@
     <%= @chapter.setting %>
   <% end %>
 
-  
+  <% if @chapter.avatar.url %>
   <p>故事圖片：</p>  
   <%= image_tag @chapter.avatar %>
-  
-  <% @chapter.avatars.each do |i|%>
-    <%= image_tag i %>
   <% end %>
+  
+<!--   <% @chapter.avatars.each do |i|%>
+    <%= image_tag i %>
+  <% end %> -->
 
   <p>這邊是故事內容：</p>
     <%= simple_format @chapter.content %>
@@ -50,3 +56,6 @@
     <p>下一層：<%= link_to c.topic, chapter_path(c) %></p>
   <% end %>
 <% end %>
+
+
+<div class="fb-comments" data-href="http://localhost:3000/" data-width="500px" data-numposts="5" colorscheme = "dark"></div>
