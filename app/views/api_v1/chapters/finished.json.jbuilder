@@ -13,10 +13,10 @@ json.stories @finish do |finish|
   json.parent finish.ancestor_ids do |p|
     pp = Chapter.find(p)
     json.part pp.depth + 1
-    json.id finish.id
-    json.setting finish.setting if finish.avatar.present?
-    json.topic finish.topic
-    json.content finish.content
+    json.id pp.id
+    json.setting pp.setting if pp.avatar.present?
+    json.topic pp.topic
+    json.content pp.content
   end if finish.ancestor_ids.present?
 
 end
