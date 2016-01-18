@@ -6,5 +6,5 @@ class Chapter < ActiveRecord::Base
   belongs_to :category
 
   mount_uploader :avatar, AvatarUploader
-  serialize :avatar
+  #serialize :avatar
 end
