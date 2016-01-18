@@ -4,7 +4,6 @@ table {
 }
 
 .search {
-    background: lightgray;
     border-collapse: collapse;
     box-shadow: 10px 10px 5px #888888;
 }
@@ -68,7 +67,7 @@ td {
 }
 
 .container {
-    background: #DBDBDB;
+    /*background: #DBDBDB;*/
     /*background-image: image-url("crowdy7501134.png");
   background-position: center;
   background-attachment: fixed;
@@ -83,14 +82,20 @@ td {
     color: lightgray;
 }
 
+.grid .btn{
+    font-size: 2.6em;
+}
+
 .grid {
     clear: both;
     overflow:hidden;
 }
 
 .grid-item {
-    border: 1px solid black;
+    min-height: 100px;
     width: 200px;
+    padding: 1px;
+    /*border:1px solid black;*/
 }
 
 .grid-item--width2 {
@@ -100,5 +105,29 @@ td {
 
 .grid-item img {
     display: block;
+    border-radius: 10px;
     max-width: 100%;
+}
+.grid-item h4, h6 {
+    /*position:relative;*/
+    position: absolute;
+    bottom:0px;
+    right:5px;
+    line-height: .1em;
+    text-align: right;
+    display:block;
+    color:white;
+    text-shadow: 1px 1px 1px black;
+}
+
+.grid-item h3 {
+    /*position:relative;*/
+    position: absolute;
+    bottom:10px;
+    right:5px;
+    /*line-height: .8em;*/
+    text-align: right;
+    display:block;
+    color:white;
+    text-shadow: 1px 1px 1px black;
 }
