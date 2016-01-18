@@ -14,12 +14,20 @@
 <% @chapters.at_depth(0).each do |dd| %>
   <div class="grid-item">
   <%= link_to chapter_path(dd) do %>
+  <% if dd.avatar.blank? %>
+    <% case dd.category.name %>
+      <% when "經典故事" %>
+        <%= image_tag "fairyTale/#{rand(1..16)}.jpg" %>
+      <% when "結局改編" %>
+        <%= image_tag "reorganization/#{rand(1..14)}.jpg" %>
+      <% when "時事創作" %>
+        <%= image_tag "currentEvent/#{rand(1..12)}.jpg" %>
+    <% end %>
+  <% end %>
+  
     <%= image_tag dd.avatar %>
     <h3><%= dd.topic %></h3>
-    <h6><%= dd.category.name if dd.category %></h6>
   <% end %>
-
-
 
   </div>
 <% end %>
