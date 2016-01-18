@@ -15,7 +15,7 @@
   <div class="grid-item">
   <%= link_to chapter_path(dd) do %>
   <% if dd.avatar.blank? %>
-    <% case dd.category.name %>
+    <% case dd.category.try(:name) %>
       <% when "經典故事" %>
         <%= image_tag "fairyTale/#{rand(1..16)}.jpg" %>
       <% when "結局改編" %>
