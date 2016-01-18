@@ -33,4 +33,7 @@ class ApiV1::ChaptersController < ApiController
     end
   end
 
+  def finished
+    @finish = Chapter.where( :finish => true )
+  end
 end

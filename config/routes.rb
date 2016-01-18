@@ -5,7 +5,11 @@ Rails.application.routes.draw do
     post "login" => "auth#login"
     post "logout" => "auth#logout"
 
-    resources :chapters # ApiV1::ChaptersController
+    resources :chapters do # ApiV1::ChaptersController
+      collection do
+        get :finished
+      end
+    end
   end
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
@@ -21,7 +25,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-   root 'chapters#index'
+  root 'chapters#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
