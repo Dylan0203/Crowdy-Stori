@@ -49,8 +49,6 @@ gem "mini_magick"
 
 gem 'ckeditor'#, github: 'galetahub/ckeditor'
 
-gem "non-stupid-digest-assets"
-
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

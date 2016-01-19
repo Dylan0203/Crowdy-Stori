@@ -27,19 +27,19 @@
             <li><%= link_to root_path, :title => "首頁" do %>
             <%= image_tag "crowdy120.png", :width => 100 %></li>
             <% end %>
+
             </li>
             <% if current_user %>
               <li><%= link_to "Hi! #{current_user.display_name}",user_profile_path( current_user.id ), :title => "個人資料" %></li>
-          <% if current_user %>
-              <li><%= link_to('登出', destroy_user_session_path, :method => :delete) %></li>
-              <li><%= link_to('修改密碼', edit_registration_path(:user)) %></li>
-          <% else %>
-              <li><%= link_to('註冊', new_registration_path(:user)) %></li>
-              <li><%= link_to('登入', new_session_path(:user)) %></li>
-              <li><%= link_to "登入 Facebook", user_omniauth_authorize_path(:facebook) %></li>
-          <% end %>
+                <li><%= link_to('登出', destroy_user_session_path, :method => :delete) %></li>
+                <li><%= link_to('修改密碼', edit_registration_path(:user)) %></li>
+            <% else %>
+                <li><%= link_to('註冊', new_registration_path(:user)) %></li>
+                <li><%= link_to('登入', new_session_path(:user)) %></li>
+                <li><%= link_to "登入 Facebook", user_omniauth_authorize_path(:facebook) %></li>
+            <% end %>
               
-              <% end %>
+              
               <li><%= link_to "隱私權政策", "", 'data-toggle'=>"modal", "data-target"=>".bs-example-modal-lg" %></li>
           </ul>
 <hr>
