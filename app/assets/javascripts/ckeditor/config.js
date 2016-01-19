@@ -5,7 +5,7 @@ CKEDITOR.editorConfig = function (config) {
     ["Bold",  "Italic",  "Underline",  "Strike",  "-",  "Subscript",  "Superscript"],
   ];
   config.toolbar = "simple";
-  config.skin = 'kama';
+  // config.skin = 'kama';
   config.extraPlugins='confighelper'; 
   // ... rest of the original config.js  ...
 }
