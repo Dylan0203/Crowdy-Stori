@@ -31,16 +31,6 @@ class ChaptersController < ApplicationController
 
     @chapters = @chapters.order(sort_by + " DESC")#.page(params[:page]).per(5)
 
-    respond_to do |format|
-      format.html
-      format.json {
-        arr = @chapters.map { |t|
-          { :id => t.id, :topic => t.topic }
-        }
-        render :json => { :data => arr }
-      }
-    end
-
   end
 
   def show

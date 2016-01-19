@@ -34,7 +34,7 @@
 
   <% if @chapter.avatar.url %>
   <p>故事圖片：</p>  
-  <%= image_tag @chapter.avatar %>
+  <%= image_tag @chapter.avatar, :class => "chapter-cover" %>
   <% end %>
 
   <p>這邊是故事內容：</p>
@@ -54,4 +54,4 @@
 <% end %>
 
 
-<div class="fb-comments" data-href="http://139.162.22.162/" data-width="500px" data-numposts="5" colorscheme = "dark"></div>
+<div class="fb-comments" data-href="http://139.162.22.162/" data-width="500px" data-numposts="5" colorscheme = "dark" data-order-by="reverse_time"></div>

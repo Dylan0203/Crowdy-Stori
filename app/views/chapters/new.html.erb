@@ -21,6 +21,13 @@
   <% end %>
 
   <div class="form_group">
+    <%= f.label :avatar, "上傳故事封面圖片 檔案or連結" %>
+    <%= f.file_field :avatar %>
+    <%= f.text_field :remote_avatar_url %>
+    <%= f.hidden_field :avatar_cache %>
+  </div>
+
+  <div class="form_group">
     <%= f.label :topic, "標題或故事大綱" %>
     <%= f.text_field :topic, :required => true, :class => "form-control", :placeholder => '命名也是很有趣der' , :autofocus => true%>
   </div>
@@ -33,16 +40,16 @@
   <% end %>
 
   <div class="form_group">
+      <%= f.label :content, "故事內容" %>
+      <%= f.cktext_area :content, :required => true, :placeholder => '請盡情發揮，沒有人會阻止你', :ckeditor => {:language => 'zh', :uiColor => '#AADC6E'}   %>
+  </div>
+<!-- #:ckeditor => {:language => 'zh', :uiColor => '#AADC6E', :toolbar => 'mini'} -->
+
+<!--   <div class="form_group">
     <%= f.label :content, "故事內容" %>
     <%= f.text_area :content, :required => true, :class => "form-control", :placeholder => '請盡情發揮，沒有人會阻止你' %>
-  </div>
+  </div> -->
 
-  <div class="form_group">
-    <%= f.label :avatar, "上傳圖片or圖片連結" %>
-    <%= f.file_field :avatar %>
-    <%= f.text_field :remote_avatar_url %>
-    <%= f.hidden_field :avatar_cache %>
-  </div>
 
   <div class="form_group">
     <% if @chapter.depth == 2 %>

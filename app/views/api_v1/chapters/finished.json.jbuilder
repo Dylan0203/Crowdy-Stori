@@ -17,6 +17,12 @@ json.stories @finish do |finish|
     json.setting pp.setting if pp.avatar.present?
     json.topic pp.topic
     json.content pp.content
+
+    json.avatar do 
+    json.url api_image_path(pp.avatar.url) 
+    json.thumb api_image_path(pp.avatar.thumb.url)
+  end if pp.avatar.present?
+
   end if finish.ancestor_ids.present?
 
 end

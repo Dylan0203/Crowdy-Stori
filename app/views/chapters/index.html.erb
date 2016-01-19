@@ -27,6 +27,7 @@
   
     <%= image_tag dd.avatar %>
     <h3><%= dd.topic %></h3>
+    <h6><%= dd.category.try(:name) %></h6>
   <% end %>
 
   </div>
