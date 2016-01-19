@@ -47,6 +47,8 @@ gem 'carrierwave'#, github: 'carrierwaveuploader/carrierwave'
 
 gem "mini_magick"
 
+gem 'ckeditor', github: 'galetahub/ckeditor'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
