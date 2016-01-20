@@ -41,16 +41,16 @@
 
   <div class="form_group">
       <%= f.label :content, "故事內容" %>
-      <%= f.cktext_area :content, :required => true, :placeholder => '請盡情發揮，沒有人會阻止你', :ckeditor => {:language => 'zh', :uiColor => 'lightgray'} %>
+      <%= f.cktext_area :content, :required => true, :ckeditor => {:language => 'zh', :uiColor => 'lightgray'} %>
   </div>
 
 <!-- #:ckeditor => {:language => 'zh', :uiColor => '#AADC6E', :toolbar => 'mini', :skin => 'kama', :extraPlugins => 'confighelper'} -->
 
-  <div class="form_group">
+<!--   <div class="form_group">
     <%= f.label :content, "故事內容" %>
     <%= f.text_area :content, :required => true, :class => "form-control", :placeholder => '請盡情發揮，沒有人會阻止你' %>
   </div>
-
+ -->
 
   <div class="form_group">
     <% if @chapter.depth == 2 %>
