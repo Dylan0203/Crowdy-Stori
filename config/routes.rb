@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  mount Ckeditor::Engine => '/ckeditor'
+  
   scope :path => '/api/v1/', :module => "api_v1", :as => 'v1', :defaults => { :format => :json } do
 
     post "login" => "auth#login"
