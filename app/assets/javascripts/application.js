@@ -15,4 +15,6 @@
 //= require ckeditor/init
 //= require bootstrap-sprockets
 //= require select2
+//= require imagesloaded.pkgd.min
+//= require masonry.pkgd.min
 //= require_tree .
