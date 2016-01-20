@@ -4,7 +4,7 @@
 <% end %>
 
 
-<div class="fb-like" data-href="http://139.162.22.162/" data-width="500px" data-layout="standard" data-action="like" data-show-faces="true" data-share="true" colorscheme = "dark"></div>
+<div class="fb-like" data-href="<%= chapter_url(@chapter) %>" data-width="500px" data-layout="standard" data-action="like" data-show-faces="true" data-share="true" colorscheme = "dark"></div>
 
 
 <% if @chapter.parent %>
@@ -54,4 +54,4 @@
 <% end %>
 
 
-<div class="fb-comments" data-href="http://139.162.22.162/" data-width="500px" data-numposts="5" colorscheme = "dark" data-order-by="reverse_time"></div>
+<div class="fb-comments" data-href="<%= chapter_url(@chapter) %>" data-width="500px" data-numposts="5" colorscheme = "dark" data-order-by="reverse_time"></div>
