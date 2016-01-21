@@ -39,8 +39,9 @@
                 <li><%= link_to "登入 Facebook", user_omniauth_authorize_path(:facebook) %></li>
             <% end %>
               
-              
               <li><%= link_to "隱私權政策", "", 'data-toggle'=>"modal", "data-target"=>".bs-example-modal-lg" %></li>
+              <li><%= link_to "關於我們", "", 'data-toggle'=>"modal", "data-target"=>".bs-about-modal-lg" %></li>
+              <li><%= link_to "HOW TO PLAY!?", "", 'data-toggle'=>"modal", "data-target"=>".bs-how-modal-lg" %></li>
           </ul>
 <hr>
 
@@ -71,3 +72,5 @@
 </html>
 
 <%= render :partial => "/chapters/privacy"  %>
+<%= render :partial => "/chapters/about"  %>
+<%= render :partial => "/chapters/how"  %>
