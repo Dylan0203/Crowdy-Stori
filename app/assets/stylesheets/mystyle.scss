@@ -130,11 +130,17 @@ h6 {
     text-shadow: 1px 1px 1px black;
 }
 
-.modal-content #privacy {
+.modal-content #header-button {
     width: 95%;
+    margin: 0 auto;
+}
+
+.modal-content #header-button p{
+    width:95%;
     margin: 0 auto;
 }
 
 .chapter-cover {
     border-radius: 10px;
+    box-shadow: 2px 2px 2px gray;
 }

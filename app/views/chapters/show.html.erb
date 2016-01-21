@@ -1,8 +1,5 @@
 <h1><%= @chapter.topic %></h1>
-<% if @chapter.user %>
-<h2>作者：<%= link_to @chapter.user.display_name, user_profile_path(@chapter.user) %></h2>
-<% end %>
-
+<h2>作者：<%= link_to @chapter.user.display_name, user_profile_path(@chapter.user) if @chapter.user.present? %></h2>
 
 <div class="fb-like" data-href="<%= chapter_url(@chapter) %>" data-width="500px" data-layout="standard" data-action="like" data-show-faces="true" data-share="true" colorscheme = "dark"></div>
 
@@ -34,12 +31,11 @@
 
   <% if @chapter.avatar.url %>
   <p>故事圖片：</p>  
-  <%= image_tag @chapter.avatar, :class => "chapter-cover" %>
+  <%= image_tag @chapter.avatar.thumb, :class => "chapter-cover" %>
   <% end %>
 
   <p>這邊是故事內容：</p>
     <%= simple_format @chapter.content %>
-
 
   <% if @chapter.depth < 2 && @chapter.finish == false %>
     <p><%= link_to "我要接續這段故事", new_chapter_path(:parent_id => @chapter.id) , :class => "btn btn-primary"%></p>
