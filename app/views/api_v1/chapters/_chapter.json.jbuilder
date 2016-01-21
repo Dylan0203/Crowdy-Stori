@@ -16,7 +16,7 @@ json.topic chapter.topic
 
 json.setting chapter.setting.to_s
 
-json.content chapter.content
+json.content strip_tags(chapter.content)
 
 json.finish chapter.finish.to_s
 

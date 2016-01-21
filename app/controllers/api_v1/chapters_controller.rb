@@ -13,6 +13,7 @@ class ApiV1::ChaptersController < ApiController
   def index
     #@chapters = Chapter.page( params[:page] ).per(5)
     @chapters = Chapter.all
+    @chapters = @chapters.order("id DESC")
 
   # index.json.jbuilder
   end
@@ -35,5 +36,6 @@ class ApiV1::ChaptersController < ApiController
 
   def finished
     @finish = Chapter.where( :finish => true )
+    @finish = @finish.order("id DESC")
   end
 end

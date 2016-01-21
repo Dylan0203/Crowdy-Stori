@@ -3,7 +3,7 @@ json.stories @finish do |finish|
   json.id finish.id
   json.setting finish.setting if finish.avatar.present?
   json.topic finish.topic
-  json.content finish.content
+  json.content strip_tags(finish.content)
 
   json.avatar do 
     json.url api_image_path(finish.avatar.url) 
@@ -16,7 +16,7 @@ json.stories @finish do |finish|
     json.id pp.id
     json.setting pp.setting if pp.avatar.present?
     json.topic pp.topic
-    json.content pp.content
+    json.content strip_tags(pp.content)
 
     json.avatar do 
     json.url api_image_path(pp.avatar.url) 
