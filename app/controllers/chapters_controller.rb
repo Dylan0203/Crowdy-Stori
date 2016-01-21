@@ -57,15 +57,8 @@ class ChaptersController < ApplicationController
   end
 
   def create
-
-    if params[:id]
-      @chapter = Chapter.find(params[:id])
-      @chapter = @chapter.children.new(chapter_params)
-      @chapter.user = current_user
-    else
-      @chapter = Chapter.new(chapter_params)
-      @chapter.user = current_user
-    end
+    
+    @chapter = current_user.chapters.new(chapter_params)
 
     if @chapter.save
       flash[:notice] = "成功新增故事"
@@ -85,6 +78,6 @@ class ChaptersController < ApplicationController
   end
 
   def chapter_params
-    params.require(:chapter).permit(:topic, :setting, :content, :finish, :category_id, :avatar, :avatar_cache, :remote_avatar_url )
+    params.require(:chapter).permit(:topic, :setting, :content, :finish, :category_id, :avatar, :avatar_cache, :remote_avatar_url, :parent_id )
   end
 end

@@ -4,14 +4,8 @@
   <h1>接續故事: <%= @chapter.parent.topic %></h1>
 <% end %>
 
-
-<%if params[:parent_id] %>
-  <% url = chapters_path(:id => params[:parent_id] )%>
-<% else %>
-  <% url = chapters_path %>
-<% end %>
-
-<%= form_for @chapter, :url => url do |f| %>
+<%= form_for @chapter, :url => chapters_path do |f| %>
+  <%= f.hidden_field :parent_id, value: params[:parent_id] %>
 
   <% if @chapter.depth == 0 %>
     <div class="form-group">
