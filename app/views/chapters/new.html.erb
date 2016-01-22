@@ -1,13 +1,13 @@
-<% if @chapter.depth == 0 %>
+<% if @chapter.root? %>
   <h1>創造你的故事</h1>
 <% else %>
   <h1>接續故事: <%= @chapter.parent.topic %></h1>
 <% end %>
 
 <%= form_for @chapter, :url => chapters_path do |f| %>
-  <%= f.hidden_field :parent_id, value: params[:parent_id] %>
+  <%= f.hidden_field :parent_id %>
 
-  <% if @chapter.depth == 0 %>
+  <% if @chapter.root? %>
     <div class="form-group">
       <%= f.label :category_id, "故事分類："%>
       <%= f.select :category_id, Category.all.map{ |c| [c.name, c.id] } %>
@@ -26,7 +26,7 @@
     <%= f.text_field :topic, :required => true, :class => "form-control", :placeholder => '命名也是很有趣der' , :autofocus => true%>
   </div>
 
-  <% if @chapter.depth == 0 %>
+  <% if @chapter.root? %>
     <div class="form_group">
       <%= f.label :setting, "故事設定" %>
       <%= f.text_field :setting, :class => "form-control", :placeholder => 'ex. 夜晚、台北、國家劇院' %>
@@ -35,7 +35,7 @@
 
   <div class="form_group">
       <%= f.label :content, "故事內容" %>
-      <%= f.cktext_area :content, :required => true, :ckeditor => {:language => 'zh', :uiColor => 'lightgray'} %>
+      <%= f.cktext_area :content, :required => true, :ckeditor => {:language => 'zh', :uiColor => 'lightgray', :toolbar => 'mini', :height => '300', :autoParagraph => true} %>
   </div>
 
 <!-- #:ckeditor => {:language => 'zh', :uiColor => '#AADC6E', :toolbar => 'mini', :skin => 'kama', :extraPlugins => 'confighelper'} -->
@@ -54,7 +54,9 @@
     <% end %>
     <%= f.label :finish, "選擇故事是否完結！？" %>
   </div>
+
   <hr>
+
   <div class="form_group">
     <%#= f.submit "送出故事", :data => {:confirm => "你確定喔送出不能改喔！！"}, :class => 'btn btn-primary' %>
   </div>
@@ -74,14 +76,14 @@
         <h4 class="modal-title" id="myModalLabel">預覽故事-送出即無法更改喔</h4>
       </div>
       <div class="modal-body">
-        <% @chapter.ancestor_ids.each do |p| %> 
-          <% p = Chapter.find(p) %>
-          <p><%= "前情提要：（故事第#{Chapter.find(p).depth+1}層）" %></p>
+        <% @chapter.ancestors.each do |p| %> 
+
+          <p><%= "前情提要：（故事第#{p.depth+1}層）" %></p>
           <p><%= "故事標題： #{p.topic}" %></p>
-          <% if p.depth==0 %> 
+          <% if p.root? %> 
           <p><%= "故事設定： #{p.try(:setting)}" %></p>
           <% end %>
-          <p><%= "故事內容： #{p.content}" %></p>
+          <p>故事內容：<%= simple_format p.content %></p>
           <hr>
         <% end %>
           <p>準備送出的新故事片段：</p>  
@@ -103,17 +105,16 @@
 <script>
 
 $("[data-target='#myModal']").click(function(){
-  var topic = $("#chapter_topic")
+  var cke_data = CKEDITOR.instances.chapter_content.getData()
+      topic = $("#chapter_topic")
       t = topic.val()
       setting = $("#chapter_setting")
-      s = setting.val()
-      content = $("#chapter_content")
-      c = content.val();
+      s = setting.val();
 
   $("#preview").html(
    "<p>標題：" + t + "</p>" +
    "<p>故事設定：" + s + "</p>" +
-   "<p>內容：" + c + "</p>"
+   "<p>內容：" + cke_data + "</p>"
   );
 })
 
