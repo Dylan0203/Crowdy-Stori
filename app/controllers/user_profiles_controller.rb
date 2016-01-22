@@ -25,6 +25,13 @@ def update
     @profile = @user.profile
     @profile.update(profile_params)
 
+    if @profile.save
+      flash[:notice] = "使用者資料更新成功"
+    else
+      flash[:alert] = "使用者名稱已被使用過"
+    end
+
+
     redirect_to user_profile_path(@user)
   end
 

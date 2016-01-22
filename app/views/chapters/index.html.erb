@@ -11,7 +11,7 @@
   </div>
 </div>
 
-<% @chapters.at_depth(0).each do |dd| %>
+<% @chapters.roots.each do |dd| %>
   <div class="grid-item">
   <%= link_to chapter_path(dd) do %>
   <% if dd.avatar.blank? %>
@@ -38,30 +38,13 @@
 
 <hr>
 
-<table class="table search">
-  <tr>
-    <td>
-      <%= form_tag chapters_path, :method => :get do %>
-        <%= collection_select( :category, :id, Category.all, :id, :name,{:include_blank => '選擇故事類別or不分類'}) %>
-        <%= text_field_tag "keyword" %>
-        <%= submit_tag "Search" %>
-      <% end %>
-    </td>
-    <td><%= link_to 'Sort by viewed', chapters_path( chapters_filter( :order => "view") ) %></td>
-      <%#= link_to 'Sort by comments', chapters_path( chapters_filter( :order => "comments_count") ) %>
-      <%#= link_to 'Sort by last comments', chapters_path( chapters_filter( :order => "last_comment_time") ) %>
-    <td><%= link_to 'Sort by Name', chapters_path( chapters_filter( :order => "topic") ) %></td>
-    <td><%= link_to 'Sort by Default', chapters_path %></td>
-  </tr>
-</table>
 
-<hr>
 
 <h2 style="text-align: center">所有故事結構表</h2>
 <div class="storyline">
 <div class="element">
 <ol class="level1">
-  <% @chapters.at_depth(0).each do |d| %>
+  <% @chapters.roots.each do |d| %>
  
     <h4><%= d.category.name if d.category %></h4>
     
@@ -91,6 +74,28 @@
 </div>
 </div>
 
+<hr>
+
+<table class="table search">
+  <tr>
+    <td>
+      <%= form_tag chapters_path, :method => :get do %>
+        <%= collection_select( :category, :id, Category.all, :id, :name,{:include_blank => '選擇故事類別or不分類'}) %>
+        <%= text_field_tag "keyword" %>
+        <%= submit_tag "Search" %>
+      <% end %>
+    </td>
+    <td><%= link_to 'Sort by viewed', chapters_path( chapters_filter( :order => "view") ) %></td>
+      <%#= link_to 'Sort by comments', chapters_path( chapters_filter( :order => "comments_count") ) %>
+      <%#= link_to 'Sort by last comments', chapters_path( chapters_filter( :order => "last_comment_time") ) %>
+    <td><%= link_to 'Sort by Name', chapters_path( chapters_filter( :order => "topic") ) %></td>
+    <td><%= link_to 'Sort by Default', chapters_path %></td>
+  </tr>
+</table>
+
+<hr>
+
+
 <table class="table finish-story">
 <h2 style="text-align: center">所有已完成故事</h2>
 <tr>
@@ -113,7 +118,7 @@
       <td><%= f.setting %></td>
       <td><%= f.category.name if f.category %></td>
       <td><%= f.view %></td>
-      <td><%= f.ancestry_depth+1 %></td>
+      <td><%= f.depth+1 %></td>
       <td><%= f.finish %></td>
     </tr>
   <% end %>
@@ -139,7 +144,7 @@
       <td><%= c.setting %></td>
       <td><%= c.category.name if c.category %></td>
       <td><%= c.view %></td>
-      <td><%= c.ancestry_depth+1 %></td>
+      <td><%= c.depth+1 %></td>
       <td><%= c.finish %></td>
     </tr>
   <% end %>

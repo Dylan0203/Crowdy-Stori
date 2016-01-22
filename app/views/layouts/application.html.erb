@@ -24,11 +24,12 @@
         <div class="col-md-12">
           
           <ul class="nav nav-pills">
-            <li><%= link_to root_path, :title => "首頁" do %>
-            <%= image_tag "crowdy120.png", :width => 100 %></li>
-            <% end %>
-
+            <li>
+              <%= link_to root_path, :title => "首頁" do %>
+                <%= image_tag "crowdy120.png", :width => 100 %>
+              <% end %>
             </li>
+
             <% if current_user %>
               <li><%= link_to "Hi! #{current_user.display_name}",user_profile_path( current_user.id ), :title => "個人資料" %></li>
                 <li><%= link_to('登出', destroy_user_session_path, :method => :delete) %></li>

@@ -1,3 +1,9 @@
+.nav-pills a{
+    height:100px;
+    /*border:1px black solid;*/
+    line-height: 90px;
+}
+
 table {
     border-collapse: collapse;
     box-shadow: 10px 10px 5px #888888;
@@ -143,4 +149,15 @@ h6 {
 .chapter-cover {
     border-radius: 10px;
     box-shadow: 2px 2px 2px gray;
+    max-width: 400px;
+}
+
+
+.chapter-show img {
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px gray;
+    max-width: 400px;
+    width:auto !important;
+    height:auto !important;
+    margin:5px;
 }
