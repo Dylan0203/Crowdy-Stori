@@ -29,14 +29,16 @@ class User < ActiveRecord::Base
   end
 
   def get_profile
-    if self.profile
-      return self.profile    
-    else
-       p = Profile.new
-       p.user = self
-       p.save
-      return self.create_profile
-    end
+    # if self.profile
+    #   return self.profile    
+    # else
+    #    p = Profile.new
+    #    p.user = self
+    #    p.save
+    #   return self.create_profile
+    # end
+    # [CR] or move it to callback (ex: after_create)
+    self.profle || self.create_profile
   end
 
   def get_fb_data
@@ -85,7 +87,7 @@ class User < ActiveRecord::Base
   end
 
   def short_email
-  self.email.split("@").first
+    self.email.split("@").first
   end
 
   def admin?

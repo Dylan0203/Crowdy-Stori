@@ -3,51 +3,51 @@
 
 <div class="fb-like" data-href="<%= chapter_url(@chapter) %>" data-width="500px" data-layout="standard" data-action="like" data-show-faces="true" data-share="true" colorscheme = "dark"></div>
 
-
-<% if @chapter.parent %>
-<p>上一層：<%= link_to @chapter.parent.topic, chapter_path(@chapter.parent) %></p>
-<% end %>
-
-<hr>
-
+<div class="chapter-show">
   <% if @chapter.parent %>
-    <% @chapter.ancestor_ids.each do |p| %>
-    
-      <p>這是 <%= "#{Chapter.find(p).category.name if Chapter.find(p).category} 第#{Chapter.find(p).depth+1}" %>層：</p>
-        <% if Chapter.find(p).depth == 0 %>
-          <p>故事設定：<%= Chapter.find(p).setting %></p> 
-        <% end %>
-      <p>故事標題：<%= Chapter.find(p).topic %></p>
+    <p>上一層：<%= link_to @chapter.parent.topic, chapter_path(@chapter.parent) %></p>
+  <% end %>
 
-      <p>故事內容：<%= simple_format Chapter.find(p).content %></p>
-<hr>
+  <hr>
+
+    <% if @chapter.parent %>
+      <% @chapter.ancestors.each do |p| %>
+      
+        <p>這是 <%= "#{p.category.name if p.category} 第#{p.depth+1}" %>層：</p>
+          <% if p.root? %>
+            <p>故事設定：<%= p.setting %></p> 
+          <% end %>
+        <p>故事標題：<%= p.topic %></p>
+
+        <p>故事內容：<%= simple_format p.content %></p>
+  <hr>
+      <% end %>
+    <% end %>
+
+    <% if @chapter.root? %>
+      <p>這邊是故事設定：</p>
+      <%= @chapter.setting %>
+    <% end %>
+
+    <% if @chapter.avatar.url %>
+    <p>故事圖片：</p>  
+    <%= image_tag @chapter.avatar.thumb, :class => "chapter-cover" %>
+    <% end %>
+
+    <p>這邊是故事內容：</p>
+      <%= simple_format @chapter.content %>
+
+    <% if @chapter.depth < 2 && @chapter.finish == false %>
+      <p><%= link_to "我要接續這段故事", new_chapter_path(:parent_id => @chapter.id) , :class => "btn btn-primary"%></p>
+    <% end %>
+
+  <hr>
+
+  <% if @chapter.has_children? %>
+    <% @chapter.children.each do |c| %>
+      <p>下一層：<%= link_to c.topic, chapter_path(c) %></p>
     <% end %>
   <% end %>
-
-  <% if @chapter.depth == 0 %>
-    <p>這邊是故事設定：</p>
-    <%= @chapter.setting %>
-  <% end %>
-
-  <% if @chapter.avatar.url %>
-  <p>故事圖片：</p>  
-  <%= image_tag @chapter.avatar.thumb, :class => "chapter-cover" %>
-  <% end %>
-
-  <p>這邊是故事內容：</p>
-    <%= simple_format @chapter.content %>
-
-  <% if @chapter.depth < 2 && @chapter.finish == false %>
-    <p><%= link_to "我要接續這段故事", new_chapter_path(:parent_id => @chapter.id) , :class => "btn btn-primary"%></p>
-  <% end %>
-
-<hr>
-
-<% if @chapter.has_children? %>
-  <% @chapter.children.each do |c| %>
-    <p>下一層：<%= link_to c.topic, chapter_path(c) %></p>
-  <% end %>
-<% end %>
-
+</div>
 
 <div class="fb-comments" data-href="<%= chapter_url(@chapter) %>" data-width="500px" data-numposts="5" colorscheme = "dark" data-order-by="reverse_time"></div>

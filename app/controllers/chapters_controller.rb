@@ -6,7 +6,11 @@ class ChaptersController < ApplicationController
 
   def index
     @chapters =  Chapter.all
-    @finish = Chapter.where( :finish => true )
+
+    #[CR]
+    # consider to use scope
+    # @finished_chapters
+    @finish = Chapter.where( :finish => true ) 
 
 
     if params[:keyword] || params[:category]
@@ -22,6 +26,9 @@ class ChaptersController < ApplicationController
       @chapters = Chapter.all
     end
 
+    # [CR] extract to class method, like:
+    # @chapter = Chapter.search(params)
+
     #if %w[topic comments_count last_comment_time view].include?(params[:order])
     if %w[topic view].include?(params[:order])
       sort_by = (params[:order])
@@ -36,9 +43,9 @@ class ChaptersController < ApplicationController
   def show
 
     unless cookies["view-chapter-#{@chapter.id}"]
-     cookies["view-chapter-#{@chapter.id}"] = "viewed"
-     @chapter.view = @chapter.view.to_i + 1
-     @chapter.save!
+      cookies["view-chapter-#{@chapter.id}"] = "viewed"
+      @chapter.view = @chapter.view.to_i + 1
+      @chapter.save!
     end
 
 
@@ -46,14 +53,15 @@ class ChaptersController < ApplicationController
 
   def new
 
-    if params[:parent_id]
-      #@chapter = Chapter.find(params[:id])
-      parent = Chapter.find(params[:parent_id])
-      @chapter = parent.children.new
-    else
-      @chapter = Chapter.new
-    end
+    # if params[:parent_id]
+    #   #@chapter = Chapter.find(params[:id])
+    #   parent = Chapter.find(params[:parent_id])
+    #   @chapter = parent.children.new
+    # else
+    #   @chapter = Chapter.new
+    # end
 
+    @chapter = Chapter.new(parent_id: params[:parent_id])
   end
 
   def create

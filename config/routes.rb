@@ -2,12 +2,14 @@ Rails.application.routes.draw do
 
   
   mount Ckeditor::Engine => '/ckeditor'
+  
+  # ApiV1::ChaptersController
   scope :path => '/api/v1/', :module => "api_v1", :as => 'v1', :defaults => { :format => :json } do
 
     post "login" => "auth#login"
     post "logout" => "auth#logout"
 
-    resources :chapters do # ApiV1::ChaptersController
+    resources :chapters, :except => [:destroy, :update] do
       collection do
         get :finished
       end
@@ -21,6 +23,8 @@ Rails.application.routes.draw do
   resources :users do
     resource :profile, :controller => "user_profiles"
   end
+
+  # resources :users, :controller => "user_profiles"
 
 
   # The priority is based upon order of creation: first created -> highest priority.
