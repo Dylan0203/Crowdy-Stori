@@ -10,20 +10,20 @@ json.stories @finish do |finish|
     json.thumb api_image_path(finish.avatar.thumb.url)
   end if finish.avatar.present?
 
-  json.parent finish.ancestor_ids do |p|
-    pp = Chapter.find(p)
-    json.part pp.depth + 1
-    json.id pp.id
-    json.setting pp.setting if pp.avatar.present?
-    json.topic pp.topic
-    json.content strip_tags(pp.content)
+  json.parent finish.ancestors do |c|
+    json.part c.depth + 1
+    json.id c.id
+    json.setting c.setting if c.avatar.present?
+    json.topic c.topic
+    json.content strip_tags(c.content)
+    json.content_images c.image_urls.map {|i| asset_url(i)}
 
     json.avatar do 
-    json.url api_image_path(pp.avatar.url) 
-    json.thumb api_image_path(pp.avatar.thumb.url)
-  end if pp.avatar.present?
+      json.url api_image_path(c.avatar.url) 
+      json.thumb api_image_path(c.avatar.thumb.url)
+    end if c.avatar.present?
 
-  end if finish.ancestor_ids.present?
+  end if finish.ancestors.present?
 
 end
 

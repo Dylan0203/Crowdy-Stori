@@ -7,4 +7,8 @@ class Chapter < ActiveRecord::Base
 
   mount_uploader :avatar, AvatarUploader
   #serialize :avatar
+
+  def image_urls
+    self.content.scan(/src=["|'](.*?)["|']/).flatten
+  end
 end

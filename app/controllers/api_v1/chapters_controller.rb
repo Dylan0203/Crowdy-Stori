@@ -1,6 +1,6 @@
 class ApiV1::ChaptersController < ApiController
 
-  #before_action :authenticate_user!, :only => [:create]
+  before_action :authenticate_user!, :only => [:create]
 
   # GET /api/v1/chapters/:id
   def show
@@ -20,12 +20,9 @@ class ApiV1::ChaptersController < ApiController
 
   # POST /api/v1/chapters
   def create
-    @chapter = Chapter.new( :topic => params[:topic],
-                            :setting => params[:setting],
-                            :content => params[:content],
-                            :finish => params[:finish],
-                            :user_id => params[:user_id] )
-    # @topic.user = current_user
+    # [CR] move to strong parameter, 
+    # And remove user_id, it should become: @chapters = current_user.chapters.new
+    @chapter = current_user.chapters.new(chapter_params)
 
     if @chapter.save
       render :json => { :id => @chapter.id, :message => "OK" }
@@ -37,5 +34,11 @@ class ApiV1::ChaptersController < ApiController
   def finished
     @finish = Chapter.where( :finish => true )
     @finish = @finish.order("id DESC")
+  end
+
+  protected
+
+  def chapter_params
+    params.permit(:topic, :setting, :content, :finish, :category_id, :avatar, :avatar_cache, :remote_avatar_url, :parent_id )
   end
 end

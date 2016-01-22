@@ -17,6 +17,8 @@ json.topic chapter.topic
 json.setting chapter.setting.to_s
 
 json.content strip_tags(chapter.content)
+json.content_images chapter.image_urls.map {|i| asset_url(i)}
+
 
 json.finish chapter.finish.to_s
 
