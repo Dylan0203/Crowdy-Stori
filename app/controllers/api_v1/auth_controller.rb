@@ -27,11 +27,11 @@ class ApiV1::AuthController < ApiController
      end
      
     if success
-      render :json => {logged_in:[ :message => "Ok",
+      render :json => { logged_in: [ :message => "你已成功登入 Crowdy.Stori ",
                               :auth_token => user.authentication_token,
                               :user_id => user.id ]}
     else
-      render :json => { :message => "Email or Password is wrong" }, :status => 401
+      render :json => { logged_in: [:message => "Email or Password 錯誤" ]}, :status => 401
     end
   end
 
@@ -39,7 +39,7 @@ class ApiV1::AuthController < ApiController
     current_user.generate_authentication_token
     current_user.save!
 
-    render :json => { :message => "Ok"}
+    render :json => { logged_out:[ :message => "你已成功登出 Crowdy.Stori " ]}
   end
 
 end
