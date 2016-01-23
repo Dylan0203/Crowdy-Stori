@@ -27,9 +27,9 @@ class ApiV1::AuthController < ApiController
      end
      
     if success
-      render :json => { :message => "Ok",
-                        :auth_token => user.authentication_token,
-                        :user_id => user.id }
+      render :json => {logged_in:[ :message => "Ok",
+                              :auth_token => user.authentication_token,
+                              :user_id => user.id ]}
     else
       render :json => { :message => "Email or Password is wrong" }, :status => 401
     end
