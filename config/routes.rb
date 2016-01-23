@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :chapters, :except => [:destroy, :update] do
       collection do
         get :finished
+        get :unfinished
       end
     end
   end

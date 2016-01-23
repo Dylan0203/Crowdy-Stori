@@ -36,6 +36,11 @@ class ApiV1::ChaptersController < ApiController
     @finish = @finish.order("id DESC")
   end
 
+  def unfinished
+    @unfinished_chapters = Chapter.where( :finish => false )
+    @unfinished_chapters = @unfinished_chapters.order("id DESC")
+  end
+
   protected
 
   def chapter_params
