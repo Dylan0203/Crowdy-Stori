@@ -29,16 +29,16 @@ class User < ActiveRecord::Base
   end
 
   def get_profile
-    # if self.profile
-    #   return self.profile    
-    # else
-    #    p = Profile.new
-    #    p.user = self
-    #    p.save
-    #   return self.create_profile
-    # end
+    if self.profile
+      return self.profile    
+    else
+       p = Profile.new
+       p.user = self
+       p.save
+      return self.create_profile
+    end
     # [CR] or move it to callback (ex: after_create)
-    self.profle || self.create_profile
+    #self.profle || self.create_profile
   end
 
   def get_fb_data
