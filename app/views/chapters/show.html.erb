@@ -1,53 +1,129 @@
-<h1><%= @chapter.topic %></h1>
-<h2>作者：<%= link_to @chapter.user.display_name, user_profile_path(@chapter.user) if @chapter.user.present? %></h2>
-
-<div class="fb-like" data-href="<%= chapter_url(@chapter) %>" data-width="500px" data-layout="standard" data-action="like" data-show-faces="true" data-share="true" colorscheme = "dark"></div>
-
 <div class="chapter-show">
+
+  <h2 class="current-chapter">
+    <span>現在章節標題：</span>
+    <span><%= @chapter.topic %></span>
+  </h2>
+  <h3 class="current-chapter">
+    <span>作者：</span>
+    <span><%= link_to @chapter.user.display_name, user_profile_path(@chapter.user) if @chapter.user.present? %></span>
+  </h3>
+
+  <div class="fb-like" data-href="<%= chapter_url(@chapter) %>" data-width="500px" data-layout="standard" data-action="like" data-show-faces="true" data-share="true" colorscheme = "dark"></div>
+
+
   <% if @chapter.parent %>
     <p>上一層：<%= link_to @chapter.parent.topic, chapter_path(@chapter.parent) %></p>
   <% end %>
 
   <hr>
-
+  <div class="previous-chapter">
     <% if @chapter.parent %>
       <% @chapter.ancestors.each do |p| %>
-      
-        <p>這是 <%= "#{p.category.name if p.category} 第#{p.depth+1}" %>層：</p>
+        <div class="depth">
+          <p>這是 <%= "#{p.category.name if p.category} 第#{p.depth+1}" %>層：</p>
+        </div>
           <% if p.root? %>
-            <p>故事設定：<%= p.setting %></p> 
+            <div class="chapter-content">
+              <span>故事設定：</span>
+              <span><%= p.setting %></span>
+            </div>
           <% end %>
-        <p>故事標題：<%= p.topic %></p>
 
-        <p>故事內容：<%= simple_format p.content %></p>
-  <hr>
+        <div class="chapter-content">
+          <span>故事標題：</span>
+          <span><%= p.topic %></span>
+        </div>
+        <div class="chapter-content">
+          <span>故事內容：</span>
+          <span><%= simple_format p.content %></span>
+        </div>
       <% end %>
     <% end %>
+  </div>
 
+  <hr>
+
+  <div class="current-chapter">
     <% if @chapter.root? %>
-      <p>這邊是故事設定：</p>
-      <%= @chapter.setting %>
+      <div class="chapter-content">
+        <span>這邊是故事設定：</span>
+        <span><%= @chapter.setting %></span>
+      </div>
     <% end %>
 
     <% if @chapter.avatar.url %>
-    <p>故事圖片：</p>  
-    <%= image_tag @chapter.avatar.thumb, :class => "chapter-cover" %>
+      <div class="chapter-content">
+        <span>故事圖片：</span>
+        <span><%= image_tag @chapter.avatar.thumb, :class => "chapter-cover" %></span>
+      </div>
     <% end %>
 
-    <p>這邊是故事內容：</p>
-      <%= simple_format @chapter.content %>
-
+    <div class="chapter-content">
+      <span>這邊是故事內容：</span>
+      <span><%= simple_format @chapter.content %></span>
+    </div>
     <% if @chapter.depth < 2 && @chapter.finish == false %>
-      <p><%= link_to "我要接續這段故事", new_chapter_path(:parent_id => @chapter.id) , :class => "btn btn-primary"%></p>
+      <%= link_to "我要接續這段故事", new_chapter_path(:parent_id => @chapter.id, :category_id => @chapter.category_id) , :class => "btn btn-primary"%>
     <% end %>
+  </div>
 
   <hr>
-
+  
   <% if @chapter.has_children? %>
     <% @chapter.children.each do |c| %>
       <p>下一層：<%= link_to c.topic, chapter_path(c) %></p>
     <% end %>
   <% end %>
+
+
 </div>
+
+<% if @chapter.has_children? %>
+  <div class="col-md-12 text-center"><h3>下一層的故事</h3></div>
+  <div class="col-md-6 col-md-offset-3">
+    <div class="carousel slide" data-ride="carousel" data-type="multi" data-interval="3000" id="myCarousel">
+      <div class="carousel-inner">
+        <div class="item active">
+          <div class="col-md-3 col-sm-6 col-xs-12">
+            <a href="#">
+              <%= image_tag "crowdy120.png", :width=> "100px", :class => "img-responsive" %>
+            </a>
+            </div>
+        </div>
+
+        <div class="item">
+          <div class="col-md-3 col-sm-6 col-xs-12">
+            <a href="#">
+              <%= image_tag "crowdy120.png", :width=> "100px", :class => "img-responsive" %>
+            </a>
+            </div>
+        </div>
+
+      </div>
+      <a class="left carousel-control" href="#myCarousel" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
+      <a class="right carousel-control" href="#myCarousel" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+    </div>
+  </div>
+<% end %>
+
+<script>
+  $('.carousel[data-type="multi"] .item').each(function(){
+  var next = $(this).next();
+  if (!next.length) {
+    next = $(this).siblings(':first');
+  }
+  next.children(':first-child').clone().appendTo($(this));
+  
+  for (var i=0;i<2;i++) {
+    next=next.next();
+    if (!next.length) {
+      next = $(this).siblings(':first');
+    }
+    
+    next.children(':first-child').clone().appendTo($(this));
+  }
+});
+</script>
 
 <div class="fb-comments" data-href="<%= chapter_url(@chapter) %>" data-width="500px" data-numposts="5" colorscheme = "dark" data-order-by="reverse_time"></div>

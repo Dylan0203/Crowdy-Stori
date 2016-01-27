@@ -5,46 +5,191 @@
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
     <%= csrf_meta_tags %>
+    <%= favicon_link_tag 'favicon.ico' %>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
   </head>
   <body>
 
-
 <div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v2.5&appId=<%= facebook_app_id %>";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v2.5&appId=<%= facebook_app_id %>";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
 
 
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          
-          <ul class="nav nav-pills">
-            <li>
-              <%= link_to root_path, :title => "首頁" do %>
-                <%= image_tag "stori200.png", :width => 150 %>
-              <% end %>
-            </li>
+          <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+              <!-- Brand and toggle get grouped for better mobile display -->
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+                <%= link_to root_path, :title => "首頁", :class=>"navbar-brand" do %>
+                  <%= image_tag "stori200.png","alt"=>"Brand" %>
+                <% end %>
+              </div>
 
-            <% if current_user %>
-              <li><%= link_to "Hi! #{current_user.display_name}",user_profile_path( current_user.id ), :title => "個人資料" %></li>
-                <li><%= link_to('登出', destroy_user_session_path, :method => :delete) %></li>
-                <li><%= link_to('修改密碼', edit_registration_path(:user)) %></li>
-            <% else %>
-                <li><%= link_to('註冊', new_registration_path(:user)) %></li>
-                <li><%= link_to('登入', new_session_path(:user)) %></li>
-                <li><%= link_to "登入 Facebook", user_omniauth_authorize_path(:facebook) %></li>
-            <% end %>
-              
-              <li><%= link_to "隱私權政策", "", 'data-toggle'=>"modal", "data-target"=>".bs-example-modal-lg" %></li>
-              <li><%= link_to "關於我們", "", 'data-toggle'=>"modal", "data-target"=>".bs-about-modal-lg" %></li>
-              <li><%= link_to "HOW TO PLAY!?", "", 'data-toggle'=>"modal", "data-target"=>".bs-how-modal-lg" %></li>
-          </ul>
-<hr>
+              <!-- Collect the nav links, forms, and other content for toggling -->
+              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                  <!-- <li class="active">
+                    <a href="#">Link <span class="sr-only">(current)</span></a>
+                  </li> -->
+                  <li>
+                    <%= link_to "", 'data-toggle'=>"modal", "data-target"=>".bs-about-modal-lg", :title => "來看看我們的理念" do %>
+                      <span class="fa-stack fa-lg">
+                        <i class="fa fa-square-o fa-stack-2x"></i>
+                        <i class="fa fa-info fa-stack-1x"></i>
+                      </span>
+                      <span>關於我們</span>
+                    <% end %>
+                  </li>
+                  <li>
+                    <%= link_to "", 'data-toggle'=>"modal", "data-target"=>".bs-how-modal-lg", :title => "點這裡來看怎麼玩兒" do %>
+                      <span class="fa-stack fa-lg">
+                        <i class="fa fa-square-o fa-stack-2x"></i>
+                        <i class="fa fa-users fa-stack-1x"></i>
+                      </span>
+                      <span>HOW TO PLAY!?</span>
+                    <% end %>
+                  </li>
+                  <li>
+                    <%= link_to "", 'data-toggle'=>"modal", "data-target"=>".bs-example-modal-lg", :title => "我們會保護你的隱私" do %>
+                      <span class="fa-stack fa-lg">
+                        <i class="fa fa-square-o fa-stack-2x"></i>
+                        <i class="fa fa-lock fa-stack-1x"></i>
+                      </span>
+                      <span>隱私權政策</span>
+                    <% end %>
+                  </li>
+                  <li>
+                    <%= link_to "", :title => "快來下載iosApp", :class=>"ios" do %>
+                      <span class="fa-stack fa-lg">
+                        <i class="fa fa-square-o fa-stack-2x"></i>
+                        <i class="fa fa-mobile fa-stack-1x"></i>
+                      </span>
+                      <span>iOS App</span>
+                    <% end %>
+                  </li>
+                </ul>
+                
+                <form class="navbar-form navbar-left" role="search">
+                  <div class="form-group">
+                    <%= text_field_tag "keyword","", :class=>"form-control", :placeholder=>"Search..." %>
+                  </div>
+                  <%= collection_select( :category, :id, Category.all, :id, :name,{:include_blank => '選擇故事類別or不分類'}) %>
+                  <button type="submit" class="btn btn-default">搜尋</button>
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="category-search">排序</span><span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <%= link_to '觀看次數', chapters_path( chapters_filter( :order => "view") ) %>
+                      </li>
+                      <li role="separator" class="divider"></li>
+                      <li>
+                        <%= link_to '故事名稱', chapters_path( chapters_filter( :order => "topic") ) %>
+                      </li>
+                      <li role="separator" class="divider"></li>
+                      <li>
+                        <%= link_to '預設值', chapters_path %>
+                      </li>
+                      <!-- <li role="separator" class="divider"></li>
+                      <li><a href="#">Separated link</a></li>
+                      <li role="separator" class="divider"></li>
+                      <li><a href="#">One more separated link</a></li> -->
+                        <%#= link_to 'Sort by comments', chapters_path( chapters_filter( :order => "comments_count") ) %>
+                        <%#= link_to 'Sort by last comments', chapters_path( chapters_filter( :order => "last_comment_time") ) %>
+                    </ul>
+                  </li>
+                </form>
+
+                <ul class="nav navbar-nav navbar-right">
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                      <% if current_user %>
+                        使用者設定
+                      <% else %>
+                        登入選項
+                      <% end %>
+                      <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <% if current_user %>
+                      <li>
+                        <%= link_to user_profile_path( current_user.id ), :title => "個人資料" do %>
+                          <span class="fa-stack fa-lg">
+                            <i class="fa fa-square-o fa-stack-2x"></i>
+                            <i class="fa fa-user fa-stack-1x"></i>
+                          </span>
+                          <span><%= "Hi! #{current_user.display_name}" %></span>
+                        <% end %></li>
+                      <li>
+                        <%= link_to destroy_user_session_path, :method => :delete, :title => "如果使用公共的電腦記得離開前要登出喔" do %>
+                          <span class="fa-stack fa-lg">
+                            <i class="fa fa-square-o fa-stack-2x"></i>
+                            <i class="fa fa-sign-out fa-stack-1x"></i>
+                          </span>
+                          <span>登出</span>
+                        <% end %>
+                      </li>
+                      <li>
+                        <%= link_to edit_registration_path(:user), :title => "想換換密碼按這裡" do %>
+                          <span class="fa-stack fa-lg">
+                            <i class="fa fa-square-o fa-stack-2x"></i>
+                            <i class="fa fa-key fa-stack-1x"></i>
+                          </span>
+                          <span>修改密碼</span>
+                        <% end %>
+                      </li>
+                      <% else %>
+                      <li>
+                        <%= link_to new_registration_path(:user), :title => "用email來註冊後加入我們" do %>
+                          <span class="fa-stack fa-lg">
+                            <i class="fa fa-square-o fa-stack-2x"></i>
+                            <i class="fa fa-rocket fa-stack-1x"></i>
+                          </span>
+                          <span>註冊</span>
+                        <% end %>
+                      </li>
+                      <li>
+                        <%= link_to new_session_path(:user), :title => "用你上次註冊的email來登入" do %>
+                          <span class="fa-stack fa-lg">
+                            <i class="fa fa-square-o fa-stack-2x"></i>
+                            <i class="fa fa-sign-in fa-stack-1x"></i>
+                          </span>
+                          <span>登入</span>
+                        <% end %>
+                      </li>
+                      <li>
+                        <%= link_to user_omniauth_authorize_path(:facebook), :title => "用非死不可登入又快又方便喔" do %>
+                          <span class="fa-stack fa-lg">
+                            <i class="fa fa-square-o fa-stack-2x"></i>
+                            <i class="fa fa-facebook fa-stack-1x"></i>
+                          </span>
+                          <span>登入 Facebook</span>
+                        <% end %>
+                      </li>
+                      <% end %>
+                    </ul>
+                  </li>
+                </ul>
+              </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+          </nav>
+
+          <hr>
 
           <% if flash[:notice].present? %>
             <div class="alert alert-success" role="alert"><%= flash[:notice] %></div>
@@ -54,9 +199,8 @@
             <div class="alert alert-danger" role="alert"><%= flash[:alert] %></div>
           <%end%>
 
-
-
           <%= yield %>
+          
         </div>
       </div>
     </div>
@@ -72,6 +216,6 @@
   </body>
 </html>
 
-<%= render :partial => "/chapters/privacy"  %>
-<%= render :partial => "/chapters/about"  %>
-<%= render :partial => "/chapters/how"  %>
+<%= render :partial => "/chapters/privacy" %>
+<%= render :partial => "/chapters/about" %>
+<%= render :partial => "/chapters/how" %>

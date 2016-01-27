@@ -1,15 +1,82 @@
-.nav-pills a{
-    line-height: 100px;
+body{
+    background-image: image-url("brickwall2X.png");
+    padding-top: 80px;
+}
+
+.navbar-form .dropdown{
+    display: inline-block;
+}
+
+.navbar-form{
+    padding-top: 8px;
+}
+
+a.dropdown-toggle{
+    top:7px;
+}
+
+.navbar-brand {
+    padding: 0;
+}
+
+a.navbar-brand{
+    display:block;
+}
+
+.navbar-brand > img{
+    width: 95px;
+    padding: 10px;
+}
+
+.navbar-toggle{
+    margin-top: 14px;
+    margin-bottom: 14px;
+}
+
+.category-search, .caret{
+    color:#9d9d9d;
+}
+
+.category-search:hover{
+    color:white;
+}
+
+.nav-tabs-justified > li > a, .nav-tabs.nav-justified > li > a{
+    font-size: 1.5em;
+    border-radius: 10px 10px 0 0;
+    box-shadow: 10px 10px 5px #888888;   
+}
+
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus{
+    background: -webkit-linear-gradient(left, transparent, orange);
+    background: -o-linear-gradient(left, transparent, orange);
+    background: -mose-linear-gradient(left, transparent, orange);
+    background: linear-gradient(left, transparent, orange);
+}
+
+.nav-tabs > li > a:hover{
+    background: -webkit-linear-gradient(left, transparent, orange);
+    background: -o-linear-gradient(left, transparent, orange);
+    background: -mose-linear-gradient(left, transparent, orange);
+    background: linear-gradient(left, transparent, orange);
+}
+
+
+.container {
+    /*background-image: image-url("crossword.png");*/
+    /*background-position: center;*/
+    /*background-attachment: fixed;*/
+    /*background-repeat: no-repeat; */
 }
 
 table {
-    border-collapse: collapse;
     box-shadow: 10px 10px 5px #888888;
 }
 
 .search {
-    border-collapse: collapse;
     box-shadow: 10px 10px 5px #888888;
+    z-index: 2;
 }
 
 table,
@@ -18,6 +85,7 @@ td {
     border: 1px dashed gray;
 }
 
+/*故事結構表*/
 .level1 {
     background: -webkit-linear-gradient(left, transparent, #5BC0EB);
     background: -o-linear-gradient(left, transparent, #5BC0EB);
@@ -62,26 +130,15 @@ td {
     border-bottom: 1px solid gray;
 }
 
-.element {
-    float: left;
-}
-
-.fb-img {
-    max-width: 50px !important;
-}
-
-.container {
-/*    background-image: image-url("stori200.png");
-    background-position: center;
-    background-attachment: fixed;
-    background-repeat: no-repeat; */
-}
-
 .storyline h4 {
     position: relative;
     right: 40px;
     font-size: .9em;
     color: lightgray;
+}
+
+.element {
+    float: left;
 }
 
 .grid .btn {
@@ -97,6 +154,8 @@ td {
     min-height: 100px;
     width: 200px;
     margin-bottom: 10px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 2.5px #888888;
 }
 
 .grid-item--width2 {
@@ -132,6 +191,8 @@ h6 {
     text-shadow: 1px 1px 1px black;
 }
 
+
+
 .modal-content #header-button {
     width: 95%;
     margin: 0 auto;
@@ -156,4 +217,54 @@ h6 {
     width:auto !important;
     height:auto !important;
     margin:5px;
+}
+
+
+.chapter-show .depth{
+    text-align: center;
+    
+}
+
+.chapter-show .depth p{
+    display:inline-block;
+    border: 5px solid orange;
+    border-radius: 10px;
+    line-height: 30px;
+    padding: 2px;
+}
+
+.chapter-content span{
+    width: 70%;
+    margin: 2px;
+    /*border: 5px solid lightgray;*/
+    background: white;
+    border-radius: 10px;
+    display: inline-block;
+}
+
+.chapter-content span:first-child{
+    width: 20%;
+    margin: 2px;
+    background: none;
+    /*border: 5px solid lightgray;*/
+    /*border-radius: 10px;*/
+    /*display: inline-block;*/
+}
+
+.current-chapter span{
+    width: 70%;
+    margin: 2px;
+    border: 5px solid white;
+    /*background: white;*/
+    border-radius: 10px;
+    display: inline-block;
+}
+
+.current-chapter span:first-child{
+    width: 20%;
+    margin: 2px;
+    background: white;
+    /*border: 5px solid lightgray;*/
+    border-radius: 10px;
+    display: inline-block;
 }

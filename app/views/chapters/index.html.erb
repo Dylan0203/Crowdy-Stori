@@ -1,6 +1,29 @@
-<h1></h1>
+<ul class="nav nav-tabs nav-justified">
+  <li role="presentation" class="active"><a href="#">故事的開始</a></li>
+  <li role="presentation"><a href="#">已完結的故事</a></li>
+  <li role="presentation"><a href="#">等待接續的故事</a></li>
+  <li role="presentation"><a href="#">一週熱門</a></li>
+  <li role="presentation"><a href="#">最受歡迎</a></li>
+</ul>
 
-<h2 style="text-align: center">故事的開始</h2>
+<!-- <table class="table search">
+  <tr>
+    <td>
+      <%= form_tag chapters_path, :method => :get do %>
+        <%= collection_select( :category, :id, Category.all, :id, :name,{:include_blank => '選擇故事類別or不分類'}) %>
+        <%= text_field_tag "keyword" %>
+        <%= submit_tag "Search" %>
+      <% end %>
+    </td>
+    <td><%= link_to '觀看次數排序', chapters_path( chapters_filter( :order => "view") ) %></td>
+      <%#= link_to 'Sort by comments', chapters_path( chapters_filter( :order => "comments_count") ) %>
+      <%#= link_to 'Sort by last comments', chapters_path( chapters_filter( :order => "last_comment_time") ) %>
+    <td><%= link_to '故事名稱排序', chapters_path( chapters_filter( :order => "topic") ) %></td>
+    <td><%= link_to '預設值排序', chapters_path %></td>
+  </tr>
+</table> -->
+
+<hr>
 
 <div class="grid" >
 <div class="grid-item grid-item--width2" style="height: 501px; width: 340px">
@@ -37,7 +60,30 @@
 </div>
 
 <hr>
-
+<!-- 
+<table class="table all-story">
+<h2 style="text-align: center">所有的故事片段</h2>
+<tr>
+  <th>標題</th>
+  <th>作者</th>
+  <th>場景</th>
+  <th>類別</th>
+  <th>點閱</th>
+  <th>層級</th>
+  <th>完成</th>
+</tr>
+  <% @chapters.each do |c| %>
+    <tr>
+      <td><%= link_to c.topic, chapter_path(c)%></td>
+      <td><%= c.user.try(:display_name) %></td>
+      <td><%= c.setting %></td>
+      <td><%= c.category.name if c.category %></td>
+      <td><%= c.view %></td>
+      <td><%= c.depth+1 %></td>
+      <td><%= c.finish %></td>
+    </tr>
+  <% end %>
+</table>
 
 
 <h2 style="text-align: center">所有故事結構表</h2>
@@ -76,26 +122,6 @@
 
 <hr>
 
-<table class="table search">
-  <tr>
-    <td>
-      <%= form_tag chapters_path, :method => :get do %>
-        <%= collection_select( :category, :id, Category.all, :id, :name,{:include_blank => '選擇故事類別or不分類'}) %>
-        <%= text_field_tag "keyword" %>
-        <%= submit_tag "Search" %>
-      <% end %>
-    </td>
-    <td><%= link_to 'Sort by viewed', chapters_path( chapters_filter( :order => "view") ) %></td>
-      <%#= link_to 'Sort by comments', chapters_path( chapters_filter( :order => "comments_count") ) %>
-      <%#= link_to 'Sort by last comments', chapters_path( chapters_filter( :order => "last_comment_time") ) %>
-    <td><%= link_to 'Sort by Name', chapters_path( chapters_filter( :order => "topic") ) %></td>
-    <td><%= link_to 'Sort by Default', chapters_path %></td>
-  </tr>
-</table>
-
-<hr>
-
-
 <table class="table finish-story">
 <h2 style="text-align: center">所有已完成故事</h2>
 <tr>
@@ -125,30 +151,7 @@
 </table>
 
 <hr>
-
-<table class="table all-story">
-<h2 style="text-align: center">所有的故事片段</h2>
-<tr>
-  <th>標題</th>
-  <th>作者</th>
-  <th>場景</th>
-  <th>類別</th>
-  <th>點閱</th>
-  <th>層級</th>
-  <th>完成</th>
-</tr>
-  <% @chapters.each do |c| %>
-    <tr>
-      <td><%= link_to c.topic, chapter_path(c)%></td>
-      <td><%= c.user.try(:display_name) %></td>
-      <td><%= c.setting %></td>
-      <td><%= c.category.name if c.category %></td>
-      <td><%= c.view %></td>
-      <td><%= c.depth+1 %></td>
-      <td><%= c.finish %></td>
-    </tr>
-  <% end %>
-</table>
+ -->
 
 <script>
   
