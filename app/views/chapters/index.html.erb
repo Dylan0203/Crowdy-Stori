@@ -60,31 +60,6 @@
 </div>
 
 <hr>
-<!-- 
-<table class="table all-story">
-<h2 style="text-align: center">所有的故事片段</h2>
-<tr>
-  <th>標題</th>
-  <th>作者</th>
-  <th>場景</th>
-  <th>類別</th>
-  <th>點閱</th>
-  <th>層級</th>
-  <th>完成</th>
-</tr>
-  <% @chapters.each do |c| %>
-    <tr>
-      <td><%= link_to c.topic, chapter_path(c)%></td>
-      <td><%= c.user.try(:display_name) %></td>
-      <td><%= c.setting %></td>
-      <td><%= c.category.name if c.category %></td>
-      <td><%= c.view %></td>
-      <td><%= c.depth+1 %></td>
-      <td><%= c.finish %></td>
-    </tr>
-  <% end %>
-</table>
-
 
 <h2 style="text-align: center">所有故事結構表</h2>
 <div class="storyline">
@@ -121,6 +96,35 @@
 </div>
 
 <hr>
+
+
+<!-- 
+<table class="table all-story">
+<h2 style="text-align: center">所有的故事片段</h2>
+<tr>
+  <th>標題</th>
+  <th>作者</th>
+  <th>場景</th>
+  <th>類別</th>
+  <th>點閱</th>
+  <th>層級</th>
+  <th>完成</th>
+</tr>
+  <% @chapters.each do |c| %>
+    <tr>
+      <td><%= link_to c.topic, chapter_path(c)%></td>
+      <td><%= c.user.try(:display_name) %></td>
+      <td><%= c.setting %></td>
+      <td><%= c.category.name if c.category %></td>
+      <td><%= c.view %></td>
+      <td><%= c.depth+1 %></td>
+      <td><%= c.finish %></td>
+    </tr>
+  <% end %>
+</table>
+
+
+
 
 <table class="table finish-story">
 <h2 style="text-align: center">所有已完成故事</h2>
