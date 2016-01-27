@@ -11,4 +11,23 @@ class Chapter < ActiveRecord::Base
   def image_urls
     self.content.scan(/src=["|'](.*?)["|']/).flatten
   end
+
+
+  def self.search(params)
+    
+    collection = 
+      if params[:category] && params[:category][:id].present?
+        Category.find(params[:category][:id]).chapters
+      else
+        Chapter.all
+      end
+
+    collection = collection.where([ "topic like ?", "%#{params[:keyword]}%"]) if params[:keyword]
+    # colelction = collection.where(xxxx) if params[:email]
+    collection
+  end
+
+
+
+
 end

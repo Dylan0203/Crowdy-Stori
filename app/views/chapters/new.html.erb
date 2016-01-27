@@ -12,6 +12,8 @@
       <%= f.label :category_id, "故事分類："%>
       <%= f.select :category_id, Category.all.map{ |c| [c.name, c.id] } %>
     </div>
+  <% else %>
+    <%= f.hidden_field :category_id %>
   <% end %>
 
   <div class="form_group">
@@ -55,6 +57,8 @@
     <% end %>
     <%= f.label :finish, "選擇故事是否完結！？" %>
   </div>
+  
+  
 
   <hr>
 
@@ -119,7 +123,8 @@ $("[data-target='#myModal']").click(function(){
   );
 })
 
-  $("#chapter_category_id").select2({ width: "auto" });
   $("#chapter_finish").select2({ width: "auto" });
+  $("#chapter_category_id").select2({ width: "auto" });
+  
 
 </script>
