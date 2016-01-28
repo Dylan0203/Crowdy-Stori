@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   # ApiV1::ChaptersController
   scope :path => '/api/v1/', :module => "api_v1", :as => 'v1', :defaults => { :format => :json } do
 
+    resources :profiles, :controller => "user_profiles"
+
     post "login" => "auth#login"
     post "logout" => "auth#logout"
 
@@ -19,7 +21,14 @@ Rails.application.routes.draw do
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
-  resources :chapters
+  resources :chapters do
+    collection do
+      get :finished
+      get :unfinished
+      get :popular
+      get :weekpopular
+    end
+  end
 
   resources :users do
     resource :profile, :controller => "user_profiles"
