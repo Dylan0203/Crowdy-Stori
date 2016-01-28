@@ -3,7 +3,7 @@ class ApiV1::UserProfilesController < ApiController
   before_action :authenticate_user!, :except => [:show]
 
   def show
-    @user = User.find(params[:user_id])
+    @user = User.find(params[:id])
     @profile = @user.get_profile
   end
 

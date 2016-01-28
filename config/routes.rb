@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   # ApiV1::ChaptersController
   scope :path => '/api/v1/', :module => "api_v1", :as => 'v1', :defaults => { :format => :json } do
 
-    resources :profiles, :controller => "user_profiles"
+    resources :profiles, :only => [:show, :update], :controller => "user_profiles"
 
     post "login" => "auth#login"
     post "logout" => "auth#logout"
