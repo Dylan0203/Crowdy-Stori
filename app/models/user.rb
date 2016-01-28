@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
   end
 
   def self.get_fb_data(access_token)
-    res = RestClient.get "https://graph.facebook.com/v2.4/me",  { :params => { :access_token => access_token, :fields => "id,name,email,picture" } }
+    res = RestClient.get "https://graph.facebook.com/v2.4/me",  { :params => { :access_token => access_token, :fields => "id,name,email,picture.type(large)" } }
  
     if res.code == 200
       JSON.parse( res.to_str )
@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
   end
 
   def get_fb_data
-    j = RestClient.get "https://graph.facebook.com/v2.5/me", :params => { :access_token => self.fb_token, :fields => "id,name,email,picture" }
+    j = RestClient.get "https://graph.facebook.com/v2.5/me", :params => { :access_token => self.fb_token, :fields => "id,name,email,picture.type(large)" }
     JSON.parse(j)
   end
 
