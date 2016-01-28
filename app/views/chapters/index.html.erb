@@ -6,23 +6,6 @@
   <li role="presentation"><a href="#">最受歡迎</a></li>
 </ul>
 
-<!-- <table class="table search">
-  <tr>
-    <td>
-      <%= form_tag chapters_path, :method => :get do %>
-        <%= collection_select( :category, :id, Category.all, :id, :name,{:include_blank => '選擇故事類別or不分類'}) %>
-        <%= text_field_tag "keyword" %>
-        <%= submit_tag "Search" %>
-      <% end %>
-    </td>
-    <td><%= link_to '觀看次數排序', chapters_path( chapters_filter( :order => "view") ) %></td>
-      <%#= link_to 'Sort by comments', chapters_path( chapters_filter( :order => "comments_count") ) %>
-      <%#= link_to 'Sort by last comments', chapters_path( chapters_filter( :order => "last_comment_time") ) %>
-    <td><%= link_to '故事名稱排序', chapters_path( chapters_filter( :order => "topic") ) %></td>
-    <td><%= link_to '預設值排序', chapters_path %></td>
-  </tr>
-</table> -->
-
 <hr>
 
 <div class="grid" >
@@ -37,18 +20,13 @@
 <% @chapters.roots.each do |dd| %>
   <div class="grid-item">
   <%= link_to chapter_path(dd) do %>
-  <% if dd.avatar.blank? %>
-    <% case dd.category.try(:name) %>
-      <% when "經典故事" %>
-        <%= image_tag "fairyTale/#{rand(1..16)}.jpg" %>
-      <% when "結局改編" %>
-        <%= image_tag "reorganization/#{rand(1..14)}.jpg" %>
-      <% when "時事創作" %>
-        <%= image_tag "currentEvent/#{rand(1..12)}.jpg" %>
+ 
+    <% if dd.avatar.blank? %>
+      <%= default_chapter_avatar(dd) %>
+    <% else %>
+      <%= image_tag dd.avatar %>
     <% end %>
-  <% end %>
-  
-    <%= image_tag dd.avatar %>
+
     <h3><%= dd.topic %></h3>
     <h6><%= dd.category.try(:name) %></h6>
   <% end %>
@@ -98,7 +76,7 @@
 <hr>
 
 
-<!-- 
+<% if false %>
 <table class="table all-story">
 <h2 style="text-align: center">所有的故事片段</h2>
 <tr>
@@ -122,9 +100,6 @@
     </tr>
   <% end %>
 </table>
-
-
-
 
 <table class="table finish-story">
 <h2 style="text-align: center">所有已完成故事</h2>
@@ -155,27 +130,22 @@
 </table>
 
 <hr>
- -->
+<% end %>
 
 <script>
   
   $('.grid').masonry({
-  // options
-  itemSelector: '.grid-item',
-  columnWidth: 200
-});
+    itemSelector: '.grid-item',
+    columnWidth: 200
+  });
 
-$(function() {
-    var $container = $('.grid');
-    $container.imagesLoaded(function() {
-        $container.masonry({
-            itemSelector: '.grid-item',
-            columnWidth: 200,
-            gutter: 10
-        });
-    });
-});
-
-$("#category_id").select2({ width: "auto" });
+  var $container = $('.grid');
+  $container.imagesLoaded(function() {
+      $container.masonry({
+          itemSelector: '.grid-item',
+          columnWidth: 200,
+          gutter: 10
+      });
+  });
 
 </script>
