@@ -64,9 +64,9 @@ ActiveRecord::Schema.define(version: 20160127153710) do
     t.text     "about_me"
     t.string   "bloodtype"
     t.string   "user_id"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-    t.text     "interest",   default: ""
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text     "interest"
   end
 
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id"
