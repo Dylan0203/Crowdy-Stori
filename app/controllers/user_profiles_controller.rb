@@ -4,25 +4,20 @@ class UserProfilesController < ApplicationController
 
   def show
     
-   @user = User.find(params[:user_id])
-   @profile = @user.profile
-
-   unless @profile
-     @user.profile = Profile.create
-   end
+    @user = User.find(params[:user_id])
+    @profile = @user.get_profile
  
   end
 
   def edit
     @user = current_user
-    @profile = @user.profile
+    @profile = @user.get_profile
   end
 
-def update
+  def update
 
     @user = current_user
-
-    @profile = @user.profile
+    @profile = @user.get_profile
     @profile.update(profile_params)
 
     if @profile.save
@@ -30,7 +25,6 @@ def update
     else
       flash[:alert] = "使用者名稱已被使用過"
     end
-
 
     redirect_to user_profile_path(@user)
   end

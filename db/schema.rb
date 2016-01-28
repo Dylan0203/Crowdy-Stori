@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160119115731) do
+ActiveRecord::Schema.define(version: 20160127153710) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -64,8 +64,9 @@ ActiveRecord::Schema.define(version: 20160119115731) do
     t.text     "about_me"
     t.string   "bloodtype"
     t.string   "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.text     "interest",   default: ""
   end
 
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id"

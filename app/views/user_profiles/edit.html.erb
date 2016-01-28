@@ -18,13 +18,18 @@
   </div>
 
   <div class="form_group">
-    <%= f.label :birthday, "birthday" %>
+    <%= f.label :birthday, "生日" %>
     <%= f.date_select :birthday, :start_year=>1950,:end_year=>2015, :class => "form-control" %>  
   </div>
 
   <div class="form_group">
-    <%= f.label :bloodtype, "bloodtype" %>
+    <%= f.label :bloodtype, "血型" %>
     <%= f.select :bloodtype, [['A', 'A'], ['B', 'B'], ['AB', 'AB'], ['O', 'O']], :class => "form-control" %>
+  </div>
+
+  <div class="form_group">
+    <%= f.label :interest, "興趣" %>
+    <%= f.text_area :interest, :class => "form-control" %>
   </div>
 
   <div class="form_group">
