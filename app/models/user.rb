@@ -29,15 +29,6 @@ class User < ActiveRecord::Base
   end
 
   def get_profile
-    # if self.profile
-    #   return self.profile    
-    # else
-    #    p = Profile.new
-    #    p.user = self
-    #    p.save
-    #   return self.create_profile
-    # end
-    # [CR] or move it to callback (ex: after_create)
     self.profile || self.create_profile
   end
 
@@ -45,7 +36,6 @@ class User < ActiveRecord::Base
     j = RestClient.get "https://graph.facebook.com/v2.5/me", :params => { :access_token => self.fb_token, :fields => "id,name,email,picture" }
     JSON.parse(j)
   end
-
 
   def self.from_omniauth(auth)
      # Case 1: Find existing user by facebook uid
@@ -86,10 +76,6 @@ class User < ActiveRecord::Base
      return user
   end
 
-  def short_email
-    self.email.split("@").first
-  end
-
   def admin?
     self.role == ROLE_ADMIN
   end
@@ -97,4 +83,11 @@ class User < ActiveRecord::Base
   def display_name
     self.profile.try(:username) || short_email || email
   end
+
+  private
+
+  def short_email
+    self.email.split("@").first
+  end
+    
 end

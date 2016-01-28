@@ -5,8 +5,6 @@ class ApiV1::ChaptersController < ApiController
   # GET /api/v1/chapters/:id
   def show
     @chapter = Chapter.find(params[:id])
-
-  # show.json.jbuilder
   end
 
   # GET /api/v1/chapters
@@ -14,8 +12,6 @@ class ApiV1::ChaptersController < ApiController
     #@chapters = Chapter.page( params[:page] ).per(5)
     @chapters = Chapter.all
     @chapters = @chapters.order("id DESC")
-
-  # index.json.jbuilder
   end
 
   # POST /api/v1/chapters
@@ -32,12 +28,12 @@ class ApiV1::ChaptersController < ApiController
   end
 
   def finished
-    @finish = Chapter.where( :finish => true )
+    @finish = Chapter.finished
     @finish = @finish.order("id DESC")
   end
 
   def unfinished
-    @unfinished_chapters = Chapter.where( :finish => false )
+    @unfinished_chapters = Chapter.unfinished
     @unfinished_chapters = @unfinished_chapters.order("id DESC")
   end
 
