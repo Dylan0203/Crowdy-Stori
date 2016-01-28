@@ -63,7 +63,7 @@
       <span>這邊是故事內容：</span>
       <span><%= simple_format @chapter.content %></span>
     </div>
-    <% if @chapter.depth < 2 && @chapter.finish == false %>
+    <% if @chapter.can_continue? %>
       <%= link_to "我要接續這段故事", new_chapter_path(:parent_id => @chapter.id, :category_id => @chapter.category_id) , :class => "btn btn-primary"%>
     <% end %>
   </div>

@@ -12,8 +12,6 @@
       <%= f.label :category_id, "故事分類："%>
       <%= f.select :category_id, Category.all.map{ |c| [c.name, c.id] } %>
     </div>
-  <% else %>
-    <%= f.hidden_field :category_id %>
   <% end %>
 
   <div class="form_group">
@@ -104,7 +102,6 @@
   </div>
 </div>
 <% end %>
-
 
 
 <script>

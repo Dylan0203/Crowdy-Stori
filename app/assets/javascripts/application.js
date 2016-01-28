@@ -18,3 +18,7 @@
 //= require imagesloaded.pkgd.min
 //= require masonry.pkgd.min
 //= require_tree .
+
+$(function(){
+	$("#category_id").select2({ width: "auto" });
+})
