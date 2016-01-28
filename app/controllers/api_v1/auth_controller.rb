@@ -14,7 +14,8 @@ class ApiV1::AuthController < ApiController
          auth_hash = OmniAuth::AuthHash.new({
            uid: fb_data["id"],
            info: {
-             email: fb_data["email"]
+             email: fb_data["email"],
+             image: fb_data["picture"]["data"]["url"]
            },
            credentials: {
              token: params[:access_token]
@@ -29,6 +30,7 @@ class ApiV1::AuthController < ApiController
     if success
       render :json => { logged_in: [ :message => "你已成功登入 Crowdy.Stori ",
                               :auth_token => user.authentication_token,
+                              :picture => fb_data["picture"]["data"]["url"],
                               :user_id => user.id ]}
     else
       render :json => { logged_in: [:message => "Email or Password 錯誤" ]}, :status => 401
