@@ -2,10 +2,10 @@
   <li role="presentation"><a href="#weekpop" aria-controls="weekpop" role="tab" data-toggle="tab">一週熱門</a></li>
   <li role="presentation"><a href="#finished" aria-controls="finish" role="tab" data-toggle="tab">已完結的故事</a></li>
   <li role="presentation"><a href="#unfinished" aria-controls="unfinished" role="tab" data-toggle="tab">等待接續的故事</a></li>
-  <li role="presentation" class="active"><a href="#dashboard" aria-controls="dashboard" role="tab" data-toggle="tab">Dash Board</a></li>
   <li role="presentation"><a href="#begins" aria-controls="begins" role="tab" data-toggle="tab">故事的開始</a></li>
   <li role="presentation"><a href="#mostpop" aria-controls="mostpop" role="tab" data-toggle="tab">最受歡迎</a></li>
   <li role="presentation"><a href="#storyline" aria-controls="storyline" role="tab" data-toggle="tab">所有故事結構表</a></li>
+  <li role="presentation" class="active"><a href="#crowdy" aria-controls="crowdy" role="tab" data-toggle="tab">crowdy</a></li>
 </ul>
 
 <div class="tab-content">
@@ -41,20 +41,6 @@
       <% end %>
       </ol>
     </div>
-  </div>
-  
-  <div role="tabpanel" class="tab-pane active" id="dashboard">
-  <hr>
-     <!-- FB fan page -->
-      <div class="grid-item grid-item--width2" style="height: 501px; width: 340px">
-        <div class="fb-page" data-href="https://www.facebook.com/crowdy.space/" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
-          <div class="fb-xfbml-parse-ignore">
-              <blockquote cite="https://www.facebook.com/crowdy.space/"><a href="https://www.facebook.com/crowdy.space/">Crowdy-群眾共同創作平台</a></blockquote>
-          </div>
-        </div>
-      </div>
-      <!-- FB fan page -->
-  <hr>
   </div>
 
   <div role="tabpanel" class="tab-pane" id="begins">
@@ -114,11 +100,29 @@
     </div>
   </div>
 
+<div role="tabpanel" class="tab-pane active" id="crowdy">
+  <hr>
+      <div class="col-md-4">
+     <!-- FB fan page --> 
+        <div class="fb-page" data-href="https://www.facebook.com/crowdy.space/" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+          <div class="fb-xfbml-parse-ignore">
+              <blockquote cite="https://www.facebook.com/crowdy.space/"><a href="https://www.facebook.com/crowdy.space/">Crowdy-群眾共同創作平台</a></blockquote>
+          </div>
+        </div>
+      <!-- FB fan page -->
+      </div>
+      <div class="col-md-7 col-md-offset-1">
+        <div class="slider">
+          <%= render :partial => 'sliders' %> 
+        </div>
+      </div>
+  <hr>
+</div>
 
 </div>
 
 <script>
-  $('.nav-tabs a').click(function (e) {
+$('.nav-tabs a').click(function (e) {
   e.preventDefault()
   $(this).tab('show');
 
@@ -129,13 +133,13 @@
 
   var $container = $('.grid');
   $container.imagesLoaded(function() {
-      $container.masonry({
-          // itemSelector: '.grid-item',
-          // columnWidth: 200,
-          // originLeft: false,
-          gutter: 10,
-          transitionDuration: '0.8s'
-      });
+    $container.masonry({
+        // itemSelector: '.grid-item',
+        // columnWidth: 200,
+        // originLeft: false,
+        gutter: 10,
+        transitionDuration: '0.8s'
+    });
   });
 })
 </script>
