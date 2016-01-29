@@ -9,11 +9,11 @@ class Chapter < ActiveRecord::Base
   mount_uploader :avatar, AvatarUploader
 
   scope :includes_more, -> { includes( :category, :user => :profile ) }
-  
-  scope :weekpop, -> { where( ["created_at >= ?", Time.now - 7.days ] ).order("view DESC").limit(5) }
-  scope :finished, ->{ where( :finish => true ) }
-  scope :unfinished, ->{ where( :finish => false ) }
-  scope :begins, ->{ where( :ancestry => nil ) }
+
+  scope :weekpop, -> { where( ["created_at >= ?", Time.now - 7.days ] ).order("view DESC").limit(10) }
+  scope :finished, ->{ where( :finish => true ).order("view DESC") }
+  scope :unfinished, ->{ where( :finish => false ).order("view DESC") }
+  scope :begins, ->{ where( :ancestry => nil ).order("view DESC") }
   scope :mostpop, ->{ order("view DESC") }
 
   before_validation :setup_default_category, :on => :create
