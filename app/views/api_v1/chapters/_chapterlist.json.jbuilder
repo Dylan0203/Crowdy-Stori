@@ -3,6 +3,9 @@ json.id chapter.id
 json.setting chapter.setting if chapter.avatar.present?
 json.topic chapter.topic
 json.content strip_tags(chapter.content)
+json.view chapter.view
+json.created_at chapter.created_at
+json.updated_at chapter.updated_at
 
 json.avatar do 
   json.url api_image_path(chapter.avatar.url) 
