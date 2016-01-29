@@ -238,7 +238,7 @@ h6 {
     padding: 2px;
 }
 
-.chapter-content span{
+.chapter-content > span{
     width: 70%;
     margin: 2px;
     /*border: 5px solid lightgray;*/
@@ -247,7 +247,7 @@ h6 {
     display: inline-block;
 }
 
-.chapter-content span:first-child{
+.chapter-content > span:first-child{
     width: 20%;
     margin: 2px;
     background: none;
@@ -256,7 +256,7 @@ h6 {
     /*display: inline-block;*/
 }
 
-.current-chapter span{
+.current-chapter > span{
     width: 70%;
     margin: 2px;
     border: 5px solid white;
@@ -265,7 +265,7 @@ h6 {
     display: inline-block;
 }
 
-.current-chapter span:first-child{
+.current-chapter > span:first-child{
     width: 20%;
     margin: 2px;
     background: white;
