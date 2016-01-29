@@ -87,32 +87,10 @@
                 
                 <form class="navbar-form navbar-left" role="search">
                   <div class="form-group">
+                  <%= collection_select( :category, :id, Category.all, :id, :name,{:include_blank => '選擇故事類別or不分類'}) %>
                     <%= text_field_tag "keyword","", :class=>"form-control", :placeholder=>"Search..." %>
                   </div>
-                  <%= collection_select( :category, :id, Category.all, :id, :name,{:include_blank => '選擇故事類別or不分類'}) %>
                   <button type="submit" class="btn btn-default">搜尋</button>
-                  <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="category-search">排序</span><span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                      <li>
-                        <%= link_to '觀看次數', chapters_path( chapters_filter( :order => "view") ) %>
-                      </li>
-                      <li role="separator" class="divider"></li>
-                      <li>
-                        <%= link_to '故事名稱', chapters_path( chapters_filter( :order => "topic") ) %>
-                      </li>
-                      <li role="separator" class="divider"></li>
-                      <li>
-                        <%= link_to '預設值', chapters_path %>
-                      </li>
-                      <!-- <li role="separator" class="divider"></li>
-                      <li><a href="#">Separated link</a></li>
-                      <li role="separator" class="divider"></li>
-                      <li><a href="#">One more separated link</a></li> -->
-                        <%#= link_to 'Sort by comments', chapters_path( chapters_filter( :order => "comments_count") ) %>
-                        <%#= link_to 'Sort by last comments', chapters_path( chapters_filter( :order => "last_comment_time") ) %>
-                    </ul>
-                  </li>
                 </form>
 
                 <ul class="nav navbar-nav navbar-right">

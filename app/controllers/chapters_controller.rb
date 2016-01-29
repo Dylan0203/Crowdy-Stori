@@ -4,7 +4,12 @@ class ChaptersController < ApplicationController
   before_action :set_article, :only => [ :show ]
 
   def index
-    @finish = Chapter.finished
+    @weekpop = Chapter.includes_more.weekpop.search(params)
+    @finish = Chapter.includes_more.finished.search(params)
+    @unfinished = Chapter.includes_more.unfinished.search(params)
+    @begins = Chapter.includes_more.begins.search(params)
+    @mostpop = Chapter.includes_more.mostpop.search(params)
+
     @chapters = Chapter.search(params)
 
     sort_by = if %w[topic view].include?(params[:order])
@@ -14,6 +19,10 @@ class ChaptersController < ApplicationController
     end
 
     @chapters = @chapters.order(sort_by + " DESC")
+  end
+
+  def popular
+    
   end
 
   def show

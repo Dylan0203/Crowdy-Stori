@@ -1,139 +1,189 @@
-<ul class="nav nav-tabs nav-justified">
-  <li role="presentation" class="active"><a href="#">故事的開始</a></li>
-  <li role="presentation"><a href="#">已完結的故事</a></li>
-  <li role="presentation"><a href="#">等待接續的故事</a></li>
-  <li role="presentation"><a href="#">一週熱門</a></li>
-  <li role="presentation"><a href="#">最受歡迎</a></li>
+<ul class="nav nav-tabs nav-justified" role="tablist">
+  <li role="presentation" class="active"><a href="#weekpop" aria-controls="weekpop" role="tab" data-toggle="tab">一週熱門</a></li>
+  <li role="presentation"><a href="#finished" aria-controls="finish" role="tab" data-toggle="tab">已完結的故事</a></li>
+  <li role="presentation"><a href="#unfinished" aria-controls="unfinished" role="tab" data-toggle="tab">等待接續的故事</a></li>
+  <li role="presentation"><a href="#begins" aria-controls="begins" role="tab" data-toggle="tab">故事的開始</a></li>
+  <li role="presentation"><a href="#mostpop" aria-controls="mostpop" role="tab" data-toggle="tab">最受歡迎</a></li>
+  <li role="presentation"><a href="#storyline" aria-controls="storyline" role="tab" data-toggle="tab">所有故事結構表</a></li>
 </ul>
 
-<hr>
+<div class="tab-content">
+  <div role="tabpanel" class="tab-pane active" id="weekpop">
+      <table class="table">
+        <h2 style="text-align: center">一週熱門</h2>
+        <tr>
+          <th>標題</th>
+          <th>作者</th>
+          <th>場景</th>
+          <th>類別</th>
+          <th>點閱</th>
+          <th>層級</th>
+          <th>完成</th>
+        </tr>
+          <% @weekpop.each do |c| %>
+            <tr>
+              <td><%= link_to c.topic, chapter_path(c)%></td>
+              <td><%= c.user.try(:display_name) %></td>
+              <td><%= c.setting %></td>
+              <td><%= c.category.name if c.category %></td>
+              <td><%= c.view %></td>
+              <td><%= c.depth+1 %></td>
+              <td><%= c.finish %></td>
+            </tr>
+          <% end %>
+      </table>
+  </div>
+  
+  <div role="tabpanel" class="tab-pane" id="finished">
+          <table class="table">
+        <h2 style="text-align: center">已完結的故事</h2>
+        <tr>
+          <th>標題</th>
+          <th>作者</th>
+          <th>場景</th>
+          <th>類別</th>
+          <th>點閱</th>
+          <th>層級</th>
+          <th>完成</th>
+        </tr>
+          <% @finish.each do |c| %>
+            <tr>
+              <td><%= link_to c.topic, chapter_path(c)%></td>
+              <td><%= c.user.try(:display_name) %></td>
+              <td><%= c.setting %></td>
+              <td><%= c.category.name if c.category %></td>
+              <td><%= c.view %></td>
+              <td><%= c.depth+1 %></td>
+              <td><%= c.finish %></td>
+            </tr>
+          <% end %>
+      </table>
+  </div>
 
-<div class="grid" >
-<div class="grid-item grid-item--width2" style="height: 501px; width: 340px">
-  <div class="fb-page" data-href="https://www.facebook.com/crowdy.space/" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
-    <div class="fb-xfbml-parse-ignore">
-        <blockquote cite="https://www.facebook.com/crowdy.space/"><a href="https://www.facebook.com/crowdy.space/">Crowdy-群眾共同創作平台</a></blockquote>
+  <div role="tabpanel" class="tab-pane" id="unfinished">
+          <table class="table">
+        <h2 style="text-align: center">等待接續的故事</h2>
+        <tr>
+          <th>標題</th>
+          <th>作者</th>
+          <th>場景</th>
+          <th>類別</th>
+          <th>點閱</th>
+          <th>層級</th>
+          <th>完成</th>
+        </tr>
+          <% @unfinished.each do |c| %>
+            <tr>
+              <td><%= link_to c.topic, chapter_path(c)%></td>
+              <td><%= c.user.try(:display_name) %></td>
+              <td><%= c.setting %></td>
+              <td><%= c.category.name if c.category %></td>
+              <td><%= c.view %></td>
+              <td><%= c.depth+1 %></td>
+              <td><%= c.finish %></td>
+            </tr>
+          <% end %>
+      </table>
+  </div>
+  
+  <div role="tabpanel" class="tab-pane" id="begins">
+    <h2 style="text-align: center">故事的開始</h2>
+    <div class="grid" >
+      <!-- FB fan page -->
+      <div class="grid-item grid-item--width2" style="height: 501px; width: 340px">
+        <div class="fb-page" data-href="https://www.facebook.com/crowdy.space/" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+          <div class="fb-xfbml-parse-ignore">
+              <blockquote cite="https://www.facebook.com/crowdy.space/"><a href="https://www.facebook.com/crowdy.space/">Crowdy-群眾共同創作平台</a></blockquote>
+          </div>
+        </div>
+      </div>
+      <!-- FB fan page -->
+<div class="grid-item" style="height: 65px; width: 390px"><%= link_to "我要開啟一段新的故事", new_chapter_path , :class => "btn btn-primary" %></div>
+      <% @begins.each do |dd| %>
+        <div class="grid-item">
+        <%= link_to chapter_path(dd) do %>
+       
+          <% if dd.avatar.blank? %>
+            <%= default_chapter_avatar(dd) %>
+          <% else %>
+            <%= image_tag dd.avatar %>
+          <% end %>
+
+          <h3><%= dd.topic %></h3>
+          <h6><%= dd.category.try(:name) %></h6>
+        <% end %>
+
+        </div>
+      <% end %>
+
+      </div>
+  </div>
+  <div role="tabpanel" class="tab-pane" id="mostpop">
+    <table class="table">
+        <h2 style="text-align: center">最受歡迎</h2>
+        <tr>
+          <th>標題</th>
+          <th>作者</th>
+          <th>場景</th>
+          <th>類別</th>
+          <th>點閱</th>
+          <th>層級</th>
+          <th>完成</th>
+        </tr>
+          <% @mostpop.each do |c| %>
+            <tr>
+              <td><%= link_to c.topic, chapter_path(c)%></td>
+              <td><%= c.user.try(:display_name) %></td>
+              <td><%= c.setting %></td>
+              <td><%= c.category.name if c.category %></td>
+              <td><%= c.view %></td>
+              <td><%= c.depth+1 %></td>
+              <td><%= c.finish %></td>
+            </tr>
+          <% end %>
+      </table>
+  </div>
+
+  <div role="tabpanel" class="storyline tab-pane active" id="storyline">
+  <h2 style="text-align: center">所有故事結構表</h2>
+    <div class="element">
+      <ol class="level1">
+      <% @chapters.roots.each do |d| %>
+      <h4><%= d.category.name if d.category %></h4>
+        <li>
+          <%= link_to d.topic, chapter_path(d) %>
+        </li>
+        <% if d.has_children? %>
+          <ol class="level2">
+            <% d.children.each do |ch| %>
+              <li>
+                <%= link_to ch.topic, chapter_path(ch) %>
+              </li>
+                <% if ch.has_children? %>
+                  <ol class="level3">
+                    <% ch.children.each do |gc| %>
+                      <li>
+                        <%= link_to gc.topic, chapter_path(gc) %>
+                      </li>
+                    <% end %>
+                  </ol>
+                <% end %>
+            <% end %>
+          </ol>
+        <% end %>
+      <% end %>
+      </ol>
     </div>
   </div>
+
+
 </div>
-
-<% @chapters.roots.each do |dd| %>
-  <div class="grid-item">
-  <%= link_to chapter_path(dd) do %>
- 
-    <% if dd.avatar.blank? %>
-      <%= default_chapter_avatar(dd) %>
-    <% else %>
-      <%= image_tag dd.avatar %>
-    <% end %>
-
-    <h3><%= dd.topic %></h3>
-    <h6><%= dd.category.try(:name) %></h6>
-  <% end %>
-
-  </div>
-<% end %>
-  
-  <div class="grid-item grid-item--width2"><%= link_to "我要開啟一段新的故事", new_chapter_path , :class => "btn btn-primary" %></div>
-</div>
-
-<hr>
-
-<h2 style="text-align: center">所有故事結構表</h2>
-<div class="storyline">
-<div class="element">
-<ol class="level1">
-  <% @chapters.roots.each do |d| %>
- 
-    <h4><%= d.category.name if d.category %></h4>
-    
-    <li>
-      <%= link_to d.topic, chapter_path(d) %>
-    </li>
-      <% if d.has_children? %>
-        <ol class="level2">
-          <% d.children.each do |ch| %>
-            <li>
-              <%= link_to ch.topic, chapter_path(ch) %>
-            </li>
-              <% if ch.has_children? %>
-                <ol class="level3">
-                  <% ch.children.each do |gc| %>
-                    <li>
-                      <%= link_to gc.topic, chapter_path(gc) %>
-                    </li>
-                  <% end %>
-                </ol>
-              <% end %>
-          <% end %>
-        </ol>
-      <% end %>
-  <% end %>
-</ol>
-</div>
-</div>
-
-<hr>
-
-
-<% if false %>
-<table class="table all-story">
-<h2 style="text-align: center">所有的故事片段</h2>
-<tr>
-  <th>標題</th>
-  <th>作者</th>
-  <th>場景</th>
-  <th>類別</th>
-  <th>點閱</th>
-  <th>層級</th>
-  <th>完成</th>
-</tr>
-  <% @chapters.each do |c| %>
-    <tr>
-      <td><%= link_to c.topic, chapter_path(c)%></td>
-      <td><%= c.user.try(:display_name) %></td>
-      <td><%= c.setting %></td>
-      <td><%= c.category.name if c.category %></td>
-      <td><%= c.view %></td>
-      <td><%= c.depth+1 %></td>
-      <td><%= c.finish %></td>
-    </tr>
-  <% end %>
-</table>
-
-<table class="table finish-story">
-<h2 style="text-align: center">所有已完成故事</h2>
-<tr>
-  <th>標題</th>
-  <th>作者</th>
-  <th>場景</th>
-  <th>類別</th>
-  <th>點閱</th>
-  <th>層級</th>
-  <th>完成</th>
-</tr>
-  <% @finish.each do |f| %>
-    <tr> 
-      <td><%= link_to f.topic, chapter_path(f)%></td>
-      <% if f.user %>
-      <td><%= link_to f.user.try(:display_name), user_profile_path( f.user.id ) %></td>
-      <% else %>
-      <td></td>
-      <% end %>
-      <td><%= f.setting %></td>
-      <td><%= f.category.name if f.category %></td>
-      <td><%= f.view %></td>
-      <td><%= f.depth+1 %></td>
-      <td><%= f.finish %></td>
-    </tr>
-  <% end %>
-</table>
-
-<hr>
-<% end %>
 
 <script>
-  
+  $('.nav-tabs a').click(function (e) {
+  e.preventDefault()
+  $(this).tab('show');
+
   $('.grid').masonry({
     itemSelector: '.grid-item',
     columnWidth: 200
@@ -142,10 +192,13 @@
   var $container = $('.grid');
   $container.imagesLoaded(function() {
       $container.masonry({
-          itemSelector: '.grid-item',
-          columnWidth: 200,
-          gutter: 10
+          // itemSelector: '.grid-item',
+          // columnWidth: 200,
+          originLeft: false,
+          gutter: 10,
+          transitionDuration: '0.8s'
       });
   });
+})
 
 </script>
