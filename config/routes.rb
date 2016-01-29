@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  
   mount Ckeditor::Engine => '/ckeditor'
   
   # ApiV1::ChaptersController
@@ -15,20 +14,15 @@ Rails.application.routes.draw do
       collection do
         get :finished
         get :unfinished
+        get :popular
+        get :weekpopular
       end
     end
   end
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
-  resources :chapters do
-    collection do
-      get :finished
-      get :unfinished
-      get :popular
-      get :weekpopular
-    end
-  end
+  resources :chapters
 
   resources :users do
     resource :profile, :controller => "user_profiles"
