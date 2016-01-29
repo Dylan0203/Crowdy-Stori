@@ -1,3 +1,5 @@
 json.profile do
-  json.partial! 'profile', p: @profile
+  json.array! [ 
+  	@profile, :partial => "profile", :as => :p 
+  ]
 end

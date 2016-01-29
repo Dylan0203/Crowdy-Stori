@@ -2,16 +2,10 @@ class ApiV1::ChaptersController < ApiController
 
   before_action :authenticate_user!, :only => [:create]
 
-  # GET /api/v1/chapters/:id
-  def show
-    @chapter = Chapter.find(params[:id])
-  end
-
   # GET /api/v1/chapters
   def index
     #@chapters = Chapter.page( params[:page] ).per(5)
-    @chapters = Chapter.all
-    @chapters = @chapters.order("id DESC")
+    @chapters = Chapter.includes_more.order("id DESC")
   end
 
   # POST /api/v1/chapters
@@ -27,16 +21,26 @@ class ApiV1::ChaptersController < ApiController
     end
   end
 
+  # GET /api/v1/chapters/:id
+  def show
+    @chapter = Chapter.find(params[:id])
+  end
+
   def finished
-    @finish = Chapter.finished
-    @finish = @finish.order("id DESC")
+    @finish = Chapter.includes_more.finished
   end
 
   def unfinished
-    @unfinished_chapters = Chapter.unfinished
-    @unfinished_chapters = @unfinished_chapters.order("id DESC")
+    @unfinished_chapters = Chapter.includes_more.unfinished
   end
 
+  def weekpop
+    @weekpop = Chapter.includes_more.weekpop
+  end
+
+  def mostpop
+    @mostpop = Chapter.includes_more.mostpop
+  end
   protected
 
   def chapter_params

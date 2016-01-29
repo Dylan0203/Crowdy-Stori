@@ -14,8 +14,8 @@ Rails.application.routes.draw do
       collection do
         get :finished
         get :unfinished
-        get :popular
-        get :weekpopular
+        get :weekpop
+        get :mostpop
       end
     end
   end
