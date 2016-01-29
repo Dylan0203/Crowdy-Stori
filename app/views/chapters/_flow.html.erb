@@ -1,0 +1,24 @@
+<h4>
+  <%= d.category.name if d.category %>
+</h4>
+  <li>
+    <%= link_to d.topic, chapter_path(d) %>
+  </li>
+  <% if d.has_children? %>
+    <ol class="level2">
+      <% d.children.each do |ch| %>
+        <li>
+          <%= link_to ch.topic, chapter_path(ch) %>
+        </li>
+          <% if ch.has_children? %>
+            <ol class="level3">
+              <% ch.children.each do |gc| %>
+                <li>
+                  <%= link_to gc.topic, chapter_path(gc) %>
+                </li>
+              <% end %>
+            </ol>
+          <% end %>
+      <% end %>
+    </ol>
+  <% end %>

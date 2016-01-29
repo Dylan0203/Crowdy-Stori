@@ -42,7 +42,7 @@ a.navbar-brand{
 }
 
 .nav-tabs-justified > li > a, .nav-tabs.nav-justified > li > a{
-    font-size: 1.5em;
+    font-size: 1.2em;
     border-radius: 10px 10px 0 0;
     box-shadow: 10px 10px 5px #888888;   
 }
@@ -74,6 +74,12 @@ table {
     box-shadow: 10px 10px 5px #888888;
 }
 
+.table-image img{
+    height:50px;
+    border-radius:50%;
+    margin: 0 auto;
+    display: block;
+}
 .search {
     box-shadow: 10px 10px 5px #888888;
     z-index: 2;
@@ -83,10 +89,14 @@ table,
 th,
 td {
     border: 1px dashed gray;
+    text-align: center;
 }
 
 /*故事結構表*/
 .level1 {
+    width:30%;
+    position:relative;
+    left:10%;
     background: -webkit-linear-gradient(left, transparent, #5BC0EB);
     background: -o-linear-gradient(left, transparent, #5BC0EB);
     background: -mose-linear-gradient(left, transparent, #5BC0EB);
@@ -98,7 +108,7 @@ td {
 .level2 {
     position: relative;
     top: -25px;
-    left: 200px;
+    right: -100%;
     background: -webkit-linear-gradient(left top, transparent, #FDE74C);
     background: -o-linear-gradient(left top, transparent, #FDE74C);
     background: -mose-linear-gradient(left top, transparent, #FDE74C);
@@ -110,7 +120,7 @@ td {
 .level3 {
     position: relative;
     top: -25px;
-    left: 150px;
+    right: -100%;
     background: -webkit-linear-gradient(left top, transparent, #9BC53D);
     background: -o-linear-gradient(left top, transparent, #9BC53D);
     background: -mose-linear-gradient(left top, transparent, #9BC53D);
@@ -138,7 +148,7 @@ td {
 }
 
 .element {
-    float: left;
+    width:100%;
 }
 
 .grid .btn {
