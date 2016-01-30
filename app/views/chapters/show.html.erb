@@ -1,82 +1,98 @@
 <div class="chapter-show">
-
-  <h2 class="current-chapter">
-    <span>現在章節標題：</span>
-    <span><%= @chapter.topic %></span>
-  </h2>
-  <h3 class="current-chapter">
-    <span>作者：</span>
-    <span><%= link_to @chapter.user.display_name, user_profile_path(@chapter.user) if @chapter.user.present? %></span>
-  </h3>
-
+  <div class="chapter-head">  
+    <span>
+      <h1>
+        <%= @chapter.topic %>
+      </h1>
+    </span>
+    <span>
+      by <%= link_to @chapter.user.display_name, user_profile_path(@chapter.user) if @chapter.user.present? %>
+    </span>
+    
+    <span>
+      at <%= @chapter.updated_at.to_formatted_s(:short) %>
+    </span>
+  </div>
+<!-- fb-like -->
   <div class="fb-like" data-href="<%= chapter_url(@chapter) %>" data-width="500px" data-layout="standard" data-action="like" data-show-faces="true" data-share="true" colorscheme = "dark"></div>
-
+<!-- fb-like -->
 
   <% if @chapter.parent %>
-    <p>上一層：<%= link_to @chapter.parent.topic, chapter_path(@chapter.parent) %></p>
-  <% end %>
-
-  <hr>
-  <div class="previous-chapter">
-    <% if @chapter.parent %>
-      <% @chapter.ancestors.each do |p| %>
-        <div class="depth">
-          <p>這是 <%= "#{p.category.name if p.category} 第#{p.depth+1}" %>層：</p>
-        </div>
-          <% if p.root? %>
-            <div class="chapter-content">
-              <span>故事設定：</span>
-              <span><%= p.setting %></span>
-            </div>
-          <% end %>
-
-        <div class="chapter-content">
-          <span>故事標題：</span>
-          <span><%= p.topic %></span>
-        </div>
-        <div class="chapter-content">
-          <span>故事內容：</span>
-          <span><%= simple_format p.content %></span>
-        </div>
-      <% end %>
+      <p style="text-align: right; border-radius: 50%"><%= link_to "回到上一層故事： #{@chapter.parent.topic}", chapter_path(@chapter.parent) , :class=>"btn btn-success"%></p>
     <% end %>
-  </div>
 
+  <% if @chapter.parent %>
+    <% @chapter.ancestors.each do |p| %>
+      <div class="story-btn">
+        <a class="btn btn-warning" role="button" data-toggle="collapse" href="#collapseExample<%= p.depth %>" aria-expanded="false" aria-controls="collapseExample<%= p.depth %>">
+      回顧一下故事 <%= "#{p.category.name if p.category} 第#{p.depth+1}" %>層：
+        </a>
+      </div>
+      <div class="collapse" id="collapseExample<%= p.depth %>">
+        <div class="well">
+          <span>
+            <h3>
+              <%= p.topic %>
+            </h3>
+          </span>
+          <span>
+            by <%= link_to p.user.display_name, user_profile_path(p.user) if p.user.present? %>
+          </span>
+          <span>
+            at <%= p.updated_at.to_formatted_s(:short) %>
+          </span>
+          <% if p.root? %>
+          <div class="chapter-setting">
+            <span>故事設定：</span>
+            <span><%= p.setting %></span>
+          </div>
+          <% end %>
+          <div class="chapter-img">
+            <span>
+              <%= image_tag p.avatar.thumb, :class => "chapter-cover" %>
+            </span>
+          </div>
+          <div class="chapter-content">
+            <p>
+              <%= simple_format p.content %>
+            </p>
+          </div>
+        </div>
+      </div>
+    <% end %> 
+<% end %>
   <hr>
-
-  <div class="current-chapter">
     <% if @chapter.root? %>
-      <div class="chapter-content">
-        <span>這邊是故事設定：</span>
+      <div class="chapter-setting">
+        <span>故事設定：</span>
         <span><%= @chapter.setting %></span>
       </div>
     <% end %>
 
     <% if @chapter.avatar.url %>
-      <div class="chapter-content">
-        <span>故事圖片：</span>
-        <span><%= image_tag @chapter.avatar.thumb, :class => "chapter-cover" %></span>
+      <div class="chapter-img">
+        <span>
+          <%= image_tag @chapter.avatar.thumb, :class => "chapter-cover" %>
+        </span>
       </div>
     <% end %>
 
-    <div class="chapter-content">
-      <span>這邊是故事內容：</span>
-      <span><%= simple_format @chapter.content %></span>
-    </div>
+      <div class="chapter-content">
+        <span>
+          <%= simple_format @chapter.content %>
+        </span>
+      </div>
+
     <% if @chapter.can_continue? %>
       <%= link_to "我要接續這段故事", new_chapter_path(:parent_id => @chapter.id, :category_id => @chapter.category_id) , :class => "btn btn-primary"%>
     <% end %>
-  </div>
-
+  
   <hr>
   
   <% if @chapter.has_children? %>
     <% @chapter.children.each do |c| %>
-      <p>下一層：<%= link_to c.topic, chapter_path(c) %></p>
+      <p style="text-align: right; border-radius: 50%"><%= link_to "觀賞下一層的故事： #{c.topic}", chapter_path(c) , :class=>"btn btn-success"%></p>
     <% end %>
   <% end %>
-
-
+  <div class="fb-comments" data-href="<%= chapter_url(@chapter) %>" data-width="500px" data-numposts="5" colorscheme = "dark" data-order-by="reverse_time"></div>
 </div>
-
-<div class="fb-comments" data-href="<%= chapter_url(@chapter) %>" data-width="500px" data-numposts="5" colorscheme = "dark" data-order-by="reverse_time"></div>

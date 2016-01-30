@@ -42,9 +42,9 @@ a.navbar-brand{
 }
 
 .nav-tabs-justified > li > a, .nav-tabs.nav-justified > li > a{
-    font-size: 1.2em;
+    font-size: 1.1em;
     border-radius: 10px 10px 0 0;
-    box-shadow: 10px 10px 5px #888888;   
+    box-shadow: 10px 10px 5px #888888;
 }
 
 
@@ -146,7 +146,14 @@ td {
     font-size: .9em;
     color: lightgray;
 }
+.carousel-inner{
+    margin: 130px 0;
+}
 
+.fb_iframe_widget{
+    margin: 20px 0;
+    box-shadow: 10px 10px 5px #888888;
+}
 .element {
     width:100%;
 }
@@ -156,13 +163,12 @@ td {
 }
 
 .grid {
-    clear: both;
-    overflow: hidden;
+    margin: 0 auto;
 }
 
 .grid-item {
     min-height: 50px;
-    width: 200px;
+    width: 250px;
     margin-bottom: 10px;
     border-radius: 10px;
     box-shadow: 5px 5px 2.5px #888888;
@@ -172,6 +178,8 @@ td {
     display: block;
     border-radius: 10px;
     max-width: 100%;
+    padding: 2%;
+    background: white;
 }
 
 .grid-item h4,
@@ -196,8 +204,6 @@ h6 {
     text-shadow: 1px 1px 1px black;
 }
 
-
-
 .modal-content #header-button {
     width: 95%;
     margin: 0 auto;
@@ -214,7 +220,6 @@ h6 {
     max-width: 400px;
 }
 
-
 .chapter-show img {
     border-radius: 10px;
     box-shadow: 2px 2px 2px gray;
@@ -224,52 +229,18 @@ h6 {
     margin:5px;
 }
 
-
-.chapter-show .depth{
+.chapter-show {
     text-align: center;
-    
 }
 
-.chapter-show .depth p{
-    display:inline-block;
-    border: 5px solid orange;
-    border-radius: 10px;
-    line-height: 30px;
-    padding: 2px;
-}
-
-.chapter-content > span{
-    width: 70%;
-    margin: 2px;
-    /*border: 5px solid lightgray;*/
-    background: white;
-    border-radius: 10px;
+.well span {
     display: inline-block;
 }
-
-.chapter-content > span:first-child{
-    width: 20%;
-    margin: 2px;
-    background: none;
-    /*border: 5px solid lightgray;*/
-    /*border-radius: 10px;*/
-    /*display: inline-block;*/
+.chapter-head span{
+ display: inline-block;
 }
 
-.current-chapter > span{
-    width: 70%;
-    margin: 2px;
-    border: 5px solid white;
-    /*background: white;*/
-    border-radius: 10px;
-    display: inline-block;
-}
-
-.current-chapter > span:first-child{
-    width: 20%;
-    margin: 2px;
-    background: white;
-    /*border: 5px solid lightgray;*/
-    border-radius: 10px;
-    display: inline-block;
+.story-btn{
+    margin: 0 auto;
+    text-align: center;
 }

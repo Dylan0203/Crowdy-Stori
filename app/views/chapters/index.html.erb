@@ -1,9 +1,9 @@
 <ul class="nav nav-tabs nav-justified" role="tablist">
   <li role="presentation"><a href="#weekpop" aria-controls="weekpop" role="tab" data-toggle="tab">一週熱門</a></li>
-  <li role="presentation"><a href="#finished" aria-controls="finish" role="tab" data-toggle="tab">已完結的故事</a></li>
-  <li role="presentation"><a href="#unfinished" aria-controls="unfinished" role="tab" data-toggle="tab">等待接續的故事</a></li>
-  <li role="presentation"><a href="#begins" aria-controls="begins" role="tab" data-toggle="tab">故事的開始</a></li>
   <li role="presentation"><a href="#mostpop" aria-controls="mostpop" role="tab" data-toggle="tab">最受歡迎</a></li>
+  <li role="presentation"><a href="#finished" aria-controls="finish" role="tab" data-toggle="tab">已完結的故事</a></li>
+  <li role="presentation"><a href="#begins" aria-controls="begins" role="tab" data-toggle="tab">故事的開始</a></li>
+  <li role="presentation"><a href="#unfinished" aria-controls="unfinished" role="tab" data-toggle="tab">等待接續的故事</a></li>
   <li role="presentation"><a href="#storyline" aria-controls="storyline" role="tab" data-toggle="tab">所有故事結構表</a></li>
   <li role="presentation"><a href="#crowdy" aria-controls="crowdy" role="tab" data-toggle="tab">crowdy</a></li>
 </ul>
@@ -11,48 +11,14 @@
 <div class="tab-content">
   <div role="tabpanel" class="tab-pane" id="weekpop">
     <h2 style="text-align: center">一週熱門</h2>
-
       <div class="grid" >
       <% @weekpop.each do |dd| %>
           <%= render :partial => 'masonry', :locals => { :dd => dd } %>
       <% end %>
       <div class="grid-item" style="height: 65px; width: 390px"><%= link_to "我要開啟一段新的故事", new_chapter_path , :class => "btn btn-primary" %></div>
       </div>
-
   </div>
   
-  <div role="tabpanel" class="tab-pane" id="finished">
-    <h2 style="text-align: center">已完結的故事</h2>
-
-    <div class="grid" >
-    <% @finish.each do |dd| %>
-        <%= render :partial => 'masonry', :locals => { :dd => dd } %>
-    <% end %>
-    <div class="grid-item" style="height: 65px; width: 390px"><%= link_to "我要開啟一段新的故事", new_chapter_path , :class => "btn btn-primary" %></div>
-    </div>
-  </div>
-
-  <div role="tabpanel" class="storyline tab-pane" id="unfinished">
-    <h2 style="text-align: center">等待接續的故事</h2>
-    <div class="element">
-      <ol class="level1">
-      <% @unfinished.roots.each do |d| %>
-        <%= render :partial => 'flow', :locals => { :d => d } %>
-      <% end %>
-      </ol>
-    </div>
-  </div>
-
-  <div role="tabpanel" class="tab-pane" id="begins">
-    <h2 style="text-align: center">故事的開始</h2>
-    <div class="grid" >
-      <div class="grid-item" style="height: 65px; width: 390px"><%= link_to "我要開啟一段新的故事", new_chapter_path , :class => "btn btn-primary" %></div>
-      <% @begins.each do |dd| %>
-        <%= render :partial => 'masonry', :locals => { :dd => dd } %>
-      <% end %>
-      </div>
-  </div>
-
   <div role="tabpanel" class="tab-pane" id="mostpop">
     <table class="table table-striped">
         <h2 style="text-align: center">最受歡迎</h2>
@@ -89,6 +55,37 @@
       </table>
   </div>
 
+  <div role="tabpanel" class="tab-pane" id="finished">
+    <h2 style="text-align: center">已完結的故事</h2>
+    <div class="grid" >
+    <% @finish.each do |dd| %>
+        <%= render :partial => 'masonry', :locals => { :dd => dd } %>
+    <% end %>
+    <div class="grid-item" style="height: 65px; width: 390px"><%= link_to "我要開啟一段新的故事", new_chapter_path , :class => "btn btn-primary" %></div>
+    </div>
+  </div>
+
+  <div role="tabpanel" class="tab-pane" id="begins">
+    <h2 style="text-align: center">故事的開始</h2>
+    <div class="grid" >      
+      <% @begins.each do |dd| %>
+        <%= render :partial => 'masonry', :locals => { :dd => dd } %>
+      <% end %>
+      <div class="grid-item" style="height: 65px; width: 390px"><%= link_to "我要開啟一段新的故事", new_chapter_path , :class => "btn btn-primary" %></div>
+      </div>
+  </div>
+
+  <div role="tabpanel" class="storyline tab-pane" id="unfinished">
+    <h2 style="text-align: center">等待接續的故事</h2>
+    <div class="element">
+      <ol class="level1">
+      <% @unfinished.roots.each do |d| %>
+        <%= render :partial => 'flow', :locals => { :d => d } %>
+      <% end %>
+      </ol>
+    </div>
+  </div>
+
   <div role="tabpanel" class="storyline tab-pane" id="storyline">
   <h2 style="text-align: center">所有故事結構表</h2>
     <div class="element">
@@ -100,24 +97,22 @@
     </div>
   </div>
 
-<div role="tabpanel" class="tab-pane" id="crowdy">
-  <hr>
-      <div class="col-md-4">
-     <!-- FB fan page --> 
-        <div class="fb-page" data-href="https://www.facebook.com/crowdy.space/" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
-          <div class="fb-xfbml-parse-ignore">
-              <blockquote cite="https://www.facebook.com/crowdy.space/"><a href="https://www.facebook.com/crowdy.space/">Crowdy-群眾共同創作平台</a></blockquote>
-          </div>
-        </div>
-      <!-- FB fan page -->
-      </div>
-      <div class="col-md-7 col-md-offset-1">
-        <div class="slider">
-          <%= render :partial => 'sliders' %> 
+  <div role="tabpanel" class="tab-pane" id="crowdy">
+    <div class="col-md-4">
+   <!-- FB fan page --> 
+      <div class="fb-page" data-href="https://www.facebook.com/crowdy.space/" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+        <div class="fb-xfbml-parse-ignore">
+            <blockquote cite="https://www.facebook.com/crowdy.space/"><a href="https://www.facebook.com/crowdy.space/">Crowdy-群眾共同創作平台</a></blockquote>
         </div>
       </div>
-  <hr>
-</div>
+    <!-- FB fan page -->
+    </div>
+    <div class="col-md-7 col-md-offset-1">
+      <div class="slider">
+        <%= render :partial => 'sliders' %> 
+      </div>
+    </div>
+  </div>
 
 </div>
 
@@ -128,7 +123,7 @@
 
     $('.grid').masonry({
       itemSelector: '.grid-item',
-      columnWidth: 200
+      fitWidth: true
     });
         
     var $container = $('.grid');
@@ -146,7 +141,7 @@
 
     $('.grid').masonry({
       itemSelector: '.grid-item',
-      columnWidth: 200
+      fitWidth: true
     });
   })
 </script>
