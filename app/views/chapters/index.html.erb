@@ -5,7 +5,7 @@
   <li role="presentation"><a href="#begins" aria-controls="begins" role="tab" data-toggle="tab">故事的開始</a></li>
   <li role="presentation"><a href="#mostpop" aria-controls="mostpop" role="tab" data-toggle="tab">最受歡迎</a></li>
   <li role="presentation"><a href="#storyline" aria-controls="storyline" role="tab" data-toggle="tab">所有故事結構表</a></li>
-  <li role="presentation" class="active"><a href="#crowdy" aria-controls="crowdy" role="tab" data-toggle="tab">crowdy</a></li>
+  <li role="presentation"><a href="#crowdy" aria-controls="crowdy" role="tab" data-toggle="tab">crowdy</a></li>
 </ul>
 
 <div class="tab-content">
@@ -100,7 +100,7 @@
     </div>
   </div>
 
-<div role="tabpanel" class="tab-pane active" id="crowdy">
+<div role="tabpanel" class="tab-pane" id="crowdy">
   <hr>
       <div class="col-md-4">
      <!-- FB fan page --> 
@@ -122,24 +122,31 @@
 </div>
 
 <script>
-$('.nav-tabs a').click(function (e) {
-  e.preventDefault()
-  $(this).tab('show');
+  $(window).load(function () {
 
-  $('.grid').masonry({
-    itemSelector: '.grid-item',
-    columnWidth: 200
-  });
+    $('.nav-tabs a[href="#weekpop"]').tab('show');
 
-  var $container = $('.grid');
-  $container.imagesLoaded(function() {
-    $container.masonry({
-        // itemSelector: '.grid-item',
-        // columnWidth: 200,
-        // originLeft: false,
-        gutter: 10,
-        transitionDuration: '0.8s'
+    $('.grid').masonry({
+      itemSelector: '.grid-item',
+      columnWidth: 200
+    });
+        
+    var $container = $('.grid');
+    $container.imagesLoaded(function() {
+      $container.masonry({
+          gutter: 10,
+          transitionDuration: '0.8s'
+      });
     });
   });
-})
+
+  $('.nav-tabs a').click(function (e) {
+    e.preventDefault()
+    $(this).tab('show');
+
+    $('.grid').masonry({
+      itemSelector: '.grid-item',
+      columnWidth: 200
+    });
+  })
 </script>
