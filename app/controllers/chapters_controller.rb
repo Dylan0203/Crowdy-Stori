@@ -20,11 +20,7 @@ class ChaptersController < ApplicationController
 
     @chapters = @chapters.order(sort_by + " DESC")
   end
-
-  def popular
-    
-  end
-
+  
   def show
     @page_title = "故事里 - #{@chapter.topic}"
 
