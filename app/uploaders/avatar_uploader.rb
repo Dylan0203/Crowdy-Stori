@@ -6,6 +6,14 @@ class AvatarUploader < CarrierWave::Uploader::Base
   # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
 
+  def fix_exif_rotation #this is my attempted solution
+    manipulate! do |img|
+      img.tap(&:auto_orient)
+    end
+  end
+
+  process :fix_exif_rotation
+
   process resize_to_fit: [800, 800]
 
   version :thumb do

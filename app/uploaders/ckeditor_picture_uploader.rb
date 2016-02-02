@@ -7,6 +7,14 @@ class CkeditorPictureUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
   # include CarrierWave::ImageScience
 
+  def fix_exif_rotation #this is my attempted solution
+    manipulate! do |img|
+      img.tap(&:auto_orient)
+    end
+  end
+
+  process :fix_exif_rotation
+
   # Choose what kind of storage to use for this uploader:
   storage :file
 
