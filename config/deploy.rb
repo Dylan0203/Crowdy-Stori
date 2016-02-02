@@ -1,5 +1,9 @@
 `ssh-add`
 
+set :rollbar_token, ENV['ROLLBAR_ACCESS_TOKEN']
+set :rollbar_env, Proc.new { fetch :stage }
+set :rollbar_role, Proc.new { :app }
+
 # config valid only for current version of Capistrano
 lock '3.4.0'
 
@@ -49,7 +53,4 @@ namespace :deploy do
     end
   end
 
-	set :rollbar_token, ENV['ROLLBAR_ACCESS_TOKEN']
-	set :rollbar_env, Proc.new { fetch :stage }
-	set :rollbar_role, Proc.new { :app }
 end
