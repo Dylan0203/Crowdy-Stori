@@ -49,8 +49,7 @@ gem "mini_magick"
 
 gem 'ckeditor', github: 'galetahub/ckeditor'
 
-#gem 'rollbar', '~> 2.7.1'
-gem 'rollbar', '~>2.1.2'
+gem 'rollbar', '~> 2.7.1'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
