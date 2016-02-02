@@ -10,7 +10,7 @@
     </span>
     
     <span>
-      at <%= @chapter.updated_at.to_formatted_s(:short) %>
+      at <%= @chapter.created_at.to_formatted_s(:short) %>
     </span>
   </div>
 <!-- fb-like -->
@@ -39,7 +39,7 @@
             by <%= link_to p.user.display_name, user_profile_path(p.user) if p.user.present? %>
           </span>
           <span>
-            at <%= p.updated_at.to_formatted_s(:short) %>
+            at <%= p.created_at.to_formatted_s(:short) %>
           </span>
           <% if p.root? %>
           <div class="chapter-setting">
