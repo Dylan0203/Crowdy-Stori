@@ -1,10 +1,10 @@
 # Load DSL and set up stages
 require 'capistrano/setup'
 
-require 'rollbar/capistrano3'
-
 # Include default deployment tasks
 require 'capistrano/deploy'
+
+require 'rollbar/capistrano3'
 
 # Include tasks from other gems included in your Gemfile
 #
