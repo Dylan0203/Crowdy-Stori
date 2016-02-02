@@ -20,5 +20,5 @@
 //= require_tree .
 
 $(function(){
-	$("#category_id").select2({ width: "auto" });
+	$("#category_id").select2({ width: "auto", minimumResultsForSearch: Infinity });
 })
