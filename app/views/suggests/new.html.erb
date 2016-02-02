@@ -1,0 +1,9 @@
+<h1><%= params[:suggest_category] %></h1>
+
+
+<%= form_for @suggest do |f| %>
+	<%= f.hidden_field :suggest_category, :value => params[:suggest_category] %>
+
+	<%= render partial: "suggest_from", locals: { f: f } %>
+
+<% end %>

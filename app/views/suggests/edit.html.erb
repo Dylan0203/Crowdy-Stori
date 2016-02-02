@@ -1,0 +1,7 @@
+<h1><%= @suggest.suggest_category %></h1>
+
+<%= form_for @suggest do |f| %>
+
+	<%= render partial: "suggest_from", locals: { f: f } %>
+
+<% end %>

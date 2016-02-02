@@ -28,6 +28,8 @@ Rails.application.routes.draw do
     resource :profile, :controller => "user_profiles"
   end
 
+  resources :suggests
+
   # resources :users, :controller => "user_profiles"
 
 

@@ -45,38 +45,47 @@
               <!-- Collect the nav links, forms, and other content for toggling -->
               <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                  <!-- <li class="active">
-                    <a href="#">Link <span class="sr-only">(current)</span></a>
-                  </li> -->
-                  <li>
-                    <%= link_to "", 'data-toggle'=>"modal", "data-target"=>".bs-about-modal-lg", :title => "來看看我們的理念" do %>
-                      <span class="fa-stack fa-lg">
-                        <i class="fa fa-square-o fa-stack-2x"></i>
-                        <i class="fa fa-info fa-stack-1x"></i>
-                      </span>
-                      <span>關於我們</span>
-                    <% end %>
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" title="來看看我們的理念">
+                        <span class="fa-stack fa-lg">
+                          <i class="fa fa-square-o fa-stack-2x"></i>
+                          <i class="fa fa-info fa-stack-1x"></i>
+                        </span>
+                        <span>關於我們</span>
+                      <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <%= link_to "", 'data-toggle'=>"modal", "data-target"=>".bs-about-modal-lg", :title => "來看看我們的理念" do %>
+                          <span class="fa-stack fa-lg">
+                            <i class="fa fa-square-o fa-stack-2x"></i>
+                            <i class="fa fa-info fa-stack-1x"></i>
+                          </span>
+                          <span>關於我們</span>
+                        <% end %>
+                      </li>
+                      <li>
+                        <%= link_to "", 'data-toggle'=>"modal", "data-target"=>".bs-how-modal-lg", :title => "點這裡來看怎麼玩兒" do %>
+                          <span class="fa-stack fa-lg">
+                            <i class="fa fa-square-o fa-stack-2x"></i>
+                            <i class="fa fa-users fa-stack-1x"></i>
+                          </span>
+                          <span>HOW TO PLAY!?</span>
+                        <% end %>
+                      </li>
+                      <li>
+                        <%= link_to "", 'data-toggle'=>"modal", "data-target"=>".bs-example-modal-lg", :title => "我們會保護你的隱私" do %>
+                          <span class="fa-stack fa-lg">
+                            <i class="fa fa-square-o fa-stack-2x"></i>
+                            <i class="fa fa-lock fa-stack-1x"></i>
+                          </span>
+                          <span>隱私權政策</span>
+                        <% end %>
+                      </li>
+                    </ul>
                   </li>
                   <li>
-                    <%= link_to "", 'data-toggle'=>"modal", "data-target"=>".bs-how-modal-lg", :title => "點這裡來看怎麼玩兒" do %>
-                      <span class="fa-stack fa-lg">
-                        <i class="fa fa-square-o fa-stack-2x"></i>
-                        <i class="fa fa-users fa-stack-1x"></i>
-                      </span>
-                      <span>HOW TO PLAY!?</span>
-                    <% end %>
-                  </li>
-                  <li>
-                    <%= link_to "", 'data-toggle'=>"modal", "data-target"=>".bs-example-modal-lg", :title => "我們會保護你的隱私" do %>
-                      <span class="fa-stack fa-lg">
-                        <i class="fa fa-square-o fa-stack-2x"></i>
-                        <i class="fa fa-lock fa-stack-1x"></i>
-                      </span>
-                      <span>隱私權政策</span>
-                    <% end %>
-                  </li>
-                  <li>
-                    <%= link_to "", :title => "快來下載iosApp", :class=>"ios" do %>
+                    <%= link_to "", :title => "iosApp上架審核中", :class=>"ios" do %>
                       <span class="fa-stack fa-lg">
                         <i class="fa fa-square-o fa-stack-2x"></i>
                         <i class="fa fa-mobile fa-stack-1x"></i>
@@ -84,22 +93,32 @@
                       <span>iOS App</span>
                     <% end %>
                   </li>
+                  <li>
+                    <%= link_to suggests_path, :title => "大家可以建議想要的功能還有錯誤回報謝謝" do %>
+                      <span class="fa-stack fa-lg">
+                        <i class="fa fa-square-o fa-stack-2x"></i>
+                        <i class="fa fa-commenting-o fa-stack-1x"></i>
+                      </span>
+                      <span>建議我們</span>
+                    <% end %>
+                  </li>
                 </ul>
-                
-                <form class="navbar-form navbar-left" role="search">
-                  <div class="form-group">
-                  <%= collection_select( :category, :id, Category.all, :id, :name,{:include_blank => '選擇故事類別or不分類'}) %>
-                    <%= text_field_tag "keyword","", :class=>"form-control", :placeholder=>"Search..." %>
-                  </div>
-                  <button type="submit" class="btn btn-default">搜尋</button>
-                </form>
 
-                <ul class="nav navbar-nav navbar-right">
+                <ul class="nav navbar-nav">
+
                   <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                       <% if current_user %>
-                        使用者設定
+                      <span class="fa-stack fa-lg">
+                      <i class="fa fa-square-o fa-stack-2x"></i>
+                      <i class="fa fa-cogs fa-stack-1x"></i>
+                      </span>
+                      <!-- 使用者設定 -->
                       <% else %>
+                        <span class="fa-stack fa-lg">
+                          <i class="fa fa-square-o fa-stack-2x"></i>
+                          <i class="fa fa-cogs fa-stack-1x"></i>
+                        </span>
                         登入選項
                       <% end %>
                       <span class="caret"></span>
@@ -164,12 +183,17 @@
                     </ul>
                   </li>
                 </ul>
+                <form class="navbar-form navbar-right" role="search">
+                  <div class="form-group">
+                  <%= collection_select( :category, :id, Category.all, :id, :name,{:include_blank => '選擇故事類別or不分類'}) %>
+                    <%= text_field_tag "keyword","", :class=>"form-control", :placeholder=>"Search..." %>
+                  </div>
+                  <button type="submit" class="btn btn-default">搜尋</button>
+                </form>
               </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
           </nav>
-
           <hr>
-
           <% if flash[:notice].present? %>
             <div class="alert alert-success" role="alert"><%= flash[:notice] %></div>
           <%end%>

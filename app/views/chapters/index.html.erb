@@ -67,7 +67,7 @@
 
   <div role="tabpanel" class="tab-pane" id="begins">
     <h2 style="text-align: center">故事的開始</h2>
-    <div class="grid" >      
+    <div class="grid" >
       <% @begins.each do |dd| %>
         <%= render :partial => 'masonry', :locals => { :dd => dd } %>
       <% end %>
@@ -77,12 +77,11 @@
 
   <div role="tabpanel" class="storyline tab-pane" id="unfinished">
     <h2 style="text-align: center">等待接續的故事</h2>
-    <div class="element">
-      <ol class="level1">
-      <% @unfinished.roots.each do |d| %>
-        <%= render :partial => 'flow', :locals => { :d => d } %>
+    <div class="grid" >
+      <% @unfinished.each do |dd| %>
+        <%= render :partial => 'masonry', :locals => { :dd => dd } %>
       <% end %>
-      </ol>
+      <div class="grid-item" style="height: 65px; width: 390px"><%= link_to "我要開啟一段新的故事", new_chapter_path , :class => "btn btn-primary" %></div>
     </div>
   </div>
 

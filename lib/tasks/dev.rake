@@ -10,4 +10,15 @@ namespace :dev do
 
   end
 
+  task :fake_suggests => :environment do
+
+  	Suggest.destroy_all
+
+  	10.times do	|i|
+      ca = ["我要建議", "我要回報"]
+
+  		Suggest.create!( topic:"Suggestion#{i}", content:"Whatever!", suggest_category: ca.shuffle.first, user_id: User.last.id)
+  	end
+  end
+
 end

@@ -1,0 +1,29 @@
+<h1>建議與錯誤回報區</h1>
+
+	<%= link_to "我要建議", new_suggest_path(suggest_category:"我要建議"), class: "btn btn-success" %>
+	<%= link_to "我要回報", new_suggest_path(suggest_category:"我要回報"), class: "btn btn-success" %>
+
+<table class="table table-striped">
+  <h2 style="text-align: center">清單列表</h2>
+  <tr>
+    <th>類別</th>
+    <th>標題</th>
+    <th>作者</th>
+    <th>事項</th>
+    <th>選項</th>
+  </tr>
+    <% @suggests.each do |s| %>
+      <tr>
+        <td><%= s.suggest_category %></td>
+        <td><%= link_to s.topic, suggest_path(s)%></td>
+        <td><%= link_to s.user.try(:display_name), user_profile_path( s.user.id ) if s.user %></td>
+        <td><%= s.content %></td>
+        <td>
+        	<% if s.user == current_user %>
+        	<%= link_to "修改",edit_suggest_path(s), class:"btn btn-success" %>
+        	<%= link_to "刪除",suggest_path(s), :method => :delete, :data => { :confirm => "Are you sure?" }, class:"btn btn-danger" %>
+        	<% end %>
+        </td>
+      </tr>
+    <% end %>
+</table>
