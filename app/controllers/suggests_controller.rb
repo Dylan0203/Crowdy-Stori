@@ -51,6 +51,5 @@ class SuggestsController < ApplicationController
 
 	def set_suggest
 		@suggest = Suggest.find(params[:id])
-		
 	end
 end

@@ -1,3 +1,5 @@
+require 'rollbar/capistrano3'
+
 # Load DSL and set up stages
 require 'capistrano/setup'
 
