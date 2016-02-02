@@ -25,7 +25,7 @@ set :deploy_to, '/home/deploy/Crowdy-Stori'
 # set :pty, true
 
 # Default value for :linked_files is []
-set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/secrets.yml', 'config/facebook.yml')
+set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/secrets.yml', 'config/facebook.yml', 'config/rollbar.yml')
 
 # Default value for linked_dirs is []
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads')
@@ -50,3 +50,7 @@ namespace :deploy do
   end
 
 end
+
+set :rollbar_token, ENV['ROLLBAR_ACCESS_TOKEN']
+set :rollbar_env, Proc.new { fetch :stage }
+set :rollbar_role, Proc.new { :app }

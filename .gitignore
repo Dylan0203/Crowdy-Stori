@@ -21,3 +21,4 @@
 /config/facebook.yml
 /config/database.yml
 /config/secrets.yml
+/config/rollbar.yml
