@@ -1,0 +1,126 @@
+<% if @chapter.root? %>
+  <h1>創造你的故事</h1>
+<% else %>
+  <h1>接續故事: <%= @chapter.parent.topic %></h1>
+<% end %>
+
+<%= form_for @chapter do |f| %>
+  <%= f.hidden_field :parent_id %>
+
+  <% if @chapter.root? %>
+    <div class="form-group">
+      <%= f.label :category_id, "故事分類："%>
+      <%= f.select :category_id, Category.all.map{ |c| [c.name, c.id] } %>
+    </div>
+  <% end %>
+
+  <div class="form_group">
+    <%= f.label :avatar, "上傳故事封面圖片 檔案or連結" %>
+    <%= f.file_field :avatar %>
+    <%= f.text_field :remote_avatar_url %>
+    <%= f.hidden_field :avatar_cache %>
+  </div>
+
+  <div class="form_group">
+    <%= f.label :topic, "標題或故事大綱" %>
+    <%= f.text_field :topic, :required => true, :class => "form-control", :placeholder => '命名也是很有趣der' , :autofocus => true%>
+  </div>
+
+  <% if @chapter.root? %>
+    <div class="form_group">
+      <%= f.label :setting, "故事設定" %>
+      <%= f.text_field :setting, :class => "form-control", :placeholder => 'ex. 夜晚、台北、國家劇院' %>
+    </div>
+  <% end %>
+
+  <div class="form_group">
+      <%= f.label :content, "故事內容" %>
+      <%= f.cktext_area :content, :required => true, :ckeditor => {:language => 'zh', :uiColor => 'lightgray', :toolbar => 'mini', :height => '300', :autoParagraph => true} %>
+  </div>
+<!-- #:ckeditor => {:language => 'zh', :uiColor => '#AADC6E', :toolbar => 'mini', :skin => 'kama', :extraPlugins => 'confighelper'} -->
+
+<% if false %>
+<!--   <div class="form_group">
+    <%= f.label :content, "故事內容" %>
+    <%= f.text_area :content, :required => true, :class => "form-control", :placeholder => '請盡情發揮，沒有人會阻止你' %>
+  </div>
+ -->
+<% end %>
+
+  <div class="form_group">
+    <% if @chapter.depth == 2 %>
+      <%= f.select :finish, [ ['結束故事', true] ] %>
+    <% else %>
+      <%= f.select :finish, [['可以接續', false], ['結束故事', true]] %>
+    <% end %>
+    <%= f.label :finish, "選擇故事是否完結！？" %>
+  </div>
+  
+  <hr>
+
+  <div class="form_group">
+    <%#= f.submit "送出故事", :data => {:confirm => "你確定喔送出不能改喔！！"}, :class => 'btn btn-primary' %>
+  </div>
+<%# end %>
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  預覽故事
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">預覽故事</h4>
+      </div>
+      <div class="modal-body">
+        <% @chapter.ancestors.each do |p| %> 
+
+          <p><%= "前情提要：（故事第#{p.depth+1}層）" %></p>
+          <p><%= "故事標題： #{p.topic}" %></p>
+          <% if p.root? %> 
+          <p><%= "故事設定： #{p.try(:setting)}" %></p>
+          <% end %>
+          <p><%= image_tag p.avatar.thumb %></p>
+          <p><%= simple_format p.content %></p>
+          <hr>
+        <% end %>
+          <p>準備送出的新故事片段：</p>  
+        
+          <div id="preview">...</div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <%= f.submit "送出故事", :class => 'btn btn-primary' %>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
+
+
+<script>
+
+$("[data-target='#myModal']").click(function(){
+  var cke_data = CKEDITOR.instances.chapter_content.getData()
+      topic = $("#chapter_topic")
+      t = topic.val()
+      setting = $("#chapter_setting")
+      s = setting.val();
+
+  $("#preview").html(
+   "<p>標題：" + t + "</p>" +
+   "<p>故事設定：" + s + "</p>" +
+   "<p>內容：" + cke_data + "</p>"
+  );
+})
+
+  $("#chapter_finish").select2({ width: "auto", minimumResultsForSearch: Infinity });
+  $("#chapter_category_id").select2({ width: "auto", minimumResultsForSearch: Infinity });
+  
+
+</script>

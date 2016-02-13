@@ -82,11 +82,16 @@
           <%= simple_format @chapter.content %>
         </span>
       </div>
-
-    <% if @chapter.can_continue? %>
-      <%= link_to "我要接續這段故事", new_chapter_path(:parent_id => @chapter.id, :category_id => @chapter.category_id) , :class => "btn btn-primary"%>
-    <% end %>
-  
+      <div>
+        <% if current_user == @chapter.user %>
+          <%= link_to "修改",edit_chapter_path(@chapter), title:"請注意，如果內容有重大變更，請用新的故事接續，確保其他共創故事的延續性:)", :data => {:confirm => "請注意，如果內容有重大變更，請用新的故事接續，確保其他共創故事的延續性:)"}, class:"btn btn-info" %>
+        <% end %>
+      </div>
+      <div>
+        <% if @chapter.can_continue? %>
+          <%= link_to "我要接續這段故事", new_chapter_path(:parent_id => @chapter.id, :category_id => @chapter.category_id) , :class => "btn btn-primary"%>
+        <% end %>
+      </div>
   <hr>
   
   <% if @chapter.has_children? %>

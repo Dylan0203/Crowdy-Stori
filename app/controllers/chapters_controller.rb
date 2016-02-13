@@ -1,7 +1,7 @@
 class ChaptersController < ApplicationController
 
   before_action :authenticate_user!, :except => [:index, :show]
-  before_action :set_article, :only => [ :show ]
+  before_action :set_article, :only => [ :show, :edit, :update ]
 
   def index
     @weekpop = Chapter.includes_more.weekpop.search(params)
@@ -44,6 +44,21 @@ class ChaptersController < ApplicationController
       redirect_to chapter_path(@chapter)
     else
       render :action => :new
+    end
+  end
+
+  def edit
+    
+  end
+
+  def update
+    @chapter.update(chapter_params)
+    if @chapter.save
+      flash[:notice] = "成功更新故事"
+    redirect_to chapter_path(@chapter)
+    else
+      flash[:alert] = "故事標題或內容不可為空白"
+      render :action => :edit
     end
   end
 
