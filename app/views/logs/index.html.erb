@@ -1,0 +1,52 @@
+<div class="change-logs">
+	<h1>Change Logs</h1>
+	<!-- fb-like -->
+	  <div class="fb-like" data-href="<%= logs_url %>" data-width="500px" data-layout="standard" data-action="like" data-show-faces="true" data-share="true" colorscheme = "dark"></div>
+	<!-- fb-like -->
+	<% if current_user && current_user.admin? %>
+		<%= form_for @log do |f| %>
+			
+			<div class="form-group">
+			  <%= f.label :logtime, "日期："%>
+			  <%= f.date_select :logtime %>
+			</div>
+
+			<div class="form-group">
+			  <%= f.label :topic, "標題："%>
+			  <%= f.text_field :topic %>
+			</div>
+
+			<div class="form-group">
+			  <%= f.label :content, "項目內容："%>
+			  <%= f.text_area :content %>
+			</div>
+
+			<%= f.submit "送出", class:"btn btn-primary" %>
+		<% end %>
+	<% end %>	
+
+	<table class="table table-striped">
+	  <tr>
+	  	<th>標題</th>
+	    <th>日期</th>
+	    <th>發佈者</th>
+	    <th>內容</th>
+	    <th>操作</th>
+	  </tr>
+	  <% @logs.each do |l| %>
+	  <tr>
+	    <td><%= l.topic %></td>
+	    <td><%= l.logtime %></td>
+	    <td><%= link_to l.user.display_name, user_profile_path( l.user.id ) %></td>
+	    <td><%= l.content %></td>
+	    <td>
+				<% if current_user && current_user.admin? %>
+	      	<%= link_to "修改",logs_path(log_id:l), class:"btn btn-success" %>
+	      	<%= link_to "刪除",log_path(l), :method => :delete, :data => { :confirm => "Are you sure?" }, class:"btn btn-danger" %>
+	    	<% end %>
+	    </td>
+	  </tr>
+	  <% end %>
+	</table>
+	<div class="fb-comments" data-href="<%= logs_url %>" data-width="500px" data-numposts="5" colorscheme = "dark" data-order-by="reverse_time"></div>
+</div>

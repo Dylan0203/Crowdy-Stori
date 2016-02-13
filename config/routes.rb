@@ -30,6 +30,8 @@ Rails.application.routes.draw do
 
   resources :suggests
 
+  resources :logs
+
   # resources :users, :controller => "user_profiles"
 
 

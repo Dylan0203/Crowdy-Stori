@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   has_many :chapters
   has_one :profile, :dependent => :destroy
   has_many :suggests
+  has_many :logs
 
   before_create :generate_authentication_token
 
