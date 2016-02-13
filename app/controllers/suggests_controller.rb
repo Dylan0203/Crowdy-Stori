@@ -5,7 +5,7 @@ class SuggestsController < ApplicationController
 	before_action :set_suggest, only: [:edit, :update, :destroy]
 
 	def index
-		@suggests = Suggest.all.order("id DESC")
+		@suggests = Suggest.includes_more.order("id DESC")
 	end
 
 	def show
