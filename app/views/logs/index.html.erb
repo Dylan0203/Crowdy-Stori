@@ -18,7 +18,7 @@
 
 			<div class="form-group">
 			  <%= f.label :content, "項目內容："%>
-			  <%= f.text_area :content %>
+			  <%= f.text_area :content, size: "70x5" %>
 			</div>
 
 			<%= f.submit "送出", class:"btn btn-primary" %>
@@ -38,7 +38,7 @@
 	    <td><%= l.topic %></td>
 	    <td><%= l.logtime %></td>
 	    <td><%= link_to l.user.display_name, user_profile_path( l.user.id ) %></td>
-	    <td><%= l.content %></td>
+	    <td><%= simple_format l.content %></td>
 	    <td>
 				<% if current_user && current_user.admin? %>
 	      	<%= link_to "修改",logs_path(log_id:l), class:"btn btn-success" %>
