@@ -15,7 +15,7 @@
       <% @weekpop.each do |dd| %>
           <%= render :partial => 'masonry', :locals => { :dd => dd } %>
       <% end %>
-      <div class="grid-item" style="height: 65px; width: 390px"><%= link_to "我要開啟一段新的故事", new_chapter_path , :class => "btn btn-primary" %></div>
+      <div class="grid-item add" style="height: 65px; width: 390px"><%= link_to "我要開啟一段新的故事", new_chapter_path , :class => "btn btn-primary" %></div>
       </div>
   </div>
   
@@ -61,7 +61,7 @@
     <% @finish.each do |dd| %>
         <%= render :partial => 'masonry', :locals => { :dd => dd } %>
     <% end %>
-    <div class="grid-item" style="height: 65px; width: 390px"><%= link_to "我要開啟一段新的故事", new_chapter_path , :class => "btn btn-primary" %></div>
+    <div class="grid-item add" style="height: 65px; width: 390px"><%= link_to "我要開啟一段新的故事", new_chapter_path , :class => "btn btn-primary" %></div>
     </div>
   </div>
 
@@ -71,7 +71,7 @@
       <% @begins.each do |dd| %>
         <%= render :partial => 'masonry', :locals => { :dd => dd } %>
       <% end %>
-      <div class="grid-item" style="height: 65px; width: 390px"><%= link_to "我要開啟一段新的故事", new_chapter_path , :class => "btn btn-primary" %></div>
+      <div class="grid-item add" style="height: 65px; width: 390px"><%= link_to "我要開啟一段新的故事", new_chapter_path , :class => "btn btn-primary" %></div>
       </div>
   </div>
 
@@ -81,7 +81,7 @@
       <% @unfinished.each do |dd| %>
         <%= render :partial => 'masonry', :locals => { :dd => dd } %>
       <% end %>
-      <div class="grid-item" style="height: 65px; width: 390px"><%= link_to "我要開啟一段新的故事", new_chapter_path , :class => "btn btn-primary" %></div>
+      <div class="grid-item add" style="height: 65px; width: 390px"><%= link_to "我要開啟一段新的故事", new_chapter_path , :class => "btn btn-primary" %></div>
     </div>
   </div>
 

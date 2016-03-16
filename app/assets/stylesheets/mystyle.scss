@@ -244,3 +244,19 @@ h6 {
 .change-logs{
     text-align: center;
 }
+
+@media screen and (max-width: 768px) {
+    .grid .btn {
+    font-size: 1.6em;
+    }
+    .add {
+    width:250px !important;
+    height:45px !important;
+    }
+    .fb-page{
+        width:100%;
+    }
+    #crowdy{
+        width:300px;
+    }
+}
