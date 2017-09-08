@@ -34,7 +34,7 @@ gem 'bootstrap-sass', '~> 3.3.6'
 
 gem 'capistrano-rails', :group => :development
 gem 'capistrano-passenger', :group => :development
-gem 'capistrano-rbenv', github: 'capistrano/rbenv', :group => :development
+gem 'capistrano-rbenv', github: 'capistrano/rbenv'
 gem "mysql2"
 
 gem "select2-rails"
