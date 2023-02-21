@@ -49,7 +49,7 @@ gem "mini_magick"
 
 # gem 'ckeditor'
 
-gem 'rollbar'
+# gem 'rollbar'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
