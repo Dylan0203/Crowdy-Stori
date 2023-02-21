@@ -12,13 +12,15 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require ckeditor/init
 //= require bootstrap-sprockets
 //= require select2
 //= require imagesloaded.pkgd.min
 //= require masonry.pkgd.min
 //= require_tree .
 
-$(function(){
-	$("#category_id").select2({ width: "auto", minimumResultsForSearch: Infinity });
-})
+(function () {
+  $("#category_id").select2({
+    width: "auto",
+    minimumResultsForSearch: Infinity,
+  });
+});

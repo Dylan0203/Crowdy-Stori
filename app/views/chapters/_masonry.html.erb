@@ -3,7 +3,7 @@
   <% if dd.avatar.blank? %>
     <%= default_chapter_avatar(dd) %>
   <% else %>
-    <%= image_tag dd.avatar %>
+    <%= image_tag dd.avatar.url %>
   <% end %>
   <h3><%= dd.topic %></h3>
   <h6><%= dd.category.try(:name) %></h6>

@@ -5,7 +5,7 @@ set :rollbar_env, Proc.new { fetch :stage }
 set :rollbar_role, Proc.new { :app }
 
 # config valid only for current version of Capistrano
-lock '3.4.0'
+lock '3.17.2'
 
 set :application, 'Crowdy-Stori'
 set :repo_url, 'git@github.com:Dylan0203/Crowdy-Stori.git'

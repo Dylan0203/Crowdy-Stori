@@ -55,7 +55,7 @@
     <% end %>
     <%= f.label :finish, "選擇故事是否完結！？" %>
   </div>
-  
+
   <hr>
 
   <div class="form_group">
@@ -77,19 +77,19 @@
         <h4 class="modal-title" id="myModalLabel">預覽故事</h4>
       </div>
       <div class="modal-body">
-        <% @chapter.ancestors.each do |p| %> 
+        <% @chapter.ancestors.each do |p| %>
 
           <p><%= "前情提要：（故事第#{p.depth+1}層）" %></p>
           <p><%= "故事標題： #{p.topic}" %></p>
-          <% if p.root? %> 
+          <% if p.root? %>
           <p><%= "故事設定： #{p.try(:setting)}" %></p>
           <% end %>
-          <p><%= image_tag p.avatar.thumb %></p>
+          <p><%= image_tag p.avatar.thumb.url %></p>
           <p><%= simple_format p.content %></p>
           <hr>
         <% end %>
-          <p>準備送出的新故事片段：</p>  
-        
+          <p>準備送出的新故事片段：</p>
+
           <div id="preview">...</div>
 
       </div>
@@ -121,6 +121,6 @@ $("[data-target='#myModal']").click(function(){
 
   $("#chapter_finish").select2({ width: "auto", minimumResultsForSearch: Infinity });
   $("#chapter_category_id").select2({ width: "auto", minimumResultsForSearch: Infinity });
-  
+
 
 </script>

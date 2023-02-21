@@ -1,15 +1,15 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.5'
+gem 'rails', '5.2.8.1'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
+gem 'sass-rails'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.1.0'
+gem 'coffee-rails'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
@@ -32,10 +32,9 @@ gem "rest-client"
 
 gem 'bootstrap-sass', '~> 3.3.6'
 
-gem 'capistrano-rails', :group => :development
-gem 'capistrano-passenger', :group => :development
-gem 'capistrano-rbenv', github: 'capistrano/rbenv'
-gem "mysql2"
+# gem 'capistrano-passenger', :group => :development
+# gem 'capistrano-rbenv', github: 'capistrano/rbenv'
+# gem "mysql2"
 
 gem "select2-rails"
 
@@ -43,13 +42,14 @@ gem "rails-i18n"
 
 gem "letter_opener", :group => :development
 
-gem 'carrierwave'#, github: 'carrierwaveuploader/carrierwave'
+# gem 'carrierwave'#, github: 'carrierwaveuploader/carrierwave'
+gem 'carrierwave', '~> 1.3.3'
 
 gem "mini_magick"
 
-gem 'ckeditor', github: 'galetahub/ckeditor'
+# gem 'ckeditor'
 
-gem 'rollbar', '~> 2.7.1'
+gem 'rollbar'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -70,5 +70,10 @@ group :development do
   gem 'web-console', '~> 2.0'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
+  # gem 'spring'
+
+  gem 'capistrano-rails', :group => :development
+  gem 'capistrano', '~> 3.9'
+  gem 'capistrano-rbenv', '~> 2.2'
+  gem 'capistrano-passenger'
 end

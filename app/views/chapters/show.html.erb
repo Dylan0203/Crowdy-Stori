@@ -1,5 +1,5 @@
 <div class="chapter-show">
-  <div class="chapter-head">  
+  <div class="chapter-head">
     <span>
       <h1>
         <%= @chapter.topic %>
@@ -8,7 +8,7 @@
     <span>
       by <%= link_to @chapter.user.display_name, user_profile_path(@chapter.user) if @chapter.user.present? %>
     </span>
-    
+
     <span>
       at <%= @chapter.created_at.to_formatted_s(:short) %>
     </span>
@@ -49,7 +49,9 @@
           <% end %>
           <div class="chapter-img">
             <span>
-              <%= image_tag p.avatar.thumb, :class => "chapter-cover" %>
+              <% if p.avatar.thumb.url %>
+                <%= image_tag p.avatar.thumb.url, :class => "chapter-cover" %>
+              <% end %>
             </span>
           </div>
           <div class="chapter-content">
@@ -59,7 +61,7 @@
           </div>
         </div>
       </div>
-    <% end %> 
+    <% end %>
 <% end %>
   <hr>
     <% if @chapter.root? %>
@@ -72,7 +74,7 @@
     <% if @chapter.avatar.url %>
       <div class="chapter-img">
         <span>
-          <%= image_tag @chapter.avatar, :class => "chapter-cover" %>
+          <%= image_tag @chapter.avatar.url, :class => "chapter-cover" %>
         </span>
       </div>
     <% end %>
@@ -93,7 +95,7 @@
         <% end %>
       </div>
   <hr>
-  
+
   <% if @chapter.has_children? %>
     <% @chapter.children.each do |c| %>
       <p style="text-align: right; border-radius: 50%"><%= link_to "觀賞下一層的故事： #{c.topic}", chapter_path(c) , :class=>"btn btn-success"%></p>

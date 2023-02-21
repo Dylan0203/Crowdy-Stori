@@ -180,7 +180,7 @@
                         <% end %>
                       </li>
                       <li>
-                        <%= link_to user_omniauth_authorize_path(:facebook), :title => "用非死不可登入又快又方便喔" do %>
+                        <%= link_to user_facebook_omniauth_authorize_path(:facebook), :title => "用非死不可登入又快又方便喔" do %>
                           <span class="fa-stack fa-lg">
                             <i class="fa fa-square-o fa-stack-2x"></i>
                             <i class="fa fa-facebook fa-stack-1x"></i>
@@ -212,7 +212,7 @@
           <%end%>
 
           <%= yield %>
-          
+
         </div>
       </div>
     </div>

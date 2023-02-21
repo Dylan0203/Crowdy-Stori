@@ -18,7 +18,7 @@
       <div class="grid-item add" style="height: 65px; width: 390px"><%= link_to "我要開啟一段新的故事", new_chapter_path , :class => "btn btn-primary" %></div>
       </div>
   </div>
-  
+
   <div role="tabpanel" class="tab-pane" id="mostpop">
     <table class="table table-striped">
         <h2 style="text-align: center">最受歡迎</h2>
@@ -39,7 +39,7 @@
                   <% if c.avatar.blank? %>
                     <%= default_chapter_avatar(c) %>
                   <% else %>
-                    <%= image_tag c.avatar %>
+                    <%= image_tag c.avatar.url %>
                   <% end %>
                 <% end %>
               </td>
@@ -98,7 +98,7 @@
 
   <div role="tabpanel" class="tab-pane" id="crowdy">
     <div class="col-md-4">
-   <!-- FB fan page --> 
+   <!-- FB fan page -->
       <div class="fb-page" data-href="https://www.facebook.com/crowdy.space/" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
         <div class="fb-xfbml-parse-ignore">
             <blockquote cite="https://www.facebook.com/crowdy.space/"><a href="https://www.facebook.com/crowdy.space/">Crowdy-群眾共同創作平台</a></blockquote>
@@ -108,7 +108,7 @@
     </div>
     <div class="col-md-7 col-md-offset-1">
       <div class="slider">
-        <%= render :partial => 'sliders' %> 
+        <%= render :partial => 'sliders' %>
       </div>
     </div>
   </div>
@@ -124,7 +124,7 @@
       itemSelector: '.grid-item',
       fitWidth: true
     });
-        
+
     var $container = $('.grid');
     $container.imagesLoaded(function() {
       $container.masonry({
