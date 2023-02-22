@@ -32,8 +32,8 @@ gem "rest-client"
 
 gem 'bootstrap-sass', '~> 3.3.6'
 
-gem 'capistrano-rails', :group => :development
-gem 'capistrano-passenger', :group => :development
+gem 'capistrano-rails'
+gem 'capistrano-passenger'
 gem 'capistrano', '~> 3.9'
 gem 'capistrano-rbenv', '~> 2.2'
 
