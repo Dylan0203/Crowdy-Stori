@@ -38,7 +38,7 @@ gem 'capistrano', '~> 3.9'
 gem 'capistrano-rbenv', '~> 2.2'
 
 # gem 'capistrano-rbenv', github: 'capistrano/rbenv'
-# gem "mysql2"
+gem "mysql2"
 
 gem "select2-rails"
 

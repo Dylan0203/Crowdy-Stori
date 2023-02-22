@@ -144,6 +144,7 @@ GEM
     mini_portile2 (2.8.1)
     minitest (5.17.0)
     multi_xml (0.6.0)
+    mysql2 (0.5.5)
     net-imap (0.3.4)
       date
       net-protocol
@@ -302,6 +303,7 @@ DEPENDENCIES
   jquery-rails
   letter_opener
   mini_magick
+  mysql2
   omniauth-facebook
   rails (= 5.2.8.1)
   rails-i18n
