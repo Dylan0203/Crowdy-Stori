@@ -1,4 +1,5 @@
-# encoding: utf-8
+# frozen_string_literal: true
+
 class CkeditorPictureUploader < CarrierWave::Uploader::Base
   include Ckeditor::Backend::CarrierWave
 
@@ -6,14 +7,6 @@ class CkeditorPictureUploader < CarrierWave::Uploader::Base
   # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
   # include CarrierWave::ImageScience
-
-  def fix_exif_rotation #this is my attempted solution
-    manipulate! do |img|
-      img.tap(&:auto_orient)
-    end
-  end
-
-  process :fix_exif_rotation
 
   # Choose what kind of storage to use for this uploader:
   storage :file
@@ -30,21 +23,19 @@ class CkeditorPictureUploader < CarrierWave::Uploader::Base
   # end
 
   # Process files as they are uploaded:
-  # process :scale => [200, 300]
+  # process scale: [200, 300]
   #
   # def scale(width, height)
   #   # do something
   # end
 
-  process :read_dimensions
-
   # Create different versions of your uploaded files:
   version :thumb do
-    process :resize_to_fill => [118, 100]
+    process resize_to_fill: [118, 100]
   end
 
   version :content do
-    process :resize_to_limit => [800, 800]
+    process resize_to_limit: [800, 800]
   end
 
   # Add a white list of extensions which are allowed to be uploaded.

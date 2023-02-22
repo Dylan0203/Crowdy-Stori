@@ -51,7 +51,7 @@ gem 'carrierwave', '~> 1.3.3'
 
 gem "mini_magick"
 
-# gem 'ckeditor'
+gem 'ckeditor', github: 'galetahub/ckeditor'
 
 # gem 'rollbar'
 
