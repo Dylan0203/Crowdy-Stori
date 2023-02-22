@@ -32,7 +32,11 @@ gem "rest-client"
 
 gem 'bootstrap-sass', '~> 3.3.6'
 
-# gem 'capistrano-passenger', :group => :development
+gem 'capistrano-rails', :group => :development
+gem 'capistrano-passenger', :group => :development
+gem 'capistrano', '~> 3.9'
+gem 'capistrano-rbenv', '~> 2.2'
+
 # gem 'capistrano-rbenv', github: 'capistrano/rbenv'
 # gem "mysql2"
 
@@ -71,9 +75,4 @@ group :development do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   # gem 'spring'
-
-  gem 'capistrano-rails', :group => :development
-  gem 'capistrano', '~> 3.9'
-  gem 'capistrano-rbenv', '~> 2.2'
-  gem 'capistrano-passenger'
 end
